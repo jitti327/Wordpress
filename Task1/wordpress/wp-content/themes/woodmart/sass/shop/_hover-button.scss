@@ -1,0 +1,148 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER BUTTON
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-button {
+
+	.product-element-top {
+
+		&:before {
+			content:"";
+			position: absolute;
+			top:0;
+			bottom: 0;
+			left: 0;
+			right:0;
+			background-color: rgba(0,0,0,0.5);
+			opacity: 0;
+			z-index: 2;
+			-webkit-transition:visibility 0.3s ease, opacity 0.3s ease;
+			transition:visibility 0.3s ease, opacity 0.3s ease;
+		}				
+	}
+
+	.woodmart-buttons {
+		background-color: transparent;
+		box-shadow: none;
+		visibility: hidden; // Need to fix issue https://gyazo.com/75fe20ea14a7ee56bd284375b7ff3cef
+		z-index: 3;
+		@extend %position-without-space-top-right-hover-buttons;
+		@extend %button-color-white;
+		@extend %fade-in-left-start-position;
+
+		> div {
+
+			a {
+				height: 40px;
+
+				&:before {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+
+	.product-image-link {
+		position:relative;
+	}
+
+	.hover-mask {
+		position: absolute;
+		left: 0;
+		top: 57%;
+		width: 100%;
+		text-align: center;
+		opacity: 0;
+		z-index: 3;
+
+		-webkit-transition:
+			transform 0.3s ease, 
+			top 0.3s ease, 
+			opacity 0.3s ease;
+		transition:
+			transform 0.3s ease, 
+			top 0.3s ease, 
+			opacity 0.3s ease;
+
+		-webkit-transform: 
+			translateY(-50%);
+		transform:
+			translateY(-50%);
+
+		@extend %bordered-white-button;
+		
+	}
+
+	&:hover {
+
+		.product-element-top {
+
+			&:before {
+				opacity: 1;
+			}				
+		}
+
+		.woodmart-buttons {
+			visibility: visible;
+			@extend %fade-in-left-hover-position;
+		}
+
+		.hover-mask {
+			top:50%;
+			opacity: 1;
+		}
+	}
+
+	&.product-swatched,
+	&.loading-quick-shop,
+	&.quick-shop-shown,
+	&.loading-image {
+
+		.hover-mask {
+			top:55%;
+			opacity: 0;
+		}
+
+		.woodmart-buttons {
+			@include fade-in-left-start-position;
+		}	
+
+		.product-element-top {
+
+			&:before {
+				opacity: 0;
+			}
+		}	
+	}
+
+	&.product-swatched:not(.loading-quick-shop):not(.quick-shop-shown):not(.loading-image) {
+
+		.product-element-top {
+
+			&:hover {
+
+				&:before {
+					opacity: 1;
+				}
+
+				.hover-mask {
+					top:50%;
+					opacity: 1;
+				}
+
+				.woodmart-buttons {
+					@include fade-in-left-hover-position;
+				}
+			}
+		}
+	}
+
+	.color-scheme-light &,
+    .woodmart-dark & {
+
+    	.woodmart-buttons {
+    		background-color: transparent;
+    	}
+    }
+}

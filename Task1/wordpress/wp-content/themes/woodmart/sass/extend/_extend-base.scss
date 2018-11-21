@@ -1,0 +1,116 @@
+// ------------------------------------------
+// EXTEND COLOR BORDER
+// ------------------------------------------ 
+
+// @extend %main-border-color;
+
+%main-border-color {
+	border-color:$main-border-color;
+
+	.woodmart-dark & {
+		border-color:$scheme-light--border-color-lighten;
+	}
+}
+
+// ------------------------------------------
+// COLOR PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-color;
+
+%primary-color {
+	color:$primary-color;
+}
+
+// ------------------------------------------
+// BACKGROUND PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-background;
+
+%primary-background {
+	background-color:$primary-color;
+}
+
+// ------------------------------------------
+// BORDER PRIMARY
+// ------------------------------------------ 
+
+// @extend %primary-border;
+
+%primary-border {
+	border-color:$primary-color;
+}
+
+// ------------------------------------------
+// COLOR ALTERNATIVE
+// ------------------------------------------ 
+
+// @extend %alternative-color;
+
+%alternative-color {
+	color:$alternative-color;
+}
+
+// @extend %alternative-background;
+
+%alternative-background {
+	background-color:$alternative-color;
+}
+
+// @extend %alternative-border;
+
+%alternative-border {
+	border-color:$alternative-color;
+}
+
+// ------------------------------------------
+// MAIN CONTENT FONT
+// ------------------------------------------ 
+
+// @extend %content-font;
+
+%content-font {
+	font-family:$main-font;
+}
+
+
+// ------------------------------------------
+// TITLE FONT
+// ------------------------------------------ 
+
+// @extend %title-font;
+
+%title-font {
+	font-family:$title-font;
+}
+
+// ------------------------------------------
+// ENTITIES NAME
+// ------------------------------------------ 
+
+// @extend %secondary-title;
+
+%secondary-title {
+	font-family:$secondary-title;
+}
+
+// ------------------------------------------
+// NAVIGATION FONT
+// ------------------------------------------ 
+
+// @extend %navigation-font;
+
+%navigation-font {
+	font-family:$navigation-font;
+}
+
+// ------------------------------------------
+// ALTERNATIVE FONT
+// ------------------------------------------ 
+
+// @extend %alternative-font;
+
+%alternative-font {
+	font-family:$alternative-font;
+}

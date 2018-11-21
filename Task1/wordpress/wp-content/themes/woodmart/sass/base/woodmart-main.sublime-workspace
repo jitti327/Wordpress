@@ -1,0 +1,633 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"z-",
+				"z-index"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"le",
+				"letter-spacing"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"pad",
+				"padding-right"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"Font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"fl",
+				"flex\tFlexbox - flex: 0 1 auto;"
+			],
+			[
+				"ve",
+				"vertical-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "_base.scss",
+			"settings":
+			{
+				"buffer_size": 5157,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/main.scss",
+			"settings":
+			{
+				"buffer_size": 6725,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/extend/_extend-elements.scss",
+			"settings":
+			{
+				"buffer_size": 15082,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_general-style-hover.scss",
+			"settings":
+			{
+				"buffer_size": 12787,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Admin/Desktop/woodmart-main.sublime-workspace",
+			"settings":
+			{
+				"buffer_size": 17288,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 295.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/css",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/extend",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce"
+	],
+	"file_history":
+	[
+		"/C/Users/Admin/Desktop/wqefwef.sublime-project",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/css/main.css",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_product-page-centered.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/modules/_widgets.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_buttons.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/extend/_extend-elements.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/plugins/_multi-vendors.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_products-tabs.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/configs/selectors.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/mixin/_all.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-base.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_woo-checkout.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_product-page-default.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/base/_base.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/tools/_site-settings.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/style.css",
+		"/C/OSPanel/domains/woodmart/wp-content/plugins/xtemos-system/sass/demos_preview_style.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_woo-cart.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_popup-element.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_search.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_forms.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_nav.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_general-style-hover.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/functions.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/responsive/_tablets.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-icons.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/js/functions.js",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-icons.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_my-account.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/plugins/_wishlist.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/rtl/_rtl.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_page-title.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_woo-table.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_register-login.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/pages/_portfolio.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/tools/_helpers.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/responsive/_mobile.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/plugins/_visual-composer.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_list-element.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_labels.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-full-info.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-alt.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-info-alt.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-list.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/myaccount/form-login.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_shop-page-title.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_shop.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/layout/_nav.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/layout/_header.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/inc/builder/Frontend.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/builder/_header-builder.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/tools/_site-settings.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/base/_base.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/inc/functions.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/js/functions.js",
+		"/C/OSPanel/domains/flatsome-header/wp-config.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/header-elements/column.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/header-elements/row.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/header-elements/cart.php",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/sass/main.scss",
+		"/C/OSPanel/domains/woodmart-header/wp-content/themes/woodmart/style.css",
+		"/C/OSPanel/woodmart-header/wp-config.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_header.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/template-tags.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/pages/_blog.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/animations/_animations.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/modules/_woodmart-filters.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-tiled.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/plugins/xtemos-system/demos_preview.php",
+		"/C/OSPanel/domains/woodmart/wp-content/plugins/xtemos-system/demos_preview_dropdown.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/plugins/_owl-carousel.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_side-bar.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/responsive/_desktop.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_woo-loyout.scss",
+		"/C/Users/Admin/Downloads/-.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-tiled.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/Gruntfile.js",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/package-lock.json",
+		"/C/Users/Admin/.gitconfig",
+		"/C/Users/Admin/package-lock.json",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_countdown-timer.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_counter.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-info.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-info-alt.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-base.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_hover-quick.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/main.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/extend/_extend-base.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/woocommerce/content-product-button.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/configs/product-hovers.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/shortcodes/list.php",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_other.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/woocommerce/_mixins.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/elements/_instagram.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/layout/_top-bar.scss",
+		"/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/inc/vc-config.php",
+		"/C/Users/Admin/Desktop/programs/woodmart.lnk",
+		"/C/OSPanel/domains/woodmart/wp-config-sample.php"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"C:\\OSPanel\\domains\\woodmart\\wp-content\\themes\\woodmart",
+			"C:\\OSPanel\\domains\\woodmart\\wp-content\\themes\\woodmart\\sass",
+			"C:\\OSPanel\\domains\\woodmart-header\\wp-content\\themes\\woodmart",
+			"C:\\OSPanel\\domains\\woodmart\\wp-content\\themes\\woodmart",
+			"C:\\OSPanel\\domains\\woodmart\\wp-content\\themes\\woodmart\\sass"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#yith-wpv-abuse",
+			"#dokan-seller-listing-wrap",
+			"scale-link",
+			"@extend %scale-link-hover;",
+			"hover-content-inner",
+			"wc-tab-inner",
+			"255",
+			".woodmart-buttons",
+			".btns-accent-rounded",
+			"battons",
+			"buttons",
+			"battons",
+			"scale(1)",
+			"no-products",
+			".no-products",
+			".wishlist-title",
+			".tabs-layout-tabs",
+			"color",
+			"products-tabs-title",
+			"masonry-filter",
+			"woocommerce-additional-fields",
+			"@extend %title-size;",
+			"woocommerce-billing-fields",
+			"woodmart-checkout-steps",
+			"both",
+			".woodmart-list-shape-icon",
+			".product-labels",
+			".woodmart-product-cats",
+			".woodmart-back-btn",
+			".page-title-default",
+			".hover-content",
+			".vc_tta-panel-title",
+			".lost_password",
+			"login-title",
+			".menu-item-my-account",
+			"search-button",
+			"option",
+			".product-image-link",
+			".right-column",
+			".menu-opener",
+			".navigation-wrap {",
+			"sticky-header",
+			"0",
+			".full-screen-close-icon",
+			".create-nav-msg",
+			"<<<",
+			".wc-terms-and-conditions",
+			".full-screen-menu",
+			"90",
+			"icon-sub-fs",
+			".icon-sub-menu",
+			"50",
+			"40px",
+			".menu-item-has-children",
+			"menu",
+			"sub-menu",
+			"product-element-top",
+			"50",
+			"35px",
+			"35",
+			"30px",
+			"25",
+			"22",
+			"20",
+			"30px",
+			"40px",
+			"%arrow-disable-color",
+			".woocommerce-cart",
+			"div",
+			"$heightTopBar",
+			".widget_price_filter",
+			".ui-slider-horizontal"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "_base.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								253,
+								253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/main.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6725,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/extend/_extend-elements.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15082,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12441,
+								12441
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11467.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/OSPanel/domains/woodmart/wp-content/themes/woodmart/sass/shop/_general-style-hover.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Admin/Desktop/woodmart-main.sublime-workspace",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1008.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "/C/Users/Admin/Desktop/wqefwef.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 295.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

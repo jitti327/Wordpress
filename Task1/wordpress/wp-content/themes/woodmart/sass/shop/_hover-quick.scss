@@ -1,0 +1,126 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER QUICK
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-quick {
+
+	.woodmart-buttons {
+		@extend %position-top-right-hover-buttons;
+		@extend %fade-in-left-start-position;
+	}
+
+	.single_add_to_cart_button { // Need because shop button is rounder see not pretty
+		border-radius: 0;
+	}
+
+	.woodmart-add-btn {
+		position: absolute;
+		bottom: 0;
+		left:0;
+		right:0;
+
+		-webkit-transform: 
+			translateY(103%) 
+			translateZ(0);
+	    transform: 
+	    	translateY(103%) 
+	    	translateZ(0);
+
+		backface-visibility: hidden;
+    	perspective: 800px;
+    	-webkit-backface-visibility: hidden;
+    	-webkit-perspective: 800px;
+
+		transition: 
+			transform .3s ease,
+			opacity .3s ease;
+		-webkit-transition: 
+			-webkit-transform .3s ease,
+			opacity .3s ease;
+
+		> p {
+			display: none;
+		}
+
+		> a {
+			@include btn-default-primary;	
+			@extend %buttons-text-replace-icon;
+			font-size: 13px;
+			display: block;
+			opacity: 0.8;
+
+			span {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			&:hover,
+			&:focus {
+				opacity: 1;
+				box-shadow: none;
+			}
+		}
+	}
+
+	&:hover {
+
+		.woodmart-add-btn {
+			-webkit-transform: 
+				translateY(0) 
+				translateZ(0);
+		    transform: 
+		    	translateY(0) 
+		    	translateZ(0);
+		}
+
+		.woodmart-buttons {
+			@extend %fade-in-left-hover-position;
+		}
+	}
+
+	&.loading-quick-shop,
+	&.quick-shop-shown,
+	&.product-swatched {
+
+		.woodmart-add-btn {
+			-webkit-transform: 
+				translateY(103%) 
+				translateZ(0);
+		    transform: 
+		    	translateY(103%) 
+		    	translateZ(0);
+		}	
+
+		.woodmart-buttons {
+			@include fade-in-left-start-position;
+		}	
+	}
+
+	&.product-swatched {
+
+		&:not(.quick-shop-shown):not(.loading-quick-shop) {
+
+			.product-element-top {
+
+				&:hover {
+
+					.woodmart-buttons {
+						@include fade-in-left-hover-position;
+					}
+
+					.woodmart-add-btn {
+						-webkit-transform: 
+							translateY(0) 
+							translateZ(0);
+					    transform: 
+					    	translateY(0) 
+					    	translateZ(0);
+					}	
+				}
+			}			
+		}
+	}
+}

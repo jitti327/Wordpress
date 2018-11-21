@@ -1,0 +1,22 @@
+
+// ------------------------------------------------------------------------------------------------
+// SIZE GUID
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-sizeguide {
+
+	.responsive-table {
+		margin-bottom: 0;
+	}
+}
+
+.woodmart-sizeguide-title {
+	font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;	
+}
+
+.woodmart-sizeguide-content {
+	margin-bottom: 30px;
+	@include clear-element;
+}

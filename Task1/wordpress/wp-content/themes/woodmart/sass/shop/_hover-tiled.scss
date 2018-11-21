@@ -1,0 +1,100 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER QUICK
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-tiled {
+	text-align: left;
+
+	.product-wrapper {
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.12);
+	}
+
+	.product-element-top {
+		margin-bottom: 0;
+	}
+
+	.woodmart-buttons {
+		@extend %position-top-right-hover-buttons;
+		@extend %fade-in-left-start-position;
+	}
+
+	.product-element-bottom {
+	    padding-top: 15px;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	    padding-bottom: 15px;
+	    background-color: white;
+	}
+
+	.woodmart-product-countdown {
+		display: flex;
+		align-items: stretch;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		padding-top: 5px;
+		border-top: 1px solid $main-border-color;
+
+		> span {
+			flex:1 1 auto;
+			min-width: 0;
+			margin: 0;
+			box-shadow: none;
+			background-color: transparent;
+		}
+	}
+
+	&:hover {
+
+		.woodmart-buttons {
+			@extend %fade-in-left-hover-position;
+		}
+	}
+
+	&.loading-quick-shop,
+	&.quick-shop-shown,
+	&.product-swatched {
+
+		.woodmart-buttons {
+			@include fade-in-left-start-position;
+		}	
+	}
+
+	&.product-swatched {
+
+		&:not(.quick-shop-shown):not(.loading-quick-shop) {
+
+			.product-element-top {
+
+				&:hover {
+
+					.woodmart-buttons {
+						@include fade-in-left-hover-position;
+					}	
+				}
+			}			
+		}
+	}
+
+	&:not(.hover-width-small) {
+
+		.woodmart-product-countdown {
+
+			> span {
+
+				&:not(:last-child) {
+					border-right:1px solid $main-border-color;			
+				}
+			}
+		}
+	}
+
+	.woodmart-dark &,
+	.color-scheme-light & {
+
+		.product-element-bottom {
+			background-color: $scheme-light--background-popup;
+		}
+	}
+}
+

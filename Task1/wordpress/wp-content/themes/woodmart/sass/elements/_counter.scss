@@ -1,0 +1,89 @@
+
+/** ------------------------------------------------------------------------------------------------
+* COUNTER 
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-counter {
+    margin-bottom: 35px;
+
+    > span {
+        display: block;
+    }
+
+    .counter-value {
+        font-size: 36px;
+        line-height:1;
+        color:$light-dark;
+    }
+
+    .counter-label {
+        margin-top:10px;
+        font-size:16px;
+        line-height:1.4;
+        color: $body-color;
+    }
+
+    &.counter-small {
+
+        .counter-value {
+            font-size:28px;
+        }
+
+        .counter-label {
+            font-size:14px;
+        }
+    }
+
+    &.counter-large {
+
+        .counter-value {
+            font-size:44px;
+        }
+
+        .counter-label {
+            font-size:18px;
+        }      
+    }
+
+    &.counter-extra-large {
+
+        .counter-value {
+            font-size:54px;
+        }
+
+        .counter-label {
+            font-size:20px;
+        }      
+    }
+
+    &.color-scheme-light,
+    .color-scheme-light & {
+
+        .counter-value {
+            color:white;
+        }
+
+        .counter-label {
+            color:rgba(255,255,255,0.8);
+        } 
+    }
+
+    &.color-scheme-dark {
+
+        .counter-value {
+            color:$light-dark;
+        }
+
+        .counter-label {
+            color:$body-color;
+        } 
+    }
+
+    &.color-scheme-custom {
+
+        .counter-value,
+        .counter-label {
+            color:inherit;
+        }      
+    }
+}

@@ -1,0 +1,100 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER ICONS
+// ------------------------------------------------------------------------------------------------ 
+
+.woodmart-hover-icons {
+
+	.wrapp-buttons {
+		text-align: center;
+		visibility: hidden; // need because has bug https://gyazo.com/7a6d03e7c945755598c3bf80faaea6eb
+		perspective: 800px;
+		-webkit-perspective: 800px;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		@extend %position-bottom-center-hover-buttons;
+		@extend %fade-in-bottom-start-position;
+
+		-webkit-transition:
+			opacity .3s ease,
+			visibility .3s ease,
+			transform .3s ease;
+		transition:
+			opacity .3s ease,
+			visibility .3s ease,
+			transform .3s ease;
+	}
+
+	.woodmart-buttons {
+		display: inline-flex;
+		align-items: stretch;
+		flex-direction: row;
+		flex-wrap:nowrap;
+		padding: 0 7px;
+
+		> div {
+
+			a {
+				height: 50px;
+				width: 43px;
+				@include tooltip-fade-in-top;
+			}
+		}
+	}
+
+	&:hover {
+
+		.wrapp-buttons {
+			visibility: visible;
+			@extend %fade-in-bottom-hover-position;
+		}
+	}
+
+	&.loading-quick-shop,
+	&.quick-shop-shown,
+	&.product-swatched {	
+
+		.wrapp-buttons {
+			visibility: hidden;
+			@include fade-in-bottom-start-position;
+		}	
+	}
+
+	&.product-swatched {
+
+		&:not(.quick-shop-shown):not(.loading-quick-shop) {
+
+			.product-element-top {
+
+				&:hover {
+
+					.wrapp-buttons {
+						visibility: visible;
+						@include fade-in-bottom-hover-position;
+					}
+				}
+			}			
+		}
+	}
+
+	&.hover-width-small:not(.product-in-carousel) {
+
+		.wrapp-buttons {
+			bottom:5px;
+		}
+
+		.woodmart-buttons {
+			display:flex;
+			margin-left: 5px;
+			margin-right: 5px;
+
+			> div {
+				flex:1 1 0;
+
+				a {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

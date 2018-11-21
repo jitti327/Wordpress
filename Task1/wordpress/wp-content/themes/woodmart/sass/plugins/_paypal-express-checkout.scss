@@ -1,0 +1,51 @@
+
+/** --------------------------------------
+* PAYPAL BUTTON ON SINGLE PRODUCT
+* ------------------------------------- */
+
+.single-product-page {
+
+	.wcppec-checkout-buttons {
+		margin-bottom: 25px;
+	}
+}
+
+.wcppec-checkout-buttons__button {
+	display: inline-block;
+	font-size: 13px;
+	line-height: 13px;
+	font-weight: 600;
+}
+
+/** --------------------------------------
+* PAYPAL BUTTON ON CART PAGE
+* ------------------------------------- */
+
+.cart-totals-inner { 
+
+	.wcppec-checkout-buttons {
+		text-align: center;
+
+		a {
+
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	.wcppec-checkout-buttons__separator {
+		font-weight: 600;
+		font-size: 16px;
+		color:$light-dark;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	.woodmart-dark & {
+
+		.wcppec-checkout-buttons__separator {
+			color:$scheme-light--title-color;
+		}
+	}
+}

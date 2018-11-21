@@ -1,0 +1,141 @@
+
+// ------------------------------------------------------------------------------------------------
+// HOVER LIST
+// ------------------------------------------------------------------------------------------------ 
+
+.product-list-item {
+	text-align: left;
+
+	.product-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: nowrap;
+	}
+
+	&:not(:last-child) {
+
+		.product-wrapper {
+			padding-bottom: 30px;
+			border-bottom: 1px solid;
+			border-color:$main-border-color;
+		}
+	}
+
+	.product-element-top {
+	    flex: 0 0 300px;
+	    margin-right: 15px;
+	    margin-bottom: 0;
+	}
+
+	.woodmart-buttons {
+		@extend %position-top-right-hover-buttons;
+		@extend %fade-in-left-start-position;
+	}
+
+	.product-list-content {
+		flex: 1 1 auto;
+	}
+
+	.product-title {
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+
+	.woodmart-product-cats,
+	.woodmart-product-brands-links,
+	.woocommerce-product-rating,
+	.price {
+		margin-bottom: 10px;
+	}
+
+	.price {
+		font-size: 20px;
+	}
+
+	.woodmart-product-countdown {
+		margin-bottom: 15px;
+	}
+
+	.woocommerce-review-link {
+		display: none;
+	}
+
+	.woocommerce-product-details__short-description {
+		margin-bottom: 20px;
+
+		p,
+		h1,h2,h3,h4,h5,h6 {
+			margin-bottom: 10px;
+		}
+	}
+
+	.swatch-on-grid:not(.swatch-size-large):not(.swatch-size-xlarge):not(.text-only) {
+		width: 20px;
+		height:20px;
+	}
+
+	.woodmart-add-btn {
+
+		> a {
+			@extend %buttons-text-replace-icon;
+			@extend %shop-buttons;
+			@include btn-default-primary;	
+
+			span:not(.woodmart-tooltip-label) {
+				@include button-size-default;
+			}
+		}
+
+		.added_to_cart {
+			@include button-size-default;
+
+			&:before {
+				content: none;
+			}
+		}
+	}
+
+	&:hover {
+
+		.woodmart-buttons {
+			@extend %fade-in-left-hover-position;
+		}
+	}
+
+	&.loading-quick-shop,
+	&.quick-shop-shown,
+	&.product-swatched {
+
+		.woodmart-buttons {
+			@include fade-in-left-start-position;
+		}	
+	}
+
+	&.product-swatched {
+
+		&:not(.quick-shop-shown):not(.loading-quick-shop) {
+
+			.product-element-top {
+
+				&:hover {
+
+					.woodmart-buttons {
+						@include fade-in-left-hover-position;
+					}	
+				}
+			}			
+		}
+	}
+
+	.color-scheme-light &,
+    .woodmart-dark & {
+
+		&:not(:last-child) {
+
+			.product-wrapper {
+				border-color:$scheme-light--border-color-lighten;
+			}
+		}   	
+    }
+}

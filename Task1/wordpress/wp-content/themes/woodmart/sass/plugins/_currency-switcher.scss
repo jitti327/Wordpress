@@ -1,0 +1,350 @@
+
+/** ------------------------------------------------------------------------------------------------
+* Currency switcher
+* ------------------------------------------------------------------------------------------------ */
+
+form.woocommerce-currency-switcher-form {
+
+	label {
+		line-height: inherit !important;
+		margin-bottom: 0;
+	}
+
+	small {
+		margin-top: 5px;
+	}
+
+	label,
+	small {
+		overflow: hidden;
+		text-overflow: ellipsis;
+    	white-space: nowrap;
+		margin-right: 60px;
+	}
+
+	a {
+
+		&.dd-selected,
+		&.dd-option {
+			position: relative;
+			padding: 10px 15px;			
+		}
+	}
+
+	.dd-select,
+	.dd-options {
+		border-width: 2px;
+		border-style: solid;
+		border-color: $main-border-color;		
+	}
+
+	.dd-select {
+		background-color: transparent !important;
+		border-radius: 0;
+	}
+	
+	.dd-options {
+		box-shadow: none;
+		border-top: none;
+	
+		li {
+			margin-bottom: 0;
+
+			a {
+				border-bottom-width: 2px;
+				border-style: solid;
+				border-color: $main-border-color;
+			}
+		}
+
+		li:last-child {
+
+			a {
+				border-bottom: none;				
+			}
+		}
+	}
+
+	.dd-selected-image,
+	.dd-option-image {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		float: none;
+		max-width: 30px;
+	}
+
+	.dd-image-right {
+		right: 30px;
+		margin: 0;
+	}
+
+	.dd-pointer-down {
+		border-top-color: #808080 !important;
+	}
+
+	.dd-pointer-up.dd-pointer-down {
+		border-top-color: transparent !important;
+		border-bottom-color: #808080 !important;
+	}
+
+	.woodmart-dark &,
+	.#{$header-drops} & {
+		
+		.dd-select {
+			border-color:$scheme-light--border-color-lighten;
+		}
+	
+		.dd-options {
+			border-color:$scheme-light--border-color-lighten;
+	
+			li {
+	
+				a {
+					border-color:$scheme-light--border-color-lighten;
+				}
+			}
+		}
+
+		.dd-options,
+		.dd-option {
+			background-color: $scheme-light--background-popup;
+		}
+
+		.dd-option {
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.08);
+			}
+		}
+	}
+}
+
+.topbar-content {
+
+	form.woocommerce-currency-switcher-form {
+		position: relative;
+
+		label {
+			overflow: visible;
+			margin-right: 0;
+			cursor: pointer;
+		}
+
+		select {
+			position: relative;
+			z-index: 2;
+			background-image: none;
+			border-width: 0;
+			border-radius: 0;
+			color: #474747;
+		}
+
+		.dd-selected {
+			padding: 0;
+    		border-color: $main-border-color;
+
+			label {
+				font-size: inherit;
+				color: inherit;
+			}
+		}
+
+		select,
+		.dd-selected {
+			padding-left: 11px;
+    		padding-right: 25px;
+    		letter-spacing: 0.2px;
+			color: #474747;
+    		font-size: 12px;
+    		border-style: solid;
+		}
+
+		.dd-selected-description,
+		.dd-option-description {
+			display: none;
+		}
+
+		img,
+		.dd-image-right {
+			display: none;
+		}
+
+		.dd-options {
+			width: 140px !important;
+			opacity: 0;
+			visibility: hidden;
+			display: block !important;
+			height: auto !important;
+			padding-top: 10px !important;
+			padding-bottom: 10px !important;
+			border-radius: 0;
+
+	        -webkit-transition:
+	        	opacity .25s ease, 
+	        	visibility .25s ease;
+			transition:
+				opacity .25s ease, 
+				visibility .25s ease;
+	
+			animation:menu-to-bottom .25s ease;
+			-webkit-animation:menu-to-bottom .25s ease;
+			@include shadow-drop-element;
+
+			&:after {
+				content:"";
+			    position: absolute;
+			    left: 0;
+			    right:0;
+			    height: 15px;
+			    bottom: 100%;
+			}
+		}
+
+		.dd-option {
+		    padding-top: 8px;
+		    padding-bottom: 8px;
+		    padding-left: 18px;
+		    padding-right: 18px;
+		    border-bottom: 0;
+
+		    &:hover {
+		    	background-color: #f9f9f9;
+		    }
+		}
+
+		.dd-option-text {
+			color: $body-color;
+		}
+
+		.dd-select {
+
+			a {
+				height: 42px;
+				line-height: 42px;
+			}
+		}
+
+		.dd-select,
+		.dd-options {
+			border: none;
+		}
+
+		.dd-pointer {
+			display: none;
+		}
+
+		&:hover {
+
+			.dd-selected {
+				color: #959595;
+			}
+
+			.dd-options {
+				opacity: 1;
+				visibility: visible;
+				animation: menu-in-bottom .25s ease;
+    			-webkit-animation: menu-in-bottom .25s ease;
+			}
+		}
+
+		&:after {
+			position: absolute;
+			content: "\f107";
+		    font-size: 100%;
+		    color: #bbb;
+		    font-weight: 400;
+		    font-family: FontAwesome;
+    		right: 13px;
+    		top: 50%;
+    		transform: translateY(-50%);
+		}
+
+		.woodmart-dark &,
+		.#{$header-drops} & {
+
+			select {
+				// color: $scheme-light--body-color;
+				border-color: $main-border-color;
+			}
+	
+			.dd-option {
+
+				label {
+					color: $scheme-light--body-color;				
+				}
+
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.08);
+				}
+			}
+		}
+	}
+}
+
+.header-color-light {
+
+	.topbar-content {
+
+		form.woocommerce-currency-switcher-form {
+
+			.dd-selected,
+			select {
+					border-color: $scheme-light--border-color;
+					color: $scheme-light--title-color;
+
+				label {
+
+					&:after {
+						color: $scheme-light--body-color-lighten;
+					}
+				}
+			}
+
+			&:hover {
+
+				.dd-selected {
+					color: $scheme-light--title-color-hover;
+				}
+			}
+		}
+	}
+}
+
+.top-bar-right {
+
+	form.woocommerce-currency-switcher-form {
+
+		.dd-selected,
+		select {
+			border-left-width: 1px;
+		}
+
+		.dd-options {
+			right: 0;
+		}
+
+		&:last-child {
+			margin-right: -20px;
+		}
+	}
+}
+
+.top-bar-left {
+
+	form.woocommerce-currency-switcher-form {
+
+		.dd-selected,
+		select {
+			border-right-width: 1px;
+		}
+
+		.dd-options {
+			left: 0;
+		}
+
+		&:first-child {
+			margin-left: -20px;
+		}
+	}
+}

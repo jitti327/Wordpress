@@ -1,0 +1,654 @@
+
+/* ------------------------------------------------------------------------------------------------
+*  BANERS
+* ------------------------------------------------------------------------------------------------*/
+
+// VARS
+
+// size buttons
+
+$btn-size-xtra-small: 28px;
+
+$btn-size-small: 36px;
+
+$btn-size-default: 42px;
+
+$btn-size-large: 48px;
+
+$btn-size-extra-large: 56px;
+
+// size linked buttons
+
+$btn-size-style-linked: 24px;
+
+// space Content
+
+$space-content-default:7px;
+
+$space-content-medium:10px;
+
+$space-content-large:15px;
+
+// space buttons
+
+$space-button-default:15px;
+
+$space-button-medium:20px;
+
+$space-button-large:30px;
+
+// CONTENT SPACE
+
+$content-space:30px;
+
+.promo-banner {
+	position: relative;
+	overflow: hidden;
+
+	.promo-banner-image {
+		width:100%;
+	}
+
+	.wrapper-content-banner {
+		position: absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right: 0;
+		overflow: hidden;
+		z-index:2;
+		display: flex;
+	    flex-direction: column;
+	    align-items: stretch;
+		padding: $content-space;
+	}
+
+	.content-banner {
+		position: relative;
+		width:100%;
+		
+		> div {
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.banner-title-wrap {
+
+		.banner-subtitle,
+		.banner-title {
+
+			&:first-child {
+				margin-top: 0;
+			}			
+		}
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	.banner-subtitle {
+		display: block;
+	}
+
+	.banner-title {
+		margin-bottom: 0;
+	}
+
+	.banner-inner {
+
+		h1, h2, h3, h4, h5, h6, p {
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-bottom:0;
+			}
+		}
+
+        p:first-child:empty {
+            display:none;
+        }
+	}
+}
+
+// ------------------------------------------
+// BANNER CONTENT SPACE
+// ------------------------------------------
+
+.content-spacing-default {
+
+	.banner-subtitle,
+	.banner-title,
+	.banner-inner {
+		margin-top: $space-content-default;
+	}
+
+	.banner-btn-wrapper {
+		margin-top: $space-button-default;
+	}
+}
+
+.content-spacing-medium {
+
+	.banner-subtitle,
+	.banner-title,
+	.banner-inner {
+		margin-top: $space-content-medium;
+	}	
+
+	.banner-btn-wrapper {
+		margin-top: $space-button-medium;
+	}	
+}
+
+.content-spacing-large {
+
+	.banner-subtitle,
+	.banner-title,
+	.banner-inner {
+		margin-top: $space-content-large;
+	}
+
+	.banner-btn-wrapper {
+		margin-top: $space-button-large;
+	}		
+}
+
+// ------------------------------------------
+// BANNER SUB TITLE STYLE AND COLORS
+// ------------------------------------------ 
+
+//****  SUBTILE STYLE ****// 
+
+.subtitle-style-background {
+
+	&.banner-subtitle {
+		font-weight: 600;
+	    line-height: 1.2;
+	    padding: 6px 10px;
+	    display: inline-block;
+	}
+}
+
+//****  SUBTITLE COLORS ****//
+
+.subtitle-color-default {
+
+	&.subtitle-style-background {
+        color:#333;
+        background-color: #f4f4f4;
+	}
+}
+
+.subtitle-color-primary {
+
+	&.subtitle-style-default {
+		@extend %primary-color;
+	}
+
+	&.subtitle-style-background {
+		@extend %primary-background;
+		color:white;
+	}
+}
+
+.subtitle-color-alt {
+
+	&.subtitle-style-default {
+		@extend %alternative-color;
+	}
+
+	&.subtitle-style-background {
+		@extend %alternative-background;
+		color:white;
+	}
+}
+
+// ------------------------------------------
+// BANNER TITLE SIZE
+// ------------------------------------------ 
+
+//****  TITLE SIZE SMALL ****//
+
+.banner-title-small {
+
+	.banner-subtitle {
+		font-size: 14px;
+	}
+
+	.banner-title {
+		font-size:16px;
+	}
+}
+
+//****  TITLE SIZE DEFAULT ****//
+
+.banner-title-default {
+
+	.banner-subtitle {
+		font-size: 14px;
+	}
+
+	.banner-title {
+		font-size:22px;
+	}
+}
+
+//****  TITLE SIZE LARGE ****//
+
+.banner-title-large {
+
+	.banner-subtitle {
+		font-size: 16px;
+	}
+
+	.subtitle-style-background {
+		font-size: 14px;
+	}
+
+	.banner-title {
+		line-height: 1.2;
+		font-size:28px;
+	}
+}
+
+//****  TITLE SIZE EXTRA LARGE ****//
+
+.banner-title-extra-large {
+
+	.banner-subtitle {
+		font-size: 18px;
+	}
+
+	.subtitle-style-background {
+		font-size:14px;
+	}
+
+	.banner-title {
+		line-height: 1.2;
+		font-size:32px;
+	}
+}
+
+//****  TITLE SIZE CUSTOM ****//
+
+.banner-title-custom {
+
+	.subtitle-style-background {
+		line-height: 1.2!important;
+	}
+}
+
+// ------------------------------------------
+// BANNER CONTENT SIZE
+// ------------------------------------------ 
+
+.content-banner {
+
+	.content-size-default {
+		font-size: 14px;
+	}
+
+	.content-size-medium {
+		font-size: 16px;
+	}
+
+	.content-size-large {
+		font-size: 18px;
+	}
+}
+
+// ------------------------------------------
+// BANNER INCREASED PADDING
+// ------------------------------------------ 
+
+.banner-increased-padding {
+
+	.wrapper-content-banner {
+		padding: 7%;
+	}	
+}
+
+// ------------------------------------------
+// BANNER ALIGMENTS
+// ------------------------------------------ 
+
+//****  VERTICAL ALIGN MIDDLE ****//
+
+.banner-vr-align-middle {
+
+	.wrapper-content-banner {
+		justify-content: center;
+	}
+}
+
+//****  VERTICAL ALIGN BOTTOM ****//
+
+.banner-vr-align-bottom {
+
+	.wrapper-content-banner {
+		justify-content: flex-end;
+	}
+}
+
+//****  HORIZONTAL ALIGN LEFT ****//
+
+.banner-hr-align-left {
+	
+	.wrapper-content-banner {
+		align-items: flex-start;
+	}
+}
+
+//****  HORIZONTAL ALIGN RIGHT ****//
+
+.banner-hr-align-right {
+
+	.wrapper-content-banner {
+		align-items: flex-end;			
+	}
+}
+
+//****  HORIZONTAL ALIGN CENTER ****//
+
+.banner-hr-align-center {
+
+	.wrapper-content-banner {
+		align-items: center;			
+	}
+}
+
+// ------------------------------------------
+// HOVER EFFECT ZOOM IMAGE
+// ------------------------------------------
+
+.banner-hover-zoom {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	perspective: 800px;
+	-webkit-perspective: 800px;
+
+	.banner-image {
+		-webkit-transition:
+			transform .5s cubic-bezier(0, 0, 0.44, 1.18);
+		transition:
+			transform .5s cubic-bezier(0, 0, 0.44, 1.18);			
+	}
+
+	&:hover {
+
+		.banner-image {
+			transform: scale(1.09);
+			-webkit-transform: scale(1.09);				
+		}
+	}
+}
+
+// ------------------------------------------
+// HOVER EFFECT ZOOM IMAGE REVERCE
+// ------------------------------------------
+
+.banner-hover-zoom-reverse {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	perspective: 800px;
+	-webkit-perspective: 800px;
+
+	.banner-image {
+		transform: scale(1.09);
+		-webkit-transform: scale(1.09);
+		-webkit-transition:transform .5s cubic-bezier(0, 0, 0.44, 1.18);
+		transition:transform .5s cubic-bezier(0, 0, 0.44, 1.18);			
+	}
+
+	&:hover {
+
+		.banner-image {
+			transform: none;
+			-webkit-transform: none;				
+		}
+	}
+}
+
+// ------------------------------------------
+// HOVER EFFECT BACKGROUND AND BORDER
+// ------------------------------------------
+
+.banner-hover-background,
+.banner-hover-border {
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	perspective: 800px;
+	-webkit-perspective: 800px;
+
+	.banner-image {
+		-webkit-transition:
+			transform 1s cubic-bezier(0, 0, 0.44, 1.18);
+		transition:
+			transform 1s cubic-bezier(0, 0, 0.44, 1.18);
+	}
+
+	&:hover {
+
+		.banner-image {
+			transform: scale(1.09);
+			-webkit-transform: scale(1.09);				
+		}
+	}	
+}
+
+.banner-hover-background:not(.banner-background),
+.banner-hover-border:not(.banner-border) {
+
+	.wrapper-content-banner {
+		overflow: hidden;
+		padding: ($content-space - 10) * 2;
+	    
+	    &:after {
+	    	content:"";
+	    	position: absolute;
+			top: $content-space - 10;
+		    bottom: $content-space - 10;
+		    left: $content-space - 10;
+		    right: $content-space - 10;
+		    z-index: 2;
+	    	opacity: 0;
+
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			perspective: 800px;
+			-webkit-perspective: 800px;
+
+			transform: scale(.5);
+			-webkit-transform: scale(.5);
+
+			-webkit-transition:
+				transform .35s cubic-bezier(.05,.2,.1,1),
+				opacity .35s cubic-bezier(.05,.2,.1,1);
+			transition:
+				transform .35s cubic-bezier(.05,.2,.1,1),
+				opacity .35s cubic-bezier(.05,.2,.1,1);
+	    }
+	}
+
+	.content-banner {
+		z-index: 4;
+	}
+
+	&:hover {
+
+		.wrapper-content-banner {
+		    
+		    &:after {
+		    	opacity: 1;
+				transform: scale(1);
+				-webkit-transform: scale(1);
+		    }
+		}
+	}		
+}
+
+.banner-hover-background.banner-border,
+.banner-hover-border.banner-background {
+
+	.wrapper-content-banner {
+		padding: $content-space;
+
+		&:after {	
+			top: 0;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;				
+		}
+	}	
+}
+
+.banner-hover-background {
+
+	&:not(.banner-background) {
+
+		.wrapper-content-banner {
+
+			&:after {
+			   background-color: rgba(0,0,0,0.9);
+			}
+		}
+	}
+
+	&.color-scheme-dark {
+
+		&:not(.banner-border) {
+			
+			.wrapper-content-banner {
+
+				&:after {
+				   background-color: rgba(255,255,255,0.9);
+				}
+			}
+		}
+	}		
+}
+
+.banner-hover-border {
+
+	&:not(.banner-border) {
+		
+		.wrapper-content-banner {
+
+			&:after {
+			   border:5px solid rgba(255,255,255,0.3);
+			}
+		}
+	}
+
+	&.color-scheme-dark {
+
+		&:not(.banner-border) {
+			
+			.wrapper-content-banner {
+
+				&:after {
+				   border-color:rgba(0,0,0,0.1);
+				}
+			}
+		}
+	}		
+}
+
+// ------------------------------------------
+// STYLE HOVER MASK
+// ------------------------------------------
+
+.banner-mask {
+
+	.wrapper-content-banner {
+		background-color: rgba(0,0,0,.3);
+		-webkit-transition:
+			background-color .5s cubic-bezier(0, 0, 0.44, 1.18);
+		transition:
+			background-color .5s cubic-bezier(0, 0, 0.44, 1.18);
+	}
+
+	&.color-scheme-dark {
+
+		.wrapper-content-banner {
+			background-color: rgba(255,255,255,.3);
+		}
+	}
+
+	&.banner-hover-zoom,
+	&.banner-hover-zoom-reverse {
+
+		&:hover {
+
+			.wrapper-content-banner {
+				background-color: rgba(0,0,0,.6);
+			}
+		}
+
+		&.color-scheme-dark {
+
+			&:hover {
+
+				.wrapper-content-banner {
+					background-color: rgba(255,255,255,.6);
+				}
+			}				
+		}
+	}
+}
+
+// ------------------------------------------
+// STYLE BANER SHADOW
+// ------------------------------------------
+
+.banner-shadow {
+	box-shadow: 0 10px 20px -9px rgba(0, 0, 0, 0.5);
+}
+
+// ------------------------------------------
+// STYLE BANER BACKGROUND AND BORDER
+// ------------------------------------------
+
+.banner-background,
+.banner-border {
+
+	.wrapper-content-banner {
+		overflow: hidden;
+		top: $content-space - 10;
+	    bottom: $content-space - 10;
+	    left: $content-space - 10;
+	    right: $content-space - 10;
+	}
+}
+
+.banner-background {
+
+	.wrapper-content-banner {
+		background-color: rgba(0,0,0,0.8);
+	}
+
+	&.color-scheme-dark {
+
+		.wrapper-content-banner {
+			background-color: rgba(255,255,255,.8);
+		}
+	}		
+}
+
+.banner-border {
+
+	.wrapper-content-banner {
+		border:5px solid rgba(255,255,255,.3);
+	}
+
+	&.color-scheme-dark {
+
+		.wrapper-content-banner {
+			border-color:rgba(0,0,0,.1);
+		}
+	}		
+}

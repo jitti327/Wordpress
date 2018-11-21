@@ -1,0 +1,504 @@
+
+/** ------------------------------------------------------------------------------------------------
+* WOOCOMMERCE CHECKOUT
+* ------------------------------------------------------------------------------------------------ */
+
+.woodmart-checkout-steps {
+
+	ul {
+		@extend %title-font;
+		@extend %title-size;
+		color:$heading-color;
+
+		li {
+			display: inline-block;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			line-height: 1.2;
+
+			a {
+				display: inline-block;
+				color: inherit;
+				opacity: 0.7;
+
+				&:hover,
+				&:focus {
+					color: inherit;
+					opacity: 1;
+				}
+			}
+
+			> span {
+				opacity: 0.7;
+			}
+
+			span {
+				position: relative;
+				display: block;
+
+				&:after {
+					@extend %scale-link-decoration;
+				}
+			}
+
+			&:after {
+				@include font-icon($font-Flaticon-arrow-next);
+				opacity: 0.7;
+			    font-weight: bold;
+			    font-size: 85%;
+			    margin: 0 15px;
+			}
+
+			&:last-child {
+
+				&:after {
+					content:none;
+				}
+			} 
+		}
+
+		.step-active {
+
+			a,
+			> span {
+				opacity: 1;
+			}
+		}
+	}
+
+	.document-ready & {
+		
+		.step-active {
+
+			span {
+
+				&:after {
+					@extend %scale-link-hover;
+				}
+			}
+		}
+	}
+
+	.color-scheme-light & {
+		
+		ul {
+			color:$scheme-light--title-color;
+		}
+	}
+}
+
+form.checkout {
+	display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+	> .col-sm-6 {
+		flex:1 1 50%;
+		max-width: 50%;
+		width: 50%;
+	}
+}
+
+body.woocommerce-checkout {
+
+	.woocommerce {
+
+		> .woocommerce-info {
+			display: block;
+		    padding: 0;
+		    min-height: 0;
+			margin-bottom: 25px;
+			background-color: transparent;
+			font-size: 14px;
+			font-weight: 600;
+			color:$heading-color;
+			@extend %woo-nots-not-hidden;
+
+			&:before {
+				content:none;
+			}
+
+			.showcoupon,
+			.showlogin {
+			    margin-left: 5px;
+				@extend %primary-color;
+			}
+		}
+
+		> .login {
+			position: relative;
+		    border: 3px solid #EFEFEF;
+		    padding: 30px;
+		    max-width: 470px;
+		    margin-bottom: 30px;
+
+			p {
+				margin-bottom: 15px;
+			}
+		}
+	}
+
+	&.wrapper-boxed {
+	
+		.woocommerce {
+
+			.woocommerce-info {
+				@extend %woo-nots-not-hidden-boxed;
+			}
+		}
+	}
+
+	&.woodmart-dark {
+
+		.woocommerce {
+
+			> .woocommerce-info {
+				color:$scheme-light--body-color-darken;
+			}
+
+			> .login {
+				border-color: $scheme-light--border-color;
+			}
+		}		
+	}
+}
+
+.checkout_coupon {
+    padding: 30px 25px 10px 25px;
+    text-align: center;
+    border: 2px dashed #dddddd;
+    max-width: 450px;
+
+	.form-row-first,
+	.form-row-last {
+		float:none;
+		width:auto;
+		display:inline-block;
+	}
+
+	.input-text {
+		min-width: 220px;
+	}
+
+	.button {
+		@include btn-default-primary;
+		@extend %accent-buttons;
+	}
+
+	.woodmart-dark & {
+		border-color:$scheme-light--border-color;
+	}
+}
+
+.woocommerce-billing-fields {
+	margin-top: 30px;
+	margin-bottom: 20px;
+
+	> h3 {
+		@extend %title-font;
+		@extend %title-size;
+	}
+
+	abbr {
+		border: none;
+	}
+
+	@include clear-element;
+}
+
+.woocommerce-shipping-fields {
+	border-top: 1px solid;
+	@extend %main-border-color;
+    padding-top: 30px;
+	margin-bottom: 20px;
+
+	> h3 {
+		@extend %title-font;
+		@extend %title-size;
+	}
+
+	textarea {
+		min-height: 110px;
+	}
+}
+
+.woocommerce-additional-fields {
+	
+	> h3 {
+		@extend %title-font;
+		@extend %title-size;
+	}	
+}
+
+.woocommerce-account-fields {
+    margin-bottom: 30px;
+
+    .woocommerce-form__label {
+    	color:$light-dark;
+    	font-weight: 600;
+    }
+
+    .woodmart-dark & {
+
+    	.woocommerce-form__label {
+    		color:$scheme-light--title-color;
+    	}
+    }
+}
+
+.create-account {
+
+	> label {
+		display:inline-block;
+	}
+}
+
+div.create-account {
+	border: 3px solid #EFEFEF;
+	padding: 30px;
+
+	.woodmart-dark & {
+		border-color: $scheme-light--border-color;
+	}
+}
+
+#ship-to-different-address {
+
+	label {
+		margin: 0;
+		margin-right: 5px;
+		@extend %title-font;
+		@extend %title-size;
+		display: inline;
+		color:$heading-color;
+	}
+
+	.woodmart-dark & {
+
+		label {
+			color:$scheme-light--title-color;
+		}
+	}
+}
+
+#order_review_heading {
+	@extend %title-font;
+	@extend %title-size;
+	text-align: center;
+}
+
+.checkout-order-review,
+.woocommerce-order-pay .entry-content > .woocommerce {  // order pay page
+	position: relative;
+	background-color:#f8f8f8;
+    padding:30px;
+    margin-bottom: 40px;
+
+    &:before,
+    &:after {
+	    content:"";
+	    position: absolute;
+	    left: 0;
+	    width: 100%;
+	    height: 10px;
+	    background-color: transparent;
+	    background-size: 15px 15px;
+	    background-image: radial-gradient(farthest-side, rgba(0, 0, 0, 0) 6px, rgb(248, 248, 248) 0);
+    }
+
+    &:before {
+		top: -10px;
+		background-position: -3px -5px, 0px 0px;
+    }
+
+    &:after {
+		bottom: -10px;
+		background-position: -3px 2px, 0px 0px;
+    }
+}
+
+.woodmart-dark {
+
+	.checkout-order-review,
+	&.woocommerce-order-pay .entry-content > .woocommerce {
+    	background-color:$scheme-light--background-popup;
+
+	    &:before,
+	    &:after {
+	    	background-image: radial-gradient(farthest-side, rgba(0, 0, 0, 0) 6px, $scheme-light--background-popup 0);
+	    }		
+	}
+}
+
+.woodmart-table-wrapper {
+    background-color: white;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+
+    table {
+    	margin-bottom: 0;
+    }
+
+    .woodmart-dark & {
+    	background-color: $scheme-light--background-light-dark;
+    }
+}
+
+.payment_methods {
+	margin-bottom: 20px;
+
+	li:not(.woocommerce-info) {
+		margin-bottom: 15px;
+	}
+
+	li {
+
+		img {
+			max-height: 40px;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+
+		> label {
+			margin-bottom: 0;
+			display: inline;
+		}
+	}
+
+	.payment_box {
+		position: relative;
+		margin-top: 15px;
+		padding: 15px 15px;
+		background-color: white;
+	    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+
+		p {
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&:before {
+			content: "\f0d8";
+			position: absolute;
+			top: -4px;
+			line-height: 0;
+			left: 25px;
+			color:white;
+			font-size: 32px;
+			font-family: "FontAwesome";
+		}
+	}
+
+	.payment_method_paypal {
+
+		img {
+			margin-left: 10px;
+		}
+
+		a {
+			margin-left: 15px;	
+			text-decoration: underline;				
+		}
+	}
+
+	.woodmart-dark & {
+
+		.payment_box {
+			background-color: $scheme-light--background-light-dark;
+
+			&:before {
+				color:$scheme-light--background-light-dark;
+			}
+		}
+	}
+}
+
+#add_payment_method {
+
+	.payment_methods {
+
+		.payment_box {
+			padding: 0;
+			background-color: transparent;
+		    box-shadow: none;
+
+		    &:before {
+		    	content:none;
+		    }			
+		}
+	}
+
+	#place_order {
+	    width: auto;
+	    font-size: 13px;
+	    padding: 12px 20px;
+	}
+
+	#wc-stripe-cc-form {
+    	max-width: 330px;		
+	}
+
+	.woodmart-dark & {
+
+		.payment_methods {
+
+			.payment_box {
+				background-color: transparent;
+			}
+		}
+	}	
+}
+
+#wc-stripe-cc-form {
+	border:none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.wc-terms-and-conditions {
+	padding-top: 20px;
+	margin-top: 20px;
+    border-top: 1px solid;
+    @extend %main-border-color;
+
+	label {
+		display: inline;
+	}
+
+	a {
+		font-weight: 600;
+	}
+}
+
+.woocommerce-terms-and-conditions {
+	padding: 20px;
+	background-color: white;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+
+	.woodmart-dark & {
+		background-color: $scheme-light--background-light-dark;
+	}
+}
+
+#place_order {
+	@include full-width-button;
+	@include btn-default-primary;
+	@include button-size-large;
+	@extend %shop-buttons;
+}
+
+.woocommerce-order-pay {
+
+	.entry-content {
+
+		> .woocommerce {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+	}
+}

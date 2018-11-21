@@ -1,0 +1,153 @@
+
+/** --------------------------------------
+* YITH REQUEST A QUOTE
+* ------------------------------------- */
+
+.ywraq_list_empty_message {
+	text-align: center;
+    font-weight: 600;
+    color: #333333;
+    font-size: 18px;
+    padding: 16px 12px;
+    border-top-width: 2px;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #E6E6E6;
+}
+
+#yith-ywraq-form {
+
+	table.cart {
+
+		.product-thumbnail  {
+			display: table-cell;
+		}
+	}
+
+	td.actions {
+		border-bottom: none;
+	}
+}
+
+// -----------------------------------
+// PRODUCT PAGE
+// -----------------------------------
+
+.yith_ywraq_add_item_response_message,
+.yith_ywraq_add_item_browse_message {
+	
+	&:not(.hide) {
+		display: inline-block !important;
+	}
+}
+
+.yith_ywraq_add_item_response_message {
+	margin-right: 5px;
+}
+
+.yith_ywraq_add_item_browse_message {
+
+	a {
+		font-weight: 600;
+	}
+}
+
+.yith_ywraq_add_item_product_message {
+
+}
+
+.yith-ywraq-add-to-quote {
+
+	.yith-ywraq-add-button {
+	
+		.button.add-request-quote-button {
+			@include btn-default-primary;
+			@extend %shop-buttons;
+		}
+	}
+}
+
+.yith_ywraq_add_item_product_message {
+	line-height: 40px;
+
+	&.hide {
+		display: none !important;
+	}
+}
+
+.yith-ywraq-add-to-quote {
+	margin-bottom: 25px;
+}
+
+.yith-ywraq-add-button  {
+	margin-bottom: 15px;
+}
+
+// -----------------------------------
+// MY ACCOUNT
+// -----------------------------------
+
+.ywraq_my_account_quotes_title {
+	margin-top: 20px;
+}
+
+// -----------------------------------
+// SHOP PAGE
+// -----------------------------------
+
+.product-grid-item {
+
+	.yith-ywraq-add-to-quote,
+	.yith-ywraq-add-button {
+		margin-bottom: 0;
+	}
+
+	.yith_ywraq_add_item_response_message,
+	.yith_ywraq_add_item_browse_message {
+		display: none !important;
+	}
+
+	.add_to_cart_button + .yith-ywraq-add-to-quote {
+		margin-top: 10px;
+	}
+}
+
+.woodmart-hover-standard,
+.woodmart-hover-info-alt {
+
+	.add-request-quote-button {
+		font-size: 12px;
+    	line-height: 16px;
+    	padding: 10px 14px;
+	}
+}
+
+.woodmart-hover-tiled {
+
+	.yith-ywraq-add-to-quote {
+		display: none;
+	}
+}
+
+.woodmart-hover-quick {
+
+	.yith-ywraq-add-to-quote {
+		margin-top: 0px !important;
+	}
+
+	.yith-ywraq-add-button {
+		position: relative;
+
+		> img {
+			display: none;
+		}
+	}
+
+	.add-request-quote-button {
+		width: 100%;
+		box-shadow: none !important;
+		padding: 10px !important;
+		top: 0 !important;
+		border-radius: 0 !important;
+	}
+}
