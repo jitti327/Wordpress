@@ -1,0 +1,32 @@
+
+1) What is WordPress?
+Ans:- WordPress is an online, open source website creation tool written in PHP. But in non-geek speak, it’s probably the easiest and most powerful blogging and website content management system (or CMS) in existence today.
+
+2) What can WordPress do?
+Ans:- WordPress is an excellent website platform for a variety of websites. From blogging to e-commerce to business and portfolio websites, WordPress is a versatile CMS.
+
+  Here are just a few examples of the types of websites you can build with WordPress:
+
+    a) Blog
+    b) E-commerce
+    c) Business
+    d) News
+    e) Photography
+    f) Music
+    g) Membership
+
+
+3) How many tables default WordPress have? Can you name those default WordPress table?
+Ans:- There are all together 12 tables by default. They are :
+      a)  wp_options
+      b)  wp_users
+      c)  wp_links
+      d)  wp_commentmeta
+      e)  wp_term_relationships
+      f)  wp_postmeta
+      g)  wp_posts
+      h)  wp_term_taxonomy
+      i)  wp_usermeta
+      j)  wp_terms
+      k)  wp_comments
+      l)  wp_termmeta
