@@ -1,0 +1,48 @@
+1) How to make Child theme for WordPress ?
+Ans:- There are some following steps which are helpfull to make a child theme.:-
+
+  a) First of dll download a theme. 
+    --> For example i have downloaded (transport-lite).
+
+  b) Make a new folder named as (transport-lite-child). You can make folder name what you want.
+
+  c) Then copy the screenshot from the theme and paste it to the child theme folder. 
+    --> For example in my condition i have copied the screenshot from the (transport-lite) to (transport-lite-child).
+  
+  d) Then make a new file named functions.php in the folder of our child theme (transport-lite-child).
+    --> Code we have to use in our functions.php ->
+        --> (
+              <?php
+
+                add_action( 'wp_enqueue_scripts', 'transport_child_enqueue_style', 1000 );
+
+                function transport_child_enqueue_style() {
+                  wp_enqueue_style( 'transport-lite-style', get_template_directory_uri() . '/style.css');
+                    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css');
+                    
+                }
+
+
+                add_filter('body_class', 'multisite_body_classes');
+
+                function multisite_body_classes($classes) {
+                  $classes[] = 'my-new-body-class';
+                  return $classes;
+                }
+            )
+
+  e) Then make a new file named style.css in the folder of our child theme (transport-lite-child)
+    --> Code we have to use in our style.css file ->
+        --> (
+              /*
+               Theme Name:   transport-lite-child
+               Description:  transport-lite-Child Theme
+               Author:       IDS
+               Author URI:   http://incredible-developing-solution.com
+               Template:     transport-lite
+               Version:      1.0.0
+               Text Domain:  transport-lite
+              */
+
+            )
+  f) Its done Your theme is ready to use check your dashboard and file your theme name and activate it.
