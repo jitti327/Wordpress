@@ -1,0 +1,14 @@
+2018-11-22T05:30:50+00:00 CRITICAL syntax error, unexpected ''dashicons-flag'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ')' in /var/www/html/wordpress/wp-content/themes/transport-lite-child/functions.php on line 46
+
+2018-11-22T05:31:05+00:00 CRITICAL syntax error, unexpected ''dashicons-flag'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ')' in /var/www/html/wordpress/wp-content/themes/transport-lite-child/functions.php on line 46
+
+2018-11-22T08:11:16+00:00 CRITICAL Uncaught Error: Call to undefined function requiredMessage() in /var/www/html/wordpress/wp-content/themes/transport-lite-child/Template-part/country/code/register.php:10
+Stack trace:
+#0 /var/www/html/wordpress/wp-content/themes/transport-lite-child/functions.php(92): include_once()
+#1 /var/www/html/wordpress/wp-includes/class-wp-hook.php(286): location_manage_country_page_callback('')
+#2 /var/www/html/wordpress/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 /var/www/html/wordpress/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#4 /var/www/html/wordpress/wp-admin/admin.php(224): do_action('manage-location...')
+#5 {main}
+  thrown in /var/www/html/wordpress/wp-content/themes/transport-lite-child/Template-part/country/code/register.php on line 10
+
