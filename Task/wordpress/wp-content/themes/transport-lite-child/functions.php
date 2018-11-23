@@ -77,12 +77,18 @@
 
   function myfunction(){
     global $wpdb;
+
     if($_REQUEST['action'] == 'add'){
       include_once('Template-part/country/code/register.php');
       include_once('Template-part/country/register.php'); 
       return;
     }
     if(!isset($_REQUEST['action'])){
+      include_once('Template-part/country/code/listing.php');
+      include_once('Template-part/country/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'trash'){
       include_once('Template-part/country/code/listing.php');
       include_once('Template-part/country/listing.php');
       return;

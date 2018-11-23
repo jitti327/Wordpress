@@ -1,7 +1,6 @@
 <?php
   echo $message;
 ?>
-
 <div class="wrap">
   <h1 class="wp-heading-inline">
     Country
@@ -25,22 +24,21 @@
         </a>
       </li>
     </ul>
-<form id="posts-filter" method="get">
+<form id="posts-filter" method="POST">
 
   <p class="search-box">
     <label class="screen-reader-text" for="post-search-input">Search Posts:</label>
     <input type="search" id="post-search-input" name="s" value="">
-    <input type="submit" id="search-submit" class="button" value="Search Posts">
+    <input type="submit" name="search" id="search-submit" class="button" value="Search Posts">
   </p> 
   <div class="tablenav top">
     <div class="alignleft actions bulkactions">
       <label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
       <select name="action" id="bulk-action-selector-top">
-        <option value="-1">Bulk Actions</option>
-        <option value="edit" class="hide-if-no-js">Edit</option>
+        <option value="">Bulk Actions</option>
         <option value="trash">Move to Trash</option>
       </select>
-      <input type="submit" id="doaction" class="button action" value="Apply">
+      <input type="submit" name="submit" id="doaction" class="button action" value="Apply">
     </div>
 
     <div class="tablenav-pages one-page">
@@ -167,8 +165,7 @@
 
       <div class="alignleft actions bulkactions">
         <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label><select name="action2" id="bulk-action-selector-bottom">
-          <option value="-1">Bulk Actions</option>
-          <option value="edit" class="hide-if-no-js">Edit</option>
+          <option value="">Bulk Actions</option>
           <option value="trash">Move to Trash</option>
         </select>
         <input type="submit" id="doaction2" class="button action" value="Apply">
