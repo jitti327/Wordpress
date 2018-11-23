@@ -36,23 +36,14 @@
           'dashicons-flag'                            // Used For Icon
       );
 
-      add_submenu_page(
-          'manage-location-title',                    //url
-          'Location Manage Country',                  //title name
-          'Manage Country',                           // shortcode reference
-          'manage_options',                           // Capability (who can use this option)
-          'location-country-ref',                    //slug (unique of key)
-          'location_manage_country_page_callback'     // function(call back)
-      );
-
-      add_submenu_page(
-          'location-country-ref',                    //url
-          'Location Add Country',                     //title name
-          'Add Country',                              // shortcode reference
-          'manage_options',                           // Capability (who can use this option)
-          'location-add-country-ref',                //slug (unique of key)
-          'location_add_country_page_callback'        // function(call back)
-      );
+      // add_submenu_page(
+      //     'manage-location-title',                    //url
+      //     'Location Manage Country',                  //title name
+      //     'Manage Country',                           // shortcode reference
+      //     'manage_options',                           // Capability (who can use this option)
+      //     'location-country-ref',                    //slug (unique of key)
+      //     'location_manage_country_page_callback'     // function(call back)
+      // );
 
       add_submenu_page(                    
           'manage-location-title',                    //url
@@ -86,44 +77,57 @@
 
   function myfunction(){
     global $wpdb;
-    include('Template-part/country/listing.php');
-    return;
+    if($_REQUEST['action'] == 'add'){
+      include_once('Template-part/country/code/register.php');
+      include_once('Template-part/country/register.php'); 
+      return;
+    }
+    if(!isset($_REQUEST['action'])){
+      include_once('Template-part/country/code/listing.php');
+      include_once('Template-part/country/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'edit'){
+      include_once('Template-part/country/code/edit.php');
+      include_once('Template-part/country/edit.php');
+      return;
+    }
   }
 
   /**
    * Display callback for the submenu page.
    */
-  function location_manage_country_page_callback() { 
-    global $wpdb; 
-    include_once('Template-part/country/code/register.php');
-    include_once('Template-part/country/register.php'); 
-    return;    
-  }
+  // function location_manage_country_page_callback() {
+  //   global $wpdb; 
+  //   include_once('Template-part/country/code/register.php');
+  //   include_once('Template-part/country/register.php');
+  //   return;    
+  // }
   /**
    * Display callback for the submenu page.
    */
-  function location_manage_state_page_callback() { 
+  function location_manage_state_page_callback() {
     global $wpdb; 
     include_once('Template-part/state/code/register.php');
-    include_once('Template-part/state/register.php'); 
+    include_once('Template-part/state/register.php');
     return;    
   }
   /**
    * Display callback for the submenu page.
    */
-  function location_manage_district_page_callback() { 
+  function location_manage_district_page_callback() {
     global $wpdb; 
     include_once('Template-part/district/code/register.php');
-    include_once('Template-part/district/register.php'); 
+    include_once('Template-part/district/register.php');
     return;
   }
   /**
    * Display callback for the submenu page.
    */
-  function location_manage_city_page_callback() { 
+  function location_manage_city_page_callback() {
     global $wpdb; 
     include_once('Template-part/city/code/register.php');
-    include_once('Template-part/city/register.php'); 
+    include_once('Template-part/city/register.php');
     return;
   } 
 
@@ -169,3 +173,16 @@
       </div>
     </div>
 <?php }
+/*
+ * Function Name : DeleteAction
+ * Parameter     : $tableName -> write the table name from database
+                 : $id        -> Send the delete record  id
+ * Return        : deleteQuery
+*/
+  function DeleteAction( $tableName , $id){
+// This method is used to multiple record delete in databases    
+    global $wpdb;
+    $table = $wpdb->prefix . $tableName;
+    $deleteQuery = $wpdb->delete($table , array('id' => $id) , array('%d'));
+    return $deleteQuery;                 
+  }

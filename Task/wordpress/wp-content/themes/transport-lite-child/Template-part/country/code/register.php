@@ -25,7 +25,8 @@
         }
       }    
     }    
-  }catch(PDOException $e){
+  }
+  catch(PDOException $e){
     echo "<h3 class='text-red'><i class='icon fa fa-ban'></i> Your Data is not Inserted please contact the admin</h3>";
     //echo $e->getMessage();
   }
