@@ -29,28 +29,20 @@
   function wpdocs_register_my_location_menu_page() {
       add_menu_page(
           'Manage Location',                          // page_title
-          'Manage Location',                          // menu_title
+          'Manage Country',                           // menu_title
           'manage_options',                           // Capability
           'manage-location-title',                    // Slug
           'myfunction',                               // Calling Function here
-          'dashicons-flag'                            // Used For Icon
+          'dashicons-admin-site',                      // Used For Icon
+          4
       );
-
-      // add_submenu_page(
-      //     'manage-location-title',                    //url
-      //     'Location Manage Country',                  //title name
-      //     'Manage Country',                           // shortcode reference
-      //     'manage_options',                           // Capability (who can use this option)
-      //     'location-country-ref',                    //slug (unique of key)
-      //     'location_manage_country_page_callback'     // function(call back)
-      // );
 
       add_submenu_page(                    
           'manage-location-title',                    //url
           'Location Manage State',                    //title name
           'Manage State',                             // shortcode reference
           'manage_options',                           // Capability (who can use this option)
-          'location-state-ref',                      //slug (unique of key)
+          'location-state-ref',                       //slug (unique of key)
           'location_manage_state_page_callback'       // function(call back)
       );
 
@@ -59,7 +51,7 @@
           'Location Manage District',                 //title name
           'Manage District',                          // shortcode reference
           'manage_options',                           // Capability (who can use this option)
-          'location-district-ref',                   //slug (unique of key)
+          'location-district-ref',                    //slug (unique of key)
           'location_manage_district_page_callback'    // function(call back)
       );
 
@@ -68,7 +60,7 @@
           'Location Manage City',                     //title name
           'Manage City',                              // shortcode reference
           'manage_options',                           // Capability (who can use this option)
-          'location-city-ref',                       //slug (unique of key)
+          'location-city-ref',                        //slug (unique of key)
           'location_manage_city_page_callback'        // function(call back)
       );
 
@@ -87,22 +79,17 @@
       include_once('Template-part/country/listing.php');
       return;
      }
+    if($_REQUEST['action'] == 'delete'){
+      include_once('Template-part/country/code/listing.php');
+      include_once('Template-part/country/listing.php');
+      return;
+     }
     if($_REQUEST['action'] == 'edit'){
       include_once('Template-part/country/code/edit.php');
       include_once('Template-part/country/edit.php');
       return;
     }
   }
-
-  /**
-   * Display callback for the submenu page.
-   */
-  // function location_manage_country_page_callback() {
-  //   global $wpdb; 
-  //   include_once('Template-part/country/code/register.php');
-  //   include_once('Template-part/country/register.php');
-  //   return;    
-  // }
   /**
    * Display callback for the submenu page.
    */
@@ -184,5 +171,45 @@
     global $wpdb;
     $table = $wpdb->prefix . $tableName;
     $deleteQuery = $wpdb->delete($table , array('id' => $id) , array('%d'));
-    return $deleteQuery;                 
+    return $deleteQuery;
+  } 
+/*
+* Function Name :
+*
+*/
+  function OrderIcon($displayName , $columnName , $order){ ?>
+    <th 
+      scope="col" 
+      id="<?php echo $columnName; ?>" 
+      class="manage-column column-<?php echo $columnName; ?> column-primary sortable <?php echo $order; ?>">
+      <a href="<?php echo admin_url('admin.php?page=manage-location-option','admin')?>&order-by=<?php echo $columnName; ?>&order=<?php echo $order == 'desc'?'asc':'desc'; ?>">
+      <span><?php echo $displayName; ?></span>
+      <span class="sorting-indicator"></span>
+      </a>
+    </th>
+
+ <?php } 
+
+/*
+* Function Name : renderTableHead
+* parameter     : $tableHeadName -> write the database table column name
+                    and write the name from user table head name using in array key value
+*               : $odder         -> set the default order value in assending and dessending value
+*               : $currentPage   -> set the current page value
+* Return        : ture           -> Return the true value when accept the parameter value
+                : false          -> Return  the false value when not accept the parameters
+*/
+  function renderTableHead( $tableHeadName , $order  ){ ?>
+    <td id="cb" class="manage-column column-cb check-column">
+      <label class="screen-reader-text" for="cb-select-all-1">Select All</label>
+      <input id="cb-select-all-1" type="checkbox">
+    </td>
+ <?php   foreach($tableHeadName as $key => $value){
+ ?>
+      <th scope="col" id="<?php echo $key; ?>" class="manage-column column-<?php echo $key; ?>">
+        <?php echo $value; ?>
+      </th>
+<?php 
+    }
+    return false;
   }
