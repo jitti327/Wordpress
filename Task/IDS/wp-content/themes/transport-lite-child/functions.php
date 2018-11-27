@@ -79,7 +79,7 @@
       include_once('Template-part/country/listing.php');
       return;
      }
-    if($_REQUEST['action'] == 'delete'){
+    if($_REQUEST['action'] == 'deleted'){
       include_once('Template-part/country/code/listing.php');
       include_once('Template-part/country/listing.php');
       return;
@@ -213,3 +213,162 @@
     }
     return false;
   }
+/*
+*
+*
+*/
+  function generalAddField($name , $displayName ,$value , $placeholder){ ?>
+    <tr>
+      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+      <td>
+        <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
+      </td>
+    </tr>
+<?php  }
+/*
+*
+*
+*/
+  function generalAddtextField($name , $displayName ,$value , $placeholder){ ?>
+    <tr>
+      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+      <td>
+        <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+      </td>
+    </tr>
+<?php  } 
+/*
+*
+*
+*/
+  function generalbutton($name ,$value){ ?>
+    <p class="submit">
+      <input type="submit" name="<?php echo $name; ?>" id="submit" class="button button-primary" value="<?php echo $value  ?>">
+    </p>
+<?php  }
+/*
+*
+*
+*/
+  function generalDropDown($lable,$name,$request){ 
+    global $wpdb;
+?>
+    <tr>
+      <th scope="row">
+        <label for="default_role"><?php echo $lable; ?></label>
+      </th>
+      <td>
+        <select id="country" class="custom_text" name="<?php echo $name; ?>">
+          <option value="">Select</option>
+          <?php
+            $tableName = $wpdb->prefix . COUNTRY;
+            $result = $wpdb->get_results("SELECT * FROM ".$tableName );
+            foreach ($result as $fetch) { ?>
+              <option <?php echo ($request == $fetch->id) ? 'selected="selected"' : ''  ?> value="<?php echo $fetch->id; ?>"><?php echo $fetch->title; ?></option>
+            <?php }
+          ?>
+        </select>
+      </td>
+    </tr> 
+<?php  }
+/*
+*
+*
+*/
+  function dependentDropdown($lable , $name ,$fieldId){ ?>
+    <tr>
+      <th scope="row">
+        <label for="default_role"><?php echo $lable; ?></label>
+      </th>
+      <td>
+        <select id="<?php echo $fieldId; ?>" class="custom_text" name="<?php echo $name; ?>" disabled="">
+        </select>
+      </td>
+    </tr> 
+<?php  }
+/*
+ * Function Name : DependentTable
+ * Parameter     : $requestName -> Isme server se jo request name aai hai uskol define krna hai.
+                 : $tableName -> Enter the table name
+                 : $databaseColumn -> Enter the table in which include column name 
+                 : $name -> Enter the select dropdown field name
+ * Return        : true
+ */
+function DependentTable($requestName , $tableName , $databaseColumn , $name , $displayName){
+  global $wpdb;
+  if(!empty($_REQUEST[$requestName])){
+    $query = "SELECT * FROM `".$tableName."` WHERE `".$databaseColumn."` = ".$_REQUEST[$requestName];
+    $State  =  $wpdb->get_results($query);
+    echo "<option value=''>Select ".$displayName."</option>";
+    foreach( $State as $fetch ){ ?>
+      <option value="<?php echo $fetch->id; ?>" <?php echo ($name == $fetch->id) ? 'selected ="selected" ' : '' ?>><?php echo $fetch->title; ?></option>
+<?php 
+    }
+  } 
+  return true; 
+}
+
+/*
+* Function Name : jqueryAjax
+*
+*/
+  function jqueryAjax(){ ?>
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+    // This method is used to first dropdown select Value
+    // Then fetch the data   
+        jQuery('#country').on('change',function(){
+        // This method is used to get the drop down select value
+          var country = '';
+          jQuery.each(jQuery("#country option:selected"), function(){            
+            country = jQuery(this).val();
+            jQuery('#state').removeAttr("disabled");
+            jQuery('#district').removeAttr("disabled");
+          });
+          if(country == ''){
+            jQuery('#state').attr("disabled",'');
+            jQuery('#district').attr("disabled",'');
+            return; 
+          }
+          if(country != ''){
+            jQuery.ajax({
+              type: "post",
+              url:  "state.php",
+              data: {CountryId:country},          
+              success: function(data){
+                jQuery('#state').html(data);
+              },
+              error: function(){
+                alert('Something is wrong !');
+              },       
+            });
+          }
+        });
+        jQuery('#state').on('change',function(){
+        // This method is used to get the drop down select value
+          var state = '';
+          jQuery.each(jQuery("#state option:selected"), function(){            
+            state = jQuery(this).val();
+          });  
+          console.log(state); 
+          if(state == ''){
+            return jQuery('#district').attr("disabled",''); 
+          }  
+          if(state != ''){  
+            jQuery('#district').removeAttr("disabled");
+            jQuery.ajax({
+              type: "post",
+              url:  "state.php",
+              data: {stateId:state},         
+              success: function(data){
+                jQuery('#district').html(data);
+              },
+              error: function(){
+                alert('Something is wrong !');
+              },                    
+            });
+          }    
+        });        
+      }); 
+    </script>
+<?php  }

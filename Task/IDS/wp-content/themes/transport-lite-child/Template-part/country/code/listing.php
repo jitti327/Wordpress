@@ -35,8 +35,21 @@ class Custom_Country_Table extends WP_List_Table {
 
     //return  $wpdb->get_results("SELECT * FROM `wp_country`", ARRAY_A );
     
-    $tableName = $wpdb->prefix . "country";
-    $fetchQuery = $wpdb->get_results("SELECT * FROM $tableName");  
+    $tableName = $wpdb->prefix . "country"; 
+    if(!empty($_REQUEST['s'])){
+      $queryPart = "
+      WHERE
+        `name` LIKE '%".$_REQUEST['s']."%'
+      ";
+    }    
+   $query = "
+    SELECT
+    *
+    FROM 
+      $tableName
+      {$queryPart} 
+   ";
+    $fetchQuery = $wpdb->get_results($query);  
 
     //$response = [];
     foreach ($fetchQuery as $value) {
@@ -124,7 +137,7 @@ class Custom_Country_Table extends WP_List_Table {
         //Build row actions
         $actions = array(
             'edit'      => sprintf('<a href="?page=%s&action=%s&post=%s">Edit</a>',$_REQUEST['page'],'edit',$item['id']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&post=%s">Delete</a>',$_REQUEST['page'],'delete',$item['id']),
+            'delete'    => sprintf('<a href="?page=%s&task=%s&post=%s">Delete</a>',$_REQUEST['page'],'delete',$item['id']),
         );
         
         //Return the title contents
@@ -147,7 +160,7 @@ class Custom_Country_Table extends WP_List_Table {
      **************************************************************************/
     function column_cb($item){
         return sprintf(
-            '<input type="checkbox" name="%1$s[]" value="%2$s" />',
+            '<input type="checkbox" name="user[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
             /*$2%s*/ $item['id']                //The value of the checkbox should be the record's id
         );
@@ -218,7 +231,7 @@ class Custom_Country_Table extends WP_List_Table {
      **************************************************************************/
     function get_bulk_actions() {
         $actions = array(
-            'delete'    => 'Delete'
+            'deleted'    => 'Delete'
         );
         return $actions;
     }
@@ -233,11 +246,39 @@ class Custom_Country_Table extends WP_List_Table {
      **************************************************************************/
     function process_bulk_action() {
         
-        //Detect when a bulk action is being triggered...
-        if( 'delete'===$this->current_action() ) {
-            wp_die('Items deleted (or they would be if we had items to delete)!');
+      //Detect when a bulk action is being triggered...
+      if( 'deleted'===$this->current_action() ) {
+        foreach($_REQUEST['user'] as $ids){
+          $deleteQuery =  DeleteAction( "country" , $ids);
+          if($deleteQuery == 0){
+            $message = requiredMessage("error","Record Not Deleted.");
+          }
+          else{
+            $message = requiredMessage("updated","Record Deleted Successfully");
+          }
         }
+        echo $message;
+      }        
+    }
+
+    /*
+    * Function Name : process_delete_action
+    * Work          : Delete the record
+    */
+    function process_delete_action() {
         
+      //Detect when a bulk action is being triggered...
+      $task = isset($_REQUEST['task']) ? $_REQUEST['task'] : "";
+      if($task === 'delete') {
+        $deleteQuery =  DeleteAction( "country" , $_REQUEST['post']);
+        if($deleteQuery == 0){
+          $message = requiredMessage("error","Record Not Deleted.");
+        }
+        else{
+          $message = requiredMessage("updated","Record Deleted Successfully");
+        }
+      } 
+        echo $message;
     }
 
 
@@ -291,6 +332,7 @@ class Custom_Country_Table extends WP_List_Table {
          * case, we'll handle them within our package just to keep things clean.
          */
         $this->process_bulk_action();
+        $this->process_delete_action();
         
         /**
          * Instead of querying a database, we're going to fetch the example data
