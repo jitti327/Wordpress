@@ -4,24 +4,21 @@
   }
   echo $message;
 ?>
-<form method="post">
   <div class="wrap">
     <h1 class="wp-heading-inline">Add New State</h1>
-    <div id="poststuff">
-      <div id="post-body" class="metabox-holder columns-2">
-        <div id="post-body-content" style="position: relative;">
-          <div id="titlediv">
-            <?php
-              addInputField('name' , 'Enter State Name' , empty($state) ? '' : $state);
-              addTextArea('description' ,'Enter Description Here...' ,empty($description) ? '' : $description );
-            ?>          
-          </div>        
-        </div>
-        <?php publishButton('Publish' , 'add' , 'Publish'); ?>
-      </div>       
-     </div>
+    <form method="post">
+      <table class="form-table">
+        <tbody>
+          <?php
+            generalAddField('name' , 'State' , empty($state) ? '' : $state , 'Enter New State');
+            generalAddtextField('description' , 'Description' , empty($description) ? '' : $description , 'Enter Description Here...' );
+            generalDropDown('Select Country','country_id' , empty($_REQUEST['country_id']) ? '' : $_REQUEST['country_id']);
+          ?>          
+        </tbody>        
+      </table>
+        <?php generalbutton('add' , 'Save' ); ?>
+    </form> 
   </div>
-</form> 
 
 
 

@@ -17,15 +17,16 @@
           'description' => $description
         ];
         $tableName = $wpdb->prefix . "district";
-        $insertdistrict = $wpdb->insert($tableName , $row ,array('%s'));
-        if($insertdistrict !== false){
+        $insertCountry = $wpdb->insert($tableName , $row ,array('%s'));
+        if($insertCountry !== false){
           $message = requiredMessage("updated","Data Inserted Succuessfully");
         }else{
           $message = requiredMessage("error","Data Not Inserted");
         }
       }    
     }    
-  }catch(PDOException $e){
+  }
+  catch(PDOException $e){
     echo "<h3 class='text-red'><i class='icon fa fa-ban'></i> Your Data is not Inserted please contact the admin</h3>";
     //echo $e->getMessage();
   }

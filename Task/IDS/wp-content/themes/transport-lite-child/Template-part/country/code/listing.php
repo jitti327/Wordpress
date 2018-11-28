@@ -32,22 +32,26 @@ class Custom_Country_Table extends WP_List_Table {
 
   function custom_record(){
     global $wpdb;
+    $orderby   = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'name'; //If no sort, default to title
+    $order     = (!empty($_REQUEST['order']))   ? $_REQUEST['order']   : 'asc'; //If no order, default to asc    
+    $tableName = $wpdb->prefix . "country";
 
-    //return  $wpdb->get_results("SELECT * FROM `wp_country`", ARRAY_A );
-    
-    $tableName = $wpdb->prefix . "country"; 
     if(!empty($_REQUEST['s'])){
       $queryPart = "
       WHERE
         `name` LIKE '%".$_REQUEST['s']."%'
       ";
-    }    
+    }
+    if(!empty($orderby)){
+      $orderPart = " ORDER BY `$orderby` $order ";
+    }
    $query = "
     SELECT
     *
     FROM 
       $tableName
-      {$queryPart} 
+      {$queryPart}
+      {$orderPart} 
    ";
     $fetchQuery = $wpdb->get_results($query);  
 
@@ -57,7 +61,7 @@ class Custom_Country_Table extends WP_List_Table {
         'id'          => $value->id, 
         'name'        => $value->name,
         'description' => mb_strimwidth($value->description, 0, 30, "....."),
-        'created_on'   => $value->created_on
+        'created_on'  => $value->created_on
       );
     }
     return $response;
@@ -344,37 +348,9 @@ class Custom_Country_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
         $data = $this->custom_record();
-                
-        
-        /**
-         * This checks for sorting input and sorts the data in our array accordingly.
-         * 
-         * In a real-world situation involving a database, you would probably want 
-         * to handle sorting by passing the 'orderby' and 'order' values directly 
-         * to a custom query. The returned data will be pre-sorted, and this array
-         * sorting technique would be unnecessary.
-         */
-        function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'name'; //If no sort, default to title
-            $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
-            $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
-            return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
-        }
-        usort($data, 'usort_reorder');
-        
-        
-        /***********************************************************************
-         * ---------------------------------------------------------------------
-         * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-         * 
-         * In a real-world situation, this is where you would place your query.
-         *
-         * For information on making queries in WordPress, see this Codex entry:
-         * http://codex.wordpress.org/Class_Reference/wpdb
-         * 
-         * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         * ---------------------------------------------------------------------
-         **********************************************************************/
+        // echo '<pre>';
+        //   print_r($data);
+        // echo '</pre>';
         
                 
         /**

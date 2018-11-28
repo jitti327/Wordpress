@@ -94,28 +94,79 @@
    * Display callback for the submenu page.
    */
   function location_manage_state_page_callback() {
-    global $wpdb; 
-    include_once('Template-part/state/code/register.php');
-    include_once('Template-part/state/register.php');
-    return;    
+    global $wpdb;
+    if($_REQUEST['action'] == 'add'){
+      include_once('Template-part/state/code/register.php');
+      include_once('Template-part/state/register.php'); 
+      return;
+    }
+    if(!isset($_REQUEST['action'])){
+      include_once('Template-part/state/code/listing.php');
+      include_once('Template-part/state/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'deleted'){
+      include_once('Template-part/state/code/listing.php');
+      include_once('Template-part/state/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'edit'){
+      include_once('Template-part/state/code/edit.php');
+      include_once('Template-part/state/edit.php');
+      return;
+    }    
   }
   /**
    * Display callback for the submenu page.
    */
   function location_manage_district_page_callback() {
-    global $wpdb; 
-    include_once('Template-part/district/code/register.php');
-    include_once('Template-part/district/register.php');
-    return;
+    global $wpdb;
+    if($_REQUEST['action'] == 'add'){
+      include_once('Template-part/district/code/register.php');
+      include_once('Template-part/district/register.php'); 
+      return;
+    }
+    if(!isset($_REQUEST['action'])){
+      include_once('Template-part/district/code/listing.php');
+      include_once('Template-part/district/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'deleted'){
+      include_once('Template-part/district/code/listing.php');
+      include_once('Template-part/district/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'edit'){
+      include_once('Template-part/district/code/edit.php');
+      include_once('Template-part/district/edit.php');
+      return;
+    }
   }
   /**
    * Display callback for the submenu page.
    */
   function location_manage_city_page_callback() {
-    global $wpdb; 
-    include_once('Template-part/city/code/register.php');
-    include_once('Template-part/city/register.php');
-    return;
+    global $wpdb;
+    if($_REQUEST['action'] == 'add'){
+      include_once('Template-part/city/code/register.php');
+      include_once('Template-part/city/register.php'); 
+      return;
+    }
+    if(!isset($_REQUEST['action'])){
+      include_once('Template-part/city/code/listing.php');
+      include_once('Template-part/city/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'deleted'){
+      include_once('Template-part/city/code/listing.php');
+      include_once('Template-part/city/listing.php');
+      return;
+     }
+    if($_REQUEST['action'] == 'edit'){
+      include_once('Template-part/city/code/edit.php');
+      include_once('Template-part/city/edit.php');
+      return;
+    }
   } 
 
   /*
@@ -261,8 +312,8 @@
         <select id="country" class="custom_text" name="<?php echo $name; ?>">
           <option value="">Select</option>
           <?php
-            $tableName = $wpdb->prefix . COUNTRY;
-            $result = $wpdb->get_results("SELECT * FROM ".$tableName );
+            $tableName = $wpdb->prefix . "country";
+            $result = $wpdb->get_results("SELECT * FROM $tableName");
             foreach ($result as $fetch) { ?>
               <option <?php echo ($request == $fetch->id) ? 'selected="selected"' : ''  ?> value="<?php echo $fetch->id; ?>"><?php echo $fetch->title; ?></option>
             <?php }
@@ -297,7 +348,7 @@
 function DependentTable($requestName , $tableName , $databaseColumn , $name , $displayName){
   global $wpdb;
   if(!empty($_REQUEST[$requestName])){
-    $query = "SELECT * FROM `".$tableName."` WHERE `".$databaseColumn."` = ".$_REQUEST[$requestName];
+    $query = "SELECT * FROM $tableName WHERE `".$databaseColumn."` = ".$_REQUEST[$requestName];
     $State  =  $wpdb->get_results($query);
     echo "<option value=''>Select ".$displayName."</option>";
     foreach( $State as $fetch ){ ?>

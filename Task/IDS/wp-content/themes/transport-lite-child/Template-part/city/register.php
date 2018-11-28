@@ -4,25 +4,20 @@
   }
   echo $message;
 ?>
-<form method="post">
   <div class="wrap">
-    <h1 class="wp-heading-inline">Add New city</h1>
-    <div id="poststuff">
-      <div id="post-body" class="metabox-holder columns-2">
-        <div id="post-body-content" style="position: relative;">
-          <div id="titlediv">
+    <h1 class="wp-heading-inline">Add New City</h1>
+    <form method="post">
+      <table class="form-table">
+          <tbody>
             <?php
-              addInputField('name' , 'Enter City Name' , empty($city) ? '' : $city);
-              addTextArea('description' ,'Enter Description Here...' ,empty($description) ? '' : $description );
+              generalAddField('name' , 'City' , empty($state) ? '' : $state , 'Enter New City');
+              generalAddtextField('description' , 'Description' , empty($description) ? '' : $description , 'Enter Description Here...' );
+              generalDropDown('Select Country','country_id' , empty($_REQUEST['country_id']) ? '' : $_REQUEST['country_id']);
+              generalDropDown('Select State','state_id' , empty($_REQUEST['state_id']) ? '' : $_REQUEST['state_id']);
+              generalDropDown('Select District','district_id' , empty($_REQUEST['district_id']) ? '' : $_REQUEST['district_id']);
             ?>          
-          </div>        
-        </div>
-        <?php publishButton('Publish' , 'add' , 'Publish'); ?>
-      </div>       
-     </div>
+          </tbody>        
+        </table>
+        <?php generalbutton('add' , 'Save' ); ?>
+    </form> 
   </div>
-</form> 
-
-
-
-
