@@ -180,7 +180,10 @@
 * Function Name : genralLables
 */
 
-  function genralLables($name , $type , $id , $value , $display){ ?>
+  function genralLables($name , $type , $id , $value , $display){ 
+
+
+    ?>
 
     <label for="<?php echo $name; ?>">
       <input type="<?php echo $type;?>" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>"><?php echo $display; ?>
@@ -190,7 +193,12 @@
 /*
 * Function Name : priceField
 */
-  function priceField($name , $lableid , $type , $id , $value , $placeholder){ ?>
+  function priceField($name , $lableid , $type , $id , $value , $placeholder){ 
+
+    if($type == 'number'){
+      $type = 'text';
+    } 
+    ?>
     <label for="<?php echo $name; ?>" id="<?php echo $lableid; ?>" style="display: none;">
       <input name="<?php echo $name; ?>" type="<?php echo $type; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>" class="small-text" placeholder="<?php echo $placeholder; ?>">
     </label>

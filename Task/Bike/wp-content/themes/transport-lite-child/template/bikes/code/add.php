@@ -1,35 +1,57 @@
 <?php
   try{
     $message = "";
-    // echo '<pre>';
-    // 	print_r($_REQUEST);
-    // 	echo $_REQUEST['bike'];
-    // echo '</pre>';
     if(isset($_REQUEST['add'])){
-    	debug($_REQUEST);
+    	// debug($_REQUEST);
     	//die;
     	$tableName = $wpdb->prefix . "bike";
 
-    	$bikeArray = $_REQUEST['bike'];
-      // $name   = [
-      // 	'road' 		 => $_REQUEST['bike']['road_bike'],
-      // 	'cruiser'  => $_REQUEST['bike']['cruiser_bike'],
-      // 	'mountain' => $_REQUEST['bike']['mountain_bike'],
-      // 	'fat' 		 => $_REQUEST['bike']['fat_bike'],
-      // 	'electric' => $_REQUEST['bike']['electric_bike'],
-      // 	'hybrid' 	 => $_REQUEST['bike']['hybrid_bike']
-      // ];
+      $bikeArray  = $_REQUEST['bikeName'];
+    	$addOnArray = $_REQUEST['addOnName'];
 
-      echo '<pre>';
-      print_r($bikeArray);
-      echo '</pre>';
+      // debug($bikeArray);
 
-      foreach($bikeArray as $key => $value){
-        debug(array(
-          'key'   => $key,
-          'value' => $value,
-          'price' => $_REQUEST[$key.'_input']
-        ));
+      foreach($bikeArray as $value){
+        if(empty($value['name'])){
+          continue;
+        }
+        $row = [
+          'name'  => $value['name'],
+          'price' => $value['price']
+        ];
+
+        $insertQuery = $wpdb->insert($tableName , $row , array('%s', '%d'));
+
+        if($insertQuery === false){
+          continue;
+        }
+        $parentId  = $wpdb->insert_id;
+
+        // debug(array(
+        //   'parentId' => $parentId
+        // ));
+
+        // Is Child Present
+
+        foreach ($value['children'] as $innervalue) {
+          // debug($innervalue);
+          if(empty($innervalue['name'])){
+            continue;
+          }
+          $row1 = [
+            'name'      => $innervalue['name'],
+            'price'     => $innervalue['price'],
+            'parent_id' => $parentId
+          ];
+          $insertQuery1 = $wpdb->insert($tableName , $row1 , array( '%s', '%d' , '%d'));
+
+        }
+        // Is Child Present
+          // debug($categoryId);
+          // $children_array = get_children( $args, $categoryId );
+
+        //$wpdb->insert_id
+
       }
 
       die();
@@ -41,7 +63,7 @@
 
       if($validationError === false){  
         foreach ($name[0] as $key => $value) {
-        	echo $key.'_type='.$key;
+        	// echo $key.'_type='.$key;
 
         	$row = ['name' => $value];
           // $insertCountry = $wpdb->insert($tableName , $row , array('%s'));      	
