@@ -349,9 +349,9 @@ function DependentTable($requestName , $tableName , $databaseColumn , $name , $d
   global $wpdb;
   if(!empty($_REQUEST[$requestName])){
     $query = "SELECT * FROM $tableName WHERE `".$databaseColumn."` = ".$_REQUEST[$requestName];
-    $State  =  $wpdb->get_results($query);
+    $state  =  $wpdb->get_results($query);
     echo "<option value=''>Select ".$displayName."</option>";
-    foreach( $State as $fetch ){ ?>
+    foreach( $state as $fetch ){ ?>
       <option value="<?php echo $fetch->id; ?>" <?php echo ($name == $fetch->id) ? 'selected ="selected" ' : '' ?>><?php echo $fetch->title; ?></option>
 <?php 
     }
@@ -385,7 +385,7 @@ function DependentTable($requestName , $tableName , $databaseColumn , $name , $d
             jQuery.ajax({
               type: "post",
               url:  "state.php",
-              data: {CountryId:country},          
+              data: {country_id:country},          
               success: function(data){
                 jQuery('#state').html(data);
               },
@@ -410,7 +410,7 @@ function DependentTable($requestName , $tableName , $databaseColumn , $name , $d
             jQuery.ajax({
               type: "post",
               url:  "state.php",
-              data: {stateId:state},         
+              data: {state_id:state},         
               success: function(data){
                 jQuery('#district').html(data);
               },
