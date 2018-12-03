@@ -39,10 +39,11 @@
                 <legend class="screen-reader-text">
                   <span>Category :</span>
                 </legend>
-                <!-- genralLables(name , type , id , value , display name)      -->
+                <!-- genralLables($name , $type , $id , $value , $display name)     
+                priceField($name , $lableid , $type , $id , $value , $display name) -->     
                 <?php
-                  genralLables('bike[road_bike]' , 'checkbox' , 'road' , 'Road Bike' , 'Road Bike' );
-                  priceField('road_bike_input' , 'rd' , 'number', 'rd_bike' , '' , '$');
+                  genralLables('bike[road_bike][name]' , 'checkbox' , 'road' , 'Road Bike' , 'Road Bike' );
+                  priceField('bike[road_bike][price]' , 'rd' , 'number', 'rd_bike' , '' , '$');
                 ?>
                 <br>
 
@@ -53,41 +54,41 @@
                 <br>
 
                 <?php
-                  genralLables('bike[mountain_bike]' , 'checkbox' , 'mountain' , 'Mountain Bike' , 'Mountain Bike' );
-                  priceField('mountain_bike_input' , 'mou' , 'number', 'mn_bike' , '' , '$');
+                  genralLables('bike[mountain_bike][name]' , 'checkbox' , 'mountain' , 'Mountain Bike' , 'Mountain Bike' );
+                  priceField('bike[mountain_bike][price]' , 'mou' , 'number', 'mn_bike' , '' , '$');
                 ?>
 
                 <div id="mn">
                   <div>
                     <?php
-                      genralLables('bike[mountain_bike][bike_type][downhill_bike]' , 'checkbox' , 'downhill' , 'Downhill' , 'Downhill' );
-                      priceField('downhill_bike' , 'dow' , 'number', 'dm_bike' , '' , '$');
+                      genralLables('bike[mountain_bike][children][downhill][name]' , 'checkbox' , 'downhill' , 'Downhill' , 'Downhill' );
+                      priceField('bike[mountain_bike][children][downhill][price]' , 'dow' , 'number', 'dm_bike' , '' , '$');
                     ?>                      
                   </div>
                   <ul class="down" id="down">
                     <li>
                       <?php
-                        genralLables('sub' , 'checkbox' , 'demo' , 'Demo' , 'Demo' );
-                        priceField('price' , 'dm' , 'number', 'dm_price' , '' , '$');
+                        genralLables('bike[mountain_bike][children][downhill][children][demo][name]' , 'checkbox' , 'demo' , 'Demo' , 'Demo' );
+                        priceField('bike[mountain_bike][children][downhill][children][demo][price]' , 'dm' , 'number', 'dm_price' , '' , '$');
                       ?>
                     </li>
                     <li>
                       <?php
-                        genralLables('sub' , 'checkbox' , 'premium' , 'Premium' , 'Premium' );
-                        priceField('price' , 'pr' , 'number', 'pr_price' , '' , '$');
+                        genralLables('bike[mountain_bike][children][downhill][children][premium][name]' , 'checkbox' , 'premium' , 'Premium' , 'Premium' );
+                        priceField('bike[mountain_bike][children][downhill][children][premium][price]' , 'pr' , 'number', 'pr_price' , '' , '$');
                       ?>
                     </li>
                     <li>
                       <?php
-                        genralLables('sub' , 'checkbox' , 'standard' , 'Standard' , 'Standard' );
-                        priceField('price' , 'st' , 'number', 'st_price' , '' , '$');
+                        genralLables('bike[mountain_bike][children][downhill][children][standard][name]' , 'checkbox' , 'standard' , 'Standard' , 'Standard' );
+                        priceField('bike[mountain_bike][children][downhill][children][standard][price]' , 'st' , 'number', 'st_price' , '' , '$');
                       ?>
                     </li>
                   </ul>
                   <div>
                     <?php
-                      genralLables('bike[mountain_bike][bike_type][enduro_bike]' , 'checkbox' , 'enduro' , 'Enduro' , 'Enduro' );
-                      priceField('enduro_bike' , 'endur' , 'number', 'en_bike' , '' , '$');
+                      genralLables('bike[mountain_bike][children][enduro][name]' , 'checkbox' , 'enduro' , 'Enduro' , 'Enduro' );
+                      priceField('bike[mountain_bike][children][enduro][price]' , 'endur' , 'number', 'en_bike' , '' , '$');
                     ?>
                   </div>
                   <ul class="end" id="end">

@@ -7,10 +7,10 @@
     // echo '</pre>';
     if(isset($_REQUEST['add'])){
     	debug($_REQUEST);
-    	die;
+    	//die;
     	$tableName = $wpdb->prefix . "bike";
 
-    	$name[] = $_REQUEST['bike'];
+    	$bikeArray = $_REQUEST['bike'];
       // $name   = [
       // 	'road' 		 => $_REQUEST['bike']['road_bike'],
       // 	'cruiser'  => $_REQUEST['bike']['cruiser_bike'],
@@ -19,6 +19,20 @@
       // 	'electric' => $_REQUEST['bike']['electric_bike'],
       // 	'hybrid' 	 => $_REQUEST['bike']['hybrid_bike']
       // ];
+
+      echo '<pre>';
+      print_r($bikeArray);
+      echo '</pre>';
+
+      foreach($bikeArray as $key => $value){
+        debug(array(
+          'key'   => $key,
+          'value' => $value,
+          'price' => $_REQUEST[$key.'_input']
+        ));
+      }
+
+      die();
       $validationError = false;
       if(empty($name[0])){
         $nameError 			 = requiredMessage("error","Please Select at least one Checkbox");
