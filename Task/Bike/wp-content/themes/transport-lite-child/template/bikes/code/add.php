@@ -1,5 +1,13 @@
 <?php
 
+
+  $GLOBALS['bikePrice'] = [
+    'Half day',
+    'Full day',
+    'Day',
+  ];
+
+
   function insertNestedInfo( $table, $info , $vendorId, $parentId = 0){
 
     global $wpdb;
@@ -12,14 +20,30 @@
         $validationError = true;
         continue;
       }
-      $row = [
+
+
+      $commonRow = [
         'name'      => $value['name'],
-        'price'     => $value['price'],
+        //'price'     => $price,
         'value'     => '1',
         'vendor_id' => $vendorId,
         'parent_id' => $parentId
       ];
-      debug($row);
+
+      global $bikePrice;
+
+      foreach($bikePrice as $key=>$bikeLabel){
+        $row = $commonRow;
+        $row['price']     = $value['price'][$key];
+        $row['frequency'] = $bikeLabel;
+
+        $insertQuery = $wpdb->insert($table , $row , array('%s', '%f', '%d', '%d'));
+      }
+
+
+      // Insert First Row
+
+      // die();
 
       // debug('We are saving following array');
       // debug($row);
@@ -62,7 +86,9 @@
       }
       */
 
-      $insertQuery = $wpdb->insert($table , $row , array('%s', '%f', '%d', '%d'));
+      // $insertQuery = $wpdb->insert($table , $row , array('%s', '%f', '%d', '%d'));
+      // debug($insertQuery);
+      // die();
 
       $rowId = $wpdb->insert_id;
 
