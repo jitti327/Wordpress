@@ -8,13 +8,13 @@
      
       $validationError = false;
       if(empty($country) || empty($description)){
-        $titleError = requiredMessage("error","Please fill the blank field");
+        $titleError      = requiredMessage("error","Please fill the blank field");
         $validationError = true;
       }
 
       if($validationError === false){
-        $id = $_REQUEST['post'];
-        $query = "SELECT * FROM `".$tableName."` WHERE `name` = '".$country."' AND `id` <> '".$id."' ";
+        $id        = $_REQUEST['post'];
+        $query     = "SELECT * FROM `".$tableName."` WHERE `name` = '".$country."' AND `id` <> '".$id."' ";
         $row       = $wpdb->get_results($query);
         $rowCount  =  $wpdb->num_rows;
         if( $rowCount < 1 ){          

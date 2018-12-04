@@ -59,7 +59,7 @@
 
   add_action( 'admin_menu', 'wpdocs_bike_menu_page' );
 
-	function bikes(){
+  function bikes(){
 	  global $wpdb;
     if($_REQUEST['action'] == 'add'){
       include_once('template/bikes/code/add.php');
@@ -143,6 +143,28 @@
     return $message;
   }
 
+
+  function generalAddField($name , $displayName ,$value , $placeholder){ ?>
+    <tr>
+      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+      <td>
+        <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
+      </td>
+    </tr>
+<?php  }
+/*
+*
+*
+*/
+  function generalAddtextField($name , $displayName ,$value , $placeholder){ ?>
+    <tr>
+      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+      <td>
+        <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+      </td>
+    </tr>
+<?php  }
+
 /*
 * Function Name : generalbutton
 *	Parameters 		: $name , $value
@@ -161,7 +183,7 @@
 *
 *************
 */
-	function genralcheckboxfields( $display , $name , $value , $id ){  ?>
+	function generalcheckboxfields( $display , $name , $value , $id ){  ?>
     
     <tr class="option-site-visibility">
       <th scope="row"> Categories :</th>
@@ -180,7 +202,7 @@
 * Function Name : genralLables
 */
 
-  function genralLables($name , $type , $id , $value , $display){ 
+  function generalLables($name , $type , $id , $value , $display){ 
 
 
     ?>

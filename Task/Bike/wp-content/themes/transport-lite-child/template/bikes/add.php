@@ -165,22 +165,25 @@
   }
 
 ?>
-<style type="text/css"> 
-
+<style type="text/css">
+  
   .single-level-bike-info > .price-field,
   .inner-children-info{
     display: none;
   }
-
+  
   .show-children > .price-field{
     display: inline;
   }
-  .show-children >  .inner-children-info{
+  
+  .show-children > .inner-children-info{
     display: block;
   }
-
+  label.price-field {
+    padding: 0px 0px 0px 54px;
+  }
 </style>
-<?php 
+<?php
  
  function renderCheckboxWithInput( $name, $label ){
 
@@ -198,8 +201,9 @@
         class="ids-nested-checkbox"> 
 
         <?php echo $label;?>
-      </label>
+    </label>
     <label class="price-field" for="<?php echo $inputName; ?>">
+      Half Day : 
       <input 
         name="<?php echo $inputName; ?>" 
         type="text" 
@@ -214,11 +218,15 @@
  }
 
 ?>
-
   <div class="wrap">
     <form method="post">
       <table class="form-table">
         <tbody>
+          <tr>
+            <?php
+              generalAddField('name' , 'Vendor :' , empty($vendor) ? '' : $vendor , 'Enter Vendor Name');
+            ?>                
+          </tr>
           <tr>
             <th scope="row">Category :</th>
             <td>
