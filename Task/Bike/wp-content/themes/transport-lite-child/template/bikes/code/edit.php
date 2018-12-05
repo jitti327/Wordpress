@@ -139,9 +139,9 @@
           WHERE
            `$tableBike`.vendor_id ='".$id."'
           ";
-        $row      = $wpdb->get_results($query);
+        $result      = $wpdb->get_results($query);
         $rowCount = $wpdb->get_var('SELECT FOUND_ROWS()');
-        foreach($row as $show){
+        foreach($result as $show){
           debug($show);
         }
         // echo $row[0]->id;
@@ -172,7 +172,7 @@
           WHERE
            `vendor_id`='".$id."'
           ";
-    $row      = $wpdb->get_results($query);
+    $result = $wpdb->get_results($query);
   }
   catch(PDOException $e){
     echo "<h3 class='text-red'><i class='icon fa fa-ban'></i> Your Data is not Inserted please contact the admin</h3>";
