@@ -245,22 +245,26 @@ class Custom_bikes_Table extends WP_List_Table {
      * 
      * @see $this->prepare_items()
      **************************************************************************/
-    // function process_bulk_action() {
+    function process_bulk_action() {
+      global $wpdb;
+      $vendor = $wpdb->prefix . "vendor";
+      $bike   = $wpdb->prefix . "bike";
         
-    //   //Detect when a bulk action is being triggered...
-    //   if( 'deleted'===$this->current_action() ) {
-    //     foreach($_REQUEST['user'] as $ids){
-    //       $deleteQuery =  DeleteAction( "vendor" , $ids);
-    //       if($deleteQuery == 0){
-    //         $message = requiredMessage("error","Record Not Deleted.");
-    //       }
-    //       else{
-    //         $message = requiredMessage("updated","Record Deleted Successfully");
-    //       }
-    //     }
-    //     echo $message;
-    //   }        
-    // }
+      //Detect when a bulk action is being triggered...
+      if( 'deleted'===$this->current_action() ) {
+        foreach($_REQUEST['user'] as $ids){
+          $bikeStatus   =  $wpdb->delete($bike , ['vendor_id' => $ids] , array('%d'));
+          $vendorStatus =  $wpdb->delete($vendor , ['id' => $ids] , array('%d'));
+          if(($bikeStatus === false) || ($vendorStatus === false)){
+            $message = requiredMessage("error","Record Not Deleted.");
+          }
+          else{
+            $message = requiredMessage("updated","Record Deleted Successfully");
+          }
+        }
+        echo $message;
+      }        
+    }
 
     /*
     * Function Name : process_delete_action
