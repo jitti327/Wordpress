@@ -193,13 +193,7 @@
     ?>
     <table>
     <!-- <div class="field-wrapper"> -->
-      <?php 
-
-      // ['bikeName']['road']
-      //  var_dump(array(
-      //    'checkboxName' => $checkboxName,
-      //    'post' => $_POST[$checkboxName]
-      //  ));
+      <?php
       $explodedName =  explode("[", $checkboxName);
 
       $refinedKey = array_map(function($item){ 
@@ -233,7 +227,6 @@
 
       global $bikePrice;
 
-
       foreach($bikePrice as $key => $priceLabel){
         ?>
         <label class="price-field" for="<?php echo $inputName . $key; ?>">
@@ -247,55 +240,13 @@
             placeholder="$"
           >
         </label>
-        <?php
-
-      }
-
-
-      ?>
-
-    <!-- 
-      <label class="price-field" for="<?php echo $inputName; ?>">
-        Half Day : 
-        <input 
-          name="<?php echo $inputName; ?>" 
-          type="text" 
-          id="<?php echo $inputName; ?>" 
-          value="" 
-          class="small-text" 
-          placeholder="$"
-        >
-      </label>
-      <label class="price-field" for="<?php echo $inputName1; ?>">
-        Full  Day : 
-        <input 
-          name="<?php echo $inputName1; ?>" 
-          type="text" 
-          id="<?php echo $inputName1; ?>" 
-          value="" 
-          class="small-text" 
-          placeholder="$"
-        >
-      </label>
-      <label class="price-field" for="<?php echo $inputName2; ?>">
-        Daily : 
-        <input 
-          name="<?php echo $inputName2; ?>" 
-          type="text" 
-          id="<?php echo $inputName2; ?>" 
-          value="" 
-          class="small-text" 
-          placeholder="$"
-        >
-      </label>
-
-    -->
-    <!-- </div> -->
-    </table>
-    
     <?php
+      } 
+    ?>
+    <!-- </div> -->
+    </table>    
+<?php
   }
-
 ?>
   <div class="wrap">
     <form method="post">
@@ -319,8 +270,6 @@
               </fieldset>
             </td>
           </tr>
-
-
           <tr>
             <th scope="row">Add On :</th>
             <td>
@@ -328,7 +277,6 @@
                 <legend class="screen-reader-text">
                   <span>Add On :</span>
                 </legend>
-
                 <?php
                   outPutChildren($addOnArray, 'addOnName', true);
                 ?>
