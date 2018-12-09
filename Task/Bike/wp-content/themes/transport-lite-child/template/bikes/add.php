@@ -9,6 +9,7 @@
     return $color;
   }
 
+
   $bikeArray = [
     'road_bike' => [
       'name' => 'Road Bike'
@@ -165,60 +166,97 @@
   }
 
 ?>
-<style type="text/css"> 
-
+<style type="text/css">
+  
   .single-level-bike-info > .price-field,
   .inner-children-info{
     display: none;
   }
-
+  
   .show-children > .price-field{
     display: inline;
   }
-  .show-children >  .inner-children-info{
+  
+  .show-children > .inner-children-info{
     display: block;
   }
-
+  label.price-field {
+    padding: 0px 0px 0px 54px;
+  }
 </style>
-<?php 
- 
- function renderCheckboxWithInput( $name, $label ){
+<?php
 
-  $checkboxName = $name . '[name]';
-  $inputName    = $name . '[price]';
-  ?>
+  function renderCheckboxWithInput( $name, $label ){
 
-  <!-- <div class="field-wrapper"> -->
-    <label for="<?php echo $checkboxName; ?>">
-      <input 
-        type="checkbox" 
-        name="<?php echo $checkboxName; ?>" 
-        id="<?php echo $checkboxName; ?>" 
-        value="<?php echo $label;?>"
-        class="ids-nested-checkbox"> 
+    $checkboxName = $name . '[name]';
+    $inputName    = $name . '[price][]';
+    ?>
+    <table>
+    <!-- <div class="field-wrapper"> -->
+      <?php
+      $explodedName =  explode("[", $checkboxName);
 
-        <?php echo $label;?>
+      $refinedKey = array_map(function($item){ 
+        return trim( $item, "]" );
+      },$explodedName);
+
+      $checkboxValue = "";
+      $intialArray = $_POST;
+      foreach($refinedKey as $singleKey){
+        //debug($intialArray);
+        $intialArray =  $intialArray[$singleKey];
+
+      }
+
+      $checkboxValue = $intialArray;
+
+      ?> 
+      <label for="<?php echo $checkboxName; ?>">
+        <input 
+          type="checkbox" 
+          <?php  echo !(empty($checkboxValue)) ? 'checked="checked"' : ''; ?>
+          name="<?php echo $checkboxName; ?>" 
+          id="<?php echo $checkboxName; ?>" 
+          value="<?php echo $label;?>"
+          class="ids-nested-checkbox"
+        >
+          <?php echo $label;?>
       </label>
-    <label class="price-field" for="<?php echo $inputName; ?>">
-      <input 
-        name="<?php echo $inputName; ?>" 
-        type="text" 
-        id="<?php echo $inputName; ?>" 
-        value="" 
-        class="small-text" 
-        placeholder="$">
-    </label>
-  <!-- </div> -->
-  
-  <?php
- }
 
+      <?php
+
+      global $bikePrice;
+
+      foreach($bikePrice as $key => $priceLabel){
+        ?>
+        <label class="price-field" for="<?php echo $inputName . $key; ?>">
+          <?php echo $priceLabel; ?> : 
+          <input 
+            name="<?php echo $inputName; ?>" 
+            type="text" 
+            id="<?php echo $inputName . $key; ?>" 
+            value="" 
+            class="small-text" 
+            placeholder="$"
+          >
+        </label>
+    <?php
+      } 
+    ?>
+    <!-- </div> -->
+    </table>    
+<?php
+  }
 ?>
-
   <div class="wrap">
     <form method="post">
       <table class="form-table">
         <tbody>
+          <tr>
+            <?php
+              generalAddField('name' , 'Vendor :' , empty($vendor) ? '' : $vendor , 'Enter Vendor Name');
+            ?>                
+          </tr>
           <tr>
             <th scope="row">Category :</th>
             <td>
@@ -232,8 +270,6 @@
               </fieldset>
             </td>
           </tr>
-
-
           <tr>
             <th scope="row">Add On :</th>
             <td>
@@ -241,7 +277,6 @@
                 <legend class="screen-reader-text">
                   <span>Add On :</span>
                 </legend>
-
                 <?php
                   outPutChildren($addOnArray, 'addOnName', true);
                 ?>
@@ -256,12 +291,21 @@
 <script type="text/javascript">
   jQuery(document).ready(function($){
 
-    $('.ids-nested-checkbox').click(function(){
-      if($(this).is(':checked')){
-        $(this).closest('.single-level-bike-info').addClass('show-children');
+    function manageCheckboxPrices(checkbox){
+      if(checkbox.is(':checked')){
+        checkbox.closest('.single-level-bike-info').addClass('show-children');
       }else{
-        $(this).closest('.single-level-bike-info').removeClass('show-children');        
+        checkbox.closest('.single-level-bike-info').removeClass('show-children');        
       }
-    })
+    }
+
+    $('.ids-nested-checkbox').click(function(){
+      manageCheckboxPrices($(this));
+    });
+
+    //$('.ids-nested-checkbox:checked').each(function(){
+    $('.ids-nested-checkbox').each(function(){
+      manageCheckboxPrices($(this));
+    });    
   });
 </script>

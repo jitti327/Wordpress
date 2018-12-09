@@ -10,7 +10,7 @@
  */
     
     //Create an instance of our package class...
-    $testListTable = new Custom_Country_Table();
+    $testListTable = new Custom_bikes_Table();
     //Fetch, prepare, sort, and filter our data...
     $testListTable->prepare_items();
     
@@ -18,7 +18,7 @@
     <div class="wrap">        
       <div id="icon-users" class="icon32"><br/></div>
         <h1 class="wp-heading-inline">
-          Countries
+          Vendors :
         </h1>
         <a href="<?php echo admin_url('admin.php?page=manage-bikes','admin'); ?>&amp;action=add" class="page-title-action">Add New</a>
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->

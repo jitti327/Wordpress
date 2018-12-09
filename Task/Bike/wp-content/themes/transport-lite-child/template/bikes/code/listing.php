@@ -15,7 +15,7 @@
  */
 
 
-class Custom_Country_Table extends WP_List_Table {
+class Custom_bikes_Table extends WP_List_Table {
     
     /** ************************************************************************
      * Normally we would be querying data from a database and manipulating that
@@ -32,9 +32,10 @@ class Custom_Country_Table extends WP_List_Table {
 
   function custom_record(){
     global $wpdb;
-    $orderby   = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'name'; //If no sort, default to title
-    $order     = (!empty($_REQUEST['order']))   ? $_REQUEST['order']   : 'asc'; //If no order, default to asc    
-    $tableName = $wpdb->prefix . "bike";
+    $orderby     = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'name'; //If no sort, default to title
+    $order       = (!empty($_REQUEST['order']))   ? $_REQUEST['order']   : 'asc'; //If no order, default to asc    
+    $vendor      = $wpdb->prefix . "vendor";
+    $bike        = $wpdb->prefix . "bike";
 
     if(!empty($_REQUEST['s'])){
       $queryPart = "
@@ -49,7 +50,7 @@ class Custom_Country_Table extends WP_List_Table {
     SELECT
     *
     FROM 
-      $tableName
+      $vendor
       {$queryPart}
       {$orderPart} 
    ";
@@ -58,9 +59,8 @@ class Custom_Country_Table extends WP_List_Table {
     //$response = [];
     foreach ($fetchQuery as $value) {
       $response[] = array(
-        'id'          => $value->id, 
+        'id'          => $value->id,
         'name'        => $value->name,
-        'description' => mb_strimwidth($value->description, 0, 30, "....."),
         'created_on'  => $value->created_on
       );
     }
@@ -111,7 +111,6 @@ class Custom_Country_Table extends WP_List_Table {
         switch($column_name){
             case 'id':
             case 'name':
-            case 'description':
             case 'created_on':
               return $item[$column_name];
             default:
@@ -188,7 +187,6 @@ class Custom_Country_Table extends WP_List_Table {
         $columns = array(
             'cb'          => '<input type="checkbox" />', //Render a checkbox instead of text
             'name'        => 'Title',
-            'description' => 'Description',
             'created_on'  => 'Date'
         );
         return $columns;
@@ -213,7 +211,6 @@ class Custom_Country_Table extends WP_List_Table {
         $sortable_columns = array(
             'name'        => array('name',false),     //true means it's already sorted
             'created_on'  => array('created_on',false),
-            'description' => array('description',false),
         );
         return $sortable_columns;
     }
@@ -249,12 +246,16 @@ class Custom_Country_Table extends WP_List_Table {
      * @see $this->prepare_items()
      **************************************************************************/
     function process_bulk_action() {
+      global $wpdb;
+      $vendor = $wpdb->prefix . "vendor";
+      $bike   = $wpdb->prefix . "bike";
         
       //Detect when a bulk action is being triggered...
       if( 'deleted'===$this->current_action() ) {
         foreach($_REQUEST['user'] as $ids){
-          $deleteQuery =  DeleteAction( "country" , $ids);
-          if($deleteQuery == 0){
+          $bikeStatus   =  $wpdb->delete($bike , ['vendor_id' => $ids] , array('%d'));
+          $vendorStatus =  $wpdb->delete($vendor , ['id' => $ids] , array('%d'));
+          if(($bikeStatus === false) || ($vendorStatus === false)){
             $message = requiredMessage("error","Record Not Deleted.");
           }
           else{
@@ -270,19 +271,36 @@ class Custom_Country_Table extends WP_List_Table {
     * Work          : Delete the record
     */
     function process_delete_action() {
-        
-      //Detect when a bulk action is being triggered...
+      global $wpdb;
+      $vendor = $wpdb->prefix . "vendor";
+      $bike   = $wpdb->prefix . "bike";
+      
+      # $wpdb->show_errors();
+      $id   = $_REQUEST['post'];
       $task = isset($_REQUEST['task']) ? $_REQUEST['task'] : "";
       if($task === 'delete') {
-        $deleteQuery =  DeleteAction( "country" , $_REQUEST['post']);
-        if($deleteQuery == 0){
+        $bikeStatus   =  $wpdb->delete($bike , ['vendor_id' => $id] , array('%d'));
+        $vendorStatus =  $wpdb->delete($vendor , ['id' => $id] , array('%d'));
+        // echo '<pre>';
+        // var_dump(array(
+        //   'bikeStatus'   => $deleteQuery,
+        //   'vendorStatus' => $deleteQuery1
+        // ));
+
+        // print_r(['vendor_id' => $id]);
+
+        // $wpdb->print_error();
+
+        // echo '</pre>';
+        if(($bikeStatus === false) || ($vendorStatus === false)){
           $message = requiredMessage("error","Record Not Deleted.");
         }
         else{
           $message = requiredMessage("updated","Record Deleted Successfully");
         }
-      } 
-        echo $message;
+      }
+      // debug($deleteQuery);
+       echo $message;
     }
 
 
@@ -305,9 +323,9 @@ class Custom_Country_Table extends WP_List_Table {
         global $wpdb; //This is used only if making any database queries
 
         /**
-         * First, lets decide how many records per page to show
-         */
-        $per_page = 2;
+        * First, lets decide how many records per page to show
+        */
+        $per_page = 10;
         
         
         /**
