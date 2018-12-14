@@ -251,7 +251,7 @@
 
         $explodedName =  explode("[",   trim( $inputName, "[]" ) );
 
-        $refinedKey = array_map(function($item){ 
+        $refinedKey = array_map(function($item){
           return trim( $item, "]" );
         },$explodedName);
 
@@ -295,7 +295,7 @@
       } 
     ?>
     <!-- </div> -->
-    </table>    
+    </table>
 <?php
   }
 ?>
@@ -306,7 +306,7 @@
           <tr>
             <?php
               $this->generalAddField('name' , 'Vendor :' , empty($vendor) ? '' : $vendor , 'Enter Vendor Name');
-            ?>                
+            ?>
           </tr>
 
           <tr>
