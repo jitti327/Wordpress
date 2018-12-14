@@ -309,8 +309,6 @@
             ?>                
           </tr>
 
-
-
           <tr>
             <th scope="row">Category :</th>
             <td>

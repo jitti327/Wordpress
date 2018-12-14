@@ -135,11 +135,32 @@ class gfBikesCustomization{
 	      include_once( plugin_dir_path( __FILE__ ).'admin/code/edit.php');
 	      include_once( plugin_dir_path( __FILE__ ).'admin/edit.php');
 	      return;
-	    }	    
+	    }
 	}
 
 	public function ski(){
-	  	global $wpdb;	    
+	  	global $wpdb;
+
+	    if($_REQUEST['action'] == 'add'){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/code/add.php');
+	      include_once( plugin_dir_path( __FILE__ ).'ski/add.php'); 
+	      return;
+	    }
+	    if(!isset($_REQUEST['action'])){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/code/listing.php');
+	      include_once( plugin_dir_path( __FILE__ ).'ski/listing.php');
+	      return;
+	     }
+	    if($_REQUEST['action'] == 'deleted'){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/code/listing.php');
+	      include_once( plugin_dir_path( __FILE__ ).'ski/listing.php');
+	      return;
+	     }
+	    if($_REQUEST['action'] == 'edit'){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/code/edit.php');
+	      include_once( plugin_dir_path( __FILE__ ).'ski/edit.php');
+	      return;
+	    }
 	}
 
 	public function Paddle(){

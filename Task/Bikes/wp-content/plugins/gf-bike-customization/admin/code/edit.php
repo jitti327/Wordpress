@@ -7,7 +7,6 @@
     'Day',
   ];
 
-
   function insertNestedInfo( $table, $info , $vendorId, $parentIds = []){
 
     global $wpdb;
@@ -22,7 +21,6 @@
         $validationError = true;
         continue;
       }
-
 
       $commonRow = [
         'name'      => $value['name'],
