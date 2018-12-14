@@ -111,7 +111,7 @@
   try{
     $message = "";
     $tableVendor  = $wpdb->prefix . "vendor";
-    $tableBike  = $wpdb->prefix . "bike";
+    $tableBike    = $wpdb->prefix . "bike";
     
     if(isset($_REQUEST['update'])){
 
@@ -139,11 +139,12 @@
           WHERE
            `$tableBike`.vendor_id ='".$id."'
           ";
-        $result      = $wpdb->get_results($query);
-        $rowCount = $wpdb->get_var('SELECT FOUND_ROWS()');
-        foreach($result as $show){
-          debug($show);
-        }
+        $result     = $wpdb->get_results($query);
+        $rowCount   = $wpdb->get_var('SELECT FOUND_ROWS()');
+        // foreach($result as $show){
+        //   debug($show);
+        // }
+
         // echo $row[0]->id;
         // die();
 
