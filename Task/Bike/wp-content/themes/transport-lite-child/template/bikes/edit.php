@@ -253,7 +253,7 @@
         <tbody>
           <tr>
             <?php
-              generalAddField('name' , 'Vendor :' , empty($row[0]->$vName) ? '' : $row[0]->$vName , 'Enter Vendor Name');
+              generalAddField('name' , 'Vendor :' , empty($show->vName) ? '' : $show->vName , 'Enter Vendor Name');
             ?>                
           </tr>
           <tr>
