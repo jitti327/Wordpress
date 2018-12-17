@@ -122,8 +122,7 @@ class gfBikesCustomization{
 	      return;
 	    }
 	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/code/listing.php');
-	      include_once( plugin_dir_path( __FILE__ ).'admin/listing.php');
+	      include_once( plugin_dir_path( __FILE__ ).'admin/view.php');
 	      return;
 	    }
 	}
