@@ -117,8 +117,7 @@ class gfBikesCustomization{
 	  	global $wpdb;
 
 	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/code/add.php');
-	      include_once( plugin_dir_path( __FILE__ ).'admin/add.php'); 
+	      include_once( plugin_dir_path( __FILE__ ).'admin/add_edit.php'); 
 	      return;
 	    }
 	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
