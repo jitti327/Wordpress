@@ -3,6 +3,7 @@
     echo $nameError;
   }
   echo $message;
+  global $edit;
 
   function doNewColor(){
     $color = dechex(rand(0x000000, 0xFFFFFF));
@@ -200,6 +201,8 @@
 
   function renderCheckboxWithInput( $name, $label, $init ){
 
+    global $edit;
+
     $checkboxName = $name . '[name]';
     $inputName    = $name . '[price][]';
 
@@ -215,14 +218,53 @@
       },$explodedName);
 
       $checkboxValue = "";
-      $intialArray = $_POST;
-      foreach($refinedKey as $singleKey){
-        //debug($intialArray);
-        $intialArray =  $intialArray[$singleKey];
+      if($edit == true){
 
+
+        global $wpdb;
+
+        $bName        = $label;
+        $table        = $wpdb->prefix.'bike';
+        $vendorId     = $_GET['post'];
+
+        $defaultValue = "";
+
+        $sql =  "SELECT * FROM {$table} where name = '{$bName}' AND vendor_id = {$vendorId}";
+
+        $row = $wpdb->get_row( $sql );
+
+        // echo $sql;
+
+        // echo "<pre>";
+        //   print_r( $row );
+        // echo "</pre>";
+
+        if(!empty($row) && !empty($row->name)){
+          $checkboxValue = "1";
+        } 
+
+        if(!empty($_POST)){
+          $intialArray   = $_POST;
+          foreach($refinedKey as $singleKey){
+            //debug($intialArray);
+            $intialArray =  $intialArray[$singleKey];
+
+          }
+
+          $checkboxValue = $intialArray;
+        }
       }
+      else{
+      
+        $intialArray = $_POST;
+        foreach($refinedKey as $singleKey){
+          //debug($intialArray);
+          $intialArray =  $intialArray[$singleKey];
 
-      $checkboxValue = $intialArray;
+        }
+
+        $checkboxValue = $intialArray;
+      }
 
       ?> 
       <td style="<?php echo $paddingCSS; ?>">
@@ -246,34 +288,78 @@
       foreach($bikePrice as $key => $priceLabel){
 
         // bikeName[cruiser_bike][price
+        if($edit == true){
 
+          $checkboxValue = $intialArray;
 
+          $defaultValue = "";
 
-        $explodedName =  explode("[",   trim( $inputName, "[]" ) );
+          $bName = $label;
 
-        $refinedKey = array_map(function($item){
-          return trim( $item, "]" );
-        },$explodedName);
+          global $wpdb;
+          $table        = $wpdb->prefix.'bike';
+          $vendorId     = $_GET['post'];
 
-        $checkboxValue = "";
-        $intialArray = $_POST;
-        foreach($refinedKey as $singleKey){
-          //debug($intialArray);
-          $intialArray =  $intialArray[$singleKey];
+          $defaultValue = "";
 
+          $sql = "SELECT * FROM {$table} where name = '{$bName}' AND frequency ='{$priceLabel}' AND vendor_id = {$vendorId}";
+          $row = $wpdb->get_row( $sql  );
+
+          // echo $sql;
+
+          // echo "<pre>";
+          //   print_r( $row );
+          // echo "</pre>";
+
+          if(!empty($row) && !empty($row->price)){
+            $defaultValue = $row->price;
+          } 
+
+          if(!empty($_POST)){
+               
+            $explodedName =  explode("[",   trim( $inputName, "[]" ) );
+
+            $refinedKey   = array_map(function($item){ 
+              return trim( $item, "]" );
+            },$explodedName);
+
+            $checkboxValue = "";
+            $intialArray   = $_POST;
+            foreach($refinedKey as $singleKey){
+              //debug($intialArray);
+              $intialArray =  $intialArray[$singleKey];
+
+            }
+
+            if( !empty( $intialArray ) && !empty( $intialArray[$key]) ){
+              $defaultValue = $intialArray[$key];
+            }
+
+          }
         }
+        else{
 
-        $checkboxValue = $intialArray;
+          $explodedName =  explode("[",   trim( $inputName, "[]" ) );
 
-        // echo '<pre>';
-        // print_r($refinedKey);
-        // print_r($checkboxValue);
-        // echo '</pre>';
+          $refinedKey = array_map(function($item){
+            return trim( $item, "]" );
+          },$explodedName);
 
-        $defaultValue = "";
+          $checkboxValue = "";
+          $intialArray = $_POST;
+          foreach($refinedKey as $singleKey){
+            //debug($intialArray);
+            $intialArray =  $intialArray[$singleKey];
 
-        if( !empty( $intialArray ) && !empty( $intialArray[$key]) ){
-          $defaultValue = $intialArray[$key];
+          }
+
+          $checkboxValue = $intialArray;
+
+          $defaultValue = "";
+
+          if( !empty( $intialArray ) && !empty( $intialArray[$key]) ){
+            $defaultValue = $intialArray[$key];
+          }
         }
 
         ?>
@@ -292,12 +378,17 @@
           </label>
         </td>
     <?php
-      } 
+      }
     ?>
     <!-- </div> -->
     </table>
 <?php
   }
+
+  global $wpdb;
+  $table        = $wpdb->prefix.'vendor';
+  $vendorId     = $_GET['post'];
+  $vendorDetail = $wpdb->get_row( "SELECT * FROM {$table} where id = {$vendorId} " );
 ?>
   <div class="wrap">
     <form method="post">
@@ -305,7 +396,7 @@
         <tbody>
           <tr>
             <?php
-              $this->generalAddField('name' , 'Vendor :' , empty($vendor) ? '' : $vendor , 'Enter Vendor Name');
+              $this->generalAddField('name' , 'Vendor :' , empty($vendor) ? $vendorDetail->name : $vendor , 'Enter Vendor Name');
             ?>
           </tr>
 

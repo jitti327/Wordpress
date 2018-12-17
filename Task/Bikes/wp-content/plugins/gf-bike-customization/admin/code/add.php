@@ -1,5 +1,11 @@
-<?php
+<?php  
 
+  if($_REQUEST['action'] == 'edit'){
+    echo $GLOBALS['edit'] = true;
+  }
+  else{
+    echo $GLOBALS['edit'] = false;
+  }
 
   $GLOBALS['bikePrice'] = [
     'Half day',
@@ -11,6 +17,7 @@
   function insertNestedInfo( $table, $info , $vendorId, $parentIds = []){
 
     global $wpdb;
+    global $edit;
 
     if( class_exists('gfBikesCustomization') ){
       $obj = new gfBikesCustomization();
@@ -65,6 +72,7 @@
 
   try{
     $message = "";
+    global $edit;
     if(isset($_REQUEST['add'])){
 
       if( class_exists('gfBikesCustomization') ){
@@ -76,11 +84,6 @@
       //Start Here
       $vendor  = $_REQUEST['name'];
 
-
-      // echo '<pre>';
-      // print_r($_REQUEST);
-      // echo '</pre>';
-
       $validationError   = false;
       if(empty($vendor)){
         $nameError       = $obj->requiredMessage("error","Please Enter vendor Name And Select At least One Checkbox");
@@ -89,15 +92,35 @@
 
       if($validationError === false){
         $tableVendor  = $wpdb->prefix . "vendor";
-        $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
-        $vendorId     = $wpdb->insert_id;
-        // End Here
 
-        // Inserting Database for Bikes
+        global $edit;
 
-        $tableName  = $wpdb->prefix . "bike";
 
-        insertNestedInfo($tableName,  $_REQUEST['bikeName'], $vendorId );
+        if($edit == true){ // If Edit File Call
+
+          $vendorId     = $_GET['post'];
+          $tableVendor  = $wpdb->prefix . "vendor";
+          $insertVendor = $wpdb->update($tableVendor , array('name' => $vendor) ,array( 'id' => $vendorId ));
+          $tableName    = $wpdb->prefix . "bike";
+
+          ### delete previous records
+          $vendorStatus =  $wpdb->delete($tableName , ['vendor_id' => $vendorId] , array('%d'));
+          if( $vendorStatus ){
+            insertNestedInfo($tableName,  $_REQUEST['bikeName'], $vendorId );
+          }
+        }
+        else{ // If Add File Call
+
+          $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
+          $vendorId     = $wpdb->insert_id;
+          // End Here
+
+          // Inserting Database for Bikes
+
+          $tableName  = $wpdb->prefix . "bike";
+
+          insertNestedInfo($tableName,  $_REQUEST['bikeName'], $vendorId );
+        }
       } 
     }    
   }

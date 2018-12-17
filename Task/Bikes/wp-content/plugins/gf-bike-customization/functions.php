@@ -116,24 +116,14 @@ class gfBikesCustomization{
 	public function bikes(){
 	  	global $wpdb;
 
-	    if($_REQUEST['action'] == 'add'){
+	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
 	      include_once( plugin_dir_path( __FILE__ ).'admin/code/add.php');
 	      include_once( plugin_dir_path( __FILE__ ).'admin/add.php'); 
 	      return;
 	    }
-	    if(!isset($_REQUEST['action'])){
+	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
 	      include_once( plugin_dir_path( __FILE__ ).'admin/code/listing.php');
 	      include_once( plugin_dir_path( __FILE__ ).'admin/listing.php');
-	      return;
-	     }
-	    if($_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/code/listing.php');
-	      include_once( plugin_dir_path( __FILE__ ).'admin/listing.php');
-	      return;
-	     }
-	    if($_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/code/edit.php');
-	      include_once( plugin_dir_path( __FILE__ ).'admin/edit.php');
 	      return;
 	    }
 	}
