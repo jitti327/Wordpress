@@ -1,11 +1,6 @@
-<?php  
-
-  if($_REQUEST['action'] == 'edit'){
-    echo $GLOBALS['edit'] = true;
-  }
-  else{
-    echo $GLOBALS['edit'] = false;
-  }
+<?php
+  
+  $GLOBALS['edit'] = ($_REQUEST['action'] == 'edit') ? true : false;
 
   $GLOBALS['bikePrice'] = [
     'Half day',
@@ -41,7 +36,7 @@
       $parentIdArray = [];
 
       foreach($bikePrice as $key=>$bikeLabel){
-        $row = $commonRow;
+        $row              = $commonRow;
         $row['price']     = $value['price'][$key];
         $row['frequency'] = $bikeLabel;
 
@@ -100,13 +95,16 @@
 
           $vendorId     = $_GET['post'];
           $tableVendor  = $wpdb->prefix . "vendor";
+          $a1           = $_REQUEST['bikeName'];
+          $a2           = $_REQUEST['addOnName'];
+          $combineArray = array_merge($a1,$a2);
           $insertVendor = $wpdb->update($tableVendor , array('name' => $vendor) ,array( 'id' => $vendorId ));
           $tableName    = $wpdb->prefix . "bike";
 
           ### delete previous records
           $vendorStatus =  $wpdb->delete($tableName , ['vendor_id' => $vendorId] , array('%d'));
           if( $vendorStatus ){
-            insertNestedInfo($tableName,  $_REQUEST['bikeName'], $vendorId );
+            insertNestedInfo($tableName,  $combineArray, $vendorId );
           }
         }
         else{ // If Add File Call
@@ -117,9 +115,12 @@
 
           // Inserting Database for Bikes
 
-          $tableName  = $wpdb->prefix . "bike";
+          $tableName    = $wpdb->prefix . "bike";
+          $a1           = $_REQUEST['bikeName'];
+          $a2           = $_REQUEST['addOnName'];
+          $combineArray = array_merge($a1,$a2);
 
-          insertNestedInfo($tableName,  $_REQUEST['bikeName'], $vendorId );
+          insertNestedInfo($tableName,  $combineArray, $vendorId );
         }
       } 
     }    
@@ -167,7 +168,7 @@
             ],
             'standard' => [
               'name' => 'Standard Bike'
-            ],    
+            ],
           ]
         ],
 
@@ -182,7 +183,7 @@
             ],
             'standard' => [
               'name' => 'Standard Bike'
-            ],    
+            ],
           ]
         ],
 
@@ -197,7 +198,7 @@
             ],
             'standard' => [
               'name' => 'Standard Bike'
-            ],    
+            ],
           ]
         ],
 
@@ -212,7 +213,7 @@
             ],
             'standard' => [
               'name' => 'Standard Bike'
-            ],    
+            ],
           ]
         ],
 
@@ -230,39 +231,41 @@
 
   ];
 
-
   $addOnArray = [
 
-    'damage' => [
+    'add_on_damage' => [
       'name' => 'Damage Protection'
     ],
-    'pedals' => [
+    'add_on_pedals' => [
       'name' => 'Pedals'
     ],
 
-    'helmet' => [
+    'add_on_helmet' => [
       'name' => 'Helmet'
     ],
-    'lock' => [
+    'add_on_lock' => [
       'name' => 'Bike Lock'
     ],
-    'rack' => [
+    'add_on_rack' => [
       'name' => 'Bike Rack'
     ],
-    'leg' => [
+    'add_on_leg' => [
       'name' => 'Leg Armor'
     ],
-    'neck' => [
+    'add_on_neck' => [
       'name' => 'Neck Armor'
     ],
-    'elbow' => [
+    'add_on_elbow' => [
       'name' => 'Elbow Armor'
     ],
-    'downhillhelmet' => [
+    'add_on_downhillhelmet' => [
       'name' => 'Downhill Helmet'
     ],
 
   ];
+
+  $newArray = (array_merge($bikeArray,$addOnArray));
+
 
   /*
    * Function Name :
@@ -272,12 +275,7 @@
    */
   function outPutChildren($bikeArray, $parentName, $init = 0 ){
 
-    // if(empty( $bikeInfo['children'] ) ){
-    //   return; // very important otherwise infinte loop will be created
-    // }
-
     if($init !== 0){
-      //echo '<div class="inner-children-info" style="margin-left: 30px">';
       echo '<div class="inner-children-info">';
     }
 
@@ -289,15 +287,12 @@
       if(!empty( $bikeInfo['children'] )){
         outPutChildren( $bikeInfo['children'], "{$name}[children]", $init + 1 );
       }
-      echo '</div>';      
+      echo '</div>';
     }
-
     if($init !== 0){
       echo '</div>';
     }
-
   }
-
 ?>
 <style type="text/css">
   
@@ -340,74 +335,58 @@
     $checkboxName = $name . '[name]';
     $inputName    = $name . '[price][]';
 
-    $paddingCSS = ($init !== 0 ) ? "padding-left:".($init*30)."px" : "";
+    $paddingCSS   = ($init !== 0 ) ? "padding-left:".($init*30)."px" : "";
     ?>
     <table>
-    <!-- <div class="field-wrapper"> -->
       <?php
-      $explodedName =  explode("[", $checkboxName);
+        $explodedName =  explode("[", $checkboxName);
 
-      $refinedKey = array_map(function($item){ 
-        return trim( $item, "]" );
-      },$explodedName);
+        $refinedKey   = array_map(function($item){
+          return trim( $item, "]" );
+        },$explodedName);
 
-      $checkboxValue = "";
-      if($edit == true){
+        $checkboxValue = "";
+        if($edit == true){
 
+          global $wpdb;
 
-        global $wpdb;
+          $bName        = $label;
+          $table        = $wpdb->prefix.'bike';
+          $vendorId     = $_GET['post'];
 
-        $bName        = $label;
-        $table        = $wpdb->prefix.'bike';
-        $vendorId     = $_GET['post'];
+          $defaultValue = "";
 
-        $defaultValue = "";
+          $sql =  "SELECT * FROM {$table} where name = '{$bName}' AND vendor_id = {$vendorId}";
 
-        $sql =  "SELECT * FROM {$table} where name = '{$bName}' AND vendor_id = {$vendorId}";
+          $row = $wpdb->get_row( $sql );
 
-        $row = $wpdb->get_row( $sql );
+          if(!empty($row) && !empty($row->name)){
+            $checkboxValue = "1";
+          } 
 
-        // echo $sql;
-
-        // echo "<pre>";
-        //   print_r( $row );
-        // echo "</pre>";
-
-        if(!empty($row) && !empty($row->name)){
-          $checkboxValue = "1";
-        } 
-
-        if(!empty($_POST)){
+          if(!empty($_POST)){
+            $intialArray   = $_POST;
+            foreach($refinedKey as $singleKey){
+              $intialArray =  $intialArray[$singleKey];
+            }
+            $checkboxValue = $intialArray;
+          }
+        }
+        else{
           $intialArray   = $_POST;
           foreach($refinedKey as $singleKey){
-            //debug($intialArray);
             $intialArray =  $intialArray[$singleKey];
-
           }
-
           $checkboxValue = $intialArray;
         }
-      }
-      else{
-      
-        $intialArray = $_POST;
-        foreach($refinedKey as $singleKey){
-          //debug($intialArray);
-          $intialArray =  $intialArray[$singleKey];
-
-        }
-
-        $checkboxValue = $intialArray;
-      }
-
       ?> 
       <td style="<?php echo $paddingCSS; ?>">
         <label for="<?php echo $checkboxName; ?>">
           <input 
             type="checkbox" 
             <?php  echo !(empty($checkboxValue)) ? 'checked="checked"' : ''; ?>
-            name="<?php echo $checkboxName; ?>" 
-            id="<?php echo $checkboxName; ?>" 
+            name="<?php echo $checkboxName; ?>"
+            id="<?php echo $checkboxName; ?>"
             value="<?php echo $label;?>"
             class="ids-nested-checkbox"
           >
@@ -421,7 +400,6 @@
 
       foreach($bikePrice as $key => $priceLabel){
 
-        // bikeName[cruiser_bike][price
         if($edit == true){
 
           $checkboxValue = $intialArray;
@@ -439,12 +417,6 @@
           $sql = "SELECT * FROM {$table} where name = '{$bName}' AND frequency ='{$priceLabel}' AND vendor_id = {$vendorId}";
           $row = $wpdb->get_row( $sql  );
 
-          // echo $sql;
-
-          // echo "<pre>";
-          //   print_r( $row );
-          // echo "</pre>";
-
           if(!empty($row) && !empty($row->price)){
             $defaultValue = $row->price;
           } 
@@ -453,14 +425,13 @@
                
             $explodedName =  explode("[",   trim( $inputName, "[]" ) );
 
-            $refinedKey   = array_map(function($item){ 
+            $refinedKey   = array_map(function($item){
               return trim( $item, "]" );
             },$explodedName);
 
             $checkboxValue = "";
             $intialArray   = $_POST;
             foreach($refinedKey as $singleKey){
-              //debug($intialArray);
               $intialArray =  $intialArray[$singleKey];
 
             }
@@ -482,7 +453,6 @@
           $checkboxValue = "";
           $intialArray = $_POST;
           foreach($refinedKey as $singleKey){
-            //debug($intialArray);
             $intialArray =  $intialArray[$singleKey];
 
           }
@@ -500,12 +470,12 @@
         <td style="width:20%;">
           <label class="price-field" for="<?php echo $inputName . $key; ?>">
             <?php # echo $priceLabel; ?>
-            <input 
-              name="<?php echo $inputName; ?>" 
+            <input
+              name="<?php echo $inputName; ?>"
               type="number" 
-              id="<?php echo $inputName . $key; ?>" 
+              id="<?php echo $inputName . $key; ?>"
               value="<?php echo $defaultValue; ?>"
-              style="width:100px; max-width: 100%;" 
+              style="width:100px; max-width: 100%;"
               class="small-text" 
               placeholder="<?php echo $priceLabel; ?>"
             >
@@ -514,7 +484,6 @@
     <?php
       }
     ?>
-    <!-- </div> -->
     </table>
 <?php
   }
@@ -548,8 +517,6 @@
             </td>
           </tr>
 
-
-
           <tr>
             <th scope="row">Add On :</th>
             <td>
@@ -575,7 +542,7 @@
       if(checkbox.is(':checked')){
         checkbox.closest('.single-level-bike-info').addClass('show-children');
       }else{
-        checkbox.closest('.single-level-bike-info').removeClass('show-children');        
+        checkbox.closest('.single-level-bike-info').removeClass('show-children');
       }
     }
 
@@ -583,9 +550,8 @@
       manageCheckboxPrices($(this));
     });
 
-    //$('.ids-nested-checkbox:checked').each(function(){
     $('.ids-nested-checkbox').each(function(){
       manageCheckboxPrices($(this));
-    });    
+    });
   });
 </script>
