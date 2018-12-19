@@ -264,8 +264,6 @@
 
   ];
 
-  $newArray = (array_merge($bikeArray,$addOnArray));
-
 
   /*
    * Function Name :

@@ -129,30 +129,27 @@ class gfBikesCustomization{
 	public function ski(){
 	  	global $wpdb;
 
-	    if($_REQUEST['action'] == 'add'){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/code/add.php');
-	      include_once( plugin_dir_path( __FILE__ ).'ski/add.php'); 
+	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/add_edit.php'); 
 	      return;
 	    }
-	    if(!isset($_REQUEST['action'])){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/code/listing.php');
-	      include_once( plugin_dir_path( __FILE__ ).'ski/listing.php');
-	      return;
-	     }
-	    if($_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/code/listing.php');
-	      include_once( plugin_dir_path( __FILE__ ).'ski/listing.php');
-	      return;
-	     }
-	    if($_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/code/edit.php');
-	      include_once( plugin_dir_path( __FILE__ ).'ski/edit.php');
+	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
+	      include_once( plugin_dir_path( __FILE__ ).'ski/view.php');
 	      return;
 	    }
 	}
 
-	public function Paddle(){
-	  	global $wpdb;	    
+	public function paddle(){
+	  	global $wpdb;
+
+	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
+	      include_once( plugin_dir_path( __FILE__ ).'paddle/add_edit.php'); 
+	      return;
+	    }
+	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
+	      include_once( plugin_dir_path( __FILE__ ).'paddle/view.php');
+	      return;
+	    }	    
 	} 
 
 	##  Function Name : requiredMessage()
