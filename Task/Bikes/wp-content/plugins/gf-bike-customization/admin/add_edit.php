@@ -103,8 +103,12 @@
 
           ### delete previous records
           $vendorStatus =  $wpdb->delete($tableName , ['vendor_id' => $vendorId] , array('%d'));
-          if( $vendorStatus ){
+          if( $vendorStatus !== false ){
             insertNestedInfo($tableName,  $combineArray, $vendorId );
+            $message = $obj->requiredMessage("updated","Data Updated Successfully");
+          }
+          else{
+            $message = $obj->requiredMessage("error","Data Not Updated");
           }
         }
         else{ // If Add File Call
@@ -121,12 +125,13 @@
           $combineArray = array_merge($a1,$a2);
 
           insertNestedInfo($tableName,  $combineArray, $vendorId );
+          $message = $obj->requiredMessage("updated","Data Inserted Successfully");
         }
       } 
     }    
   }
   catch(PDOException $e){
-    echo "<h3 class='text-red'><i class='icon fa fa-ban'></i> Your Data is not Inserted please contact the admin</h3>";
+    $message = $obj->requiredMessage("error","Your Data is not Inserted please contact the admin");
   }
 
 /*
