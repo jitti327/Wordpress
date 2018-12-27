@@ -4,11 +4,33 @@
     <table class="form-table">
       <tbody>
         <?php foreach($fields as $key => $value){ ?>
-        <tr class="row-wrapper">
-          <?php
-            gfBikesCustomization()->generalAddField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
-          ?>
-        </tr>
+
+        <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
+
+          <tr class="row-wrapper">
+            <th scope="row"><label for="blogname">Pickup</label></th>
+            <td>
+              <input type="radio" name="pickup" value="Yes">Yes
+              <input type="radio" name="pickup" value="No" >No
+            </td>
+          </tr>
+        <?php }else{ ?>
+          <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
+            <tr class="row-wrapper">
+              <?php
+                gfBikesCustomization()->generalAddtextField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+              ?>
+            </tr>
+          <?php }else{ ?>
+            <tr class="row-wrapper">
+              <?php
+                gfBikesCustomization()->generalAddField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+              ?>
+            </tr>
+        <?php } ?>
+
+        <?php } ?>
+
         <?php } ?>
         <?php foreach($extended as $key => $value){ ?>
         <tr class="row-wrapper">

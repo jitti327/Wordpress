@@ -35,7 +35,7 @@ class manageSki extends gfBikeManageCommon{
       'fields' => [
         'ski' => [
           'label'        => 'Ski',
-          'frequency'    => ['Half day', 'Full day', 'Day'],
+          'frequency'    => ['1 day', '3 day', '5 Day', '7 Day'],
           'gFieldId'     => ['171'     ,'172'],
           'frequencyId'  => '169',
           'priceFieldId' => '173'

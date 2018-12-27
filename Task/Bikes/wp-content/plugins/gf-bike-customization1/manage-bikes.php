@@ -25,7 +25,21 @@ class manageBikes extends gfBikeManageCommon{
   protected $vendorRowDetails = [
     'normal' => [
       'name' => [
-        'label' => 'Vendor Name',
+        'label' => 'Shop Name',
+      ],
+      'email' => [
+        'label' => 'Email address',
+      ],
+      'gear_rented' => [
+        'label' => 'Type of gear rented',
+      ],
+      'pickup' => [
+        'type'  => 'radio',
+        'label' => 'Pickup',
+      ],
+      'policy' => [
+        'type'  => 'textarea',
+        'label' => 'Policy',
       ]
     ],
     'extended' => [
@@ -35,7 +49,7 @@ class manageBikes extends gfBikeManageCommon{
       'fields' => [
         'bike' => [
           'label'        => 'Bike',
-          'frequency'    => ['Half day', 'Full day', 'Day'],
+          'frequency'    => ['Half day', 'Full day', '24 hours'],
           'gFieldId'     => ['149'     ,'150'      , '151'],
           'frequencyId'  => '157',
           'priceFieldId' => '155'
