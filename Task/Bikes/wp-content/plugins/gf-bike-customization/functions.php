@@ -22,6 +22,7 @@ class gfBikesCustomization{
 
 		## Hide Gravity Form Label
         add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
+       
 
         ## Need to move in WP Enqueue script
         add_action( 'wp_head', function(){
@@ -74,13 +75,23 @@ class gfBikesCustomization{
         } );
 
 	}
+	
 
 	public function debug($info){
 		echo "<pre>";
 			print_r($info);
 		echo "</pre>";
 		die;
-	}
+	} 
+
+	// add_action ('wp_loaded', 'my_custom_redirect');
+    	public 	function my_custom_redirect($redirect) {
+          	
+	            // $redirect = 'localhost/git-projects/Wordpress/Task/Bikes/wp-admin/admin.php?page=manage-paddle';
+	            wp_redirect($redirect);
+	            exit;
+	       
+	    }
 
     ## Register a custom menu page.
 	public function admin_bike_menu_page() {

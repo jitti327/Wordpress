@@ -113,19 +113,23 @@
         }
         else{ // If Add File Call
 
-          $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
-          $vendorId     = $wpdb->insert_id;
-          // End Here
-
-          // Inserting Database for Bikes
-
           $tableName    = $wpdb->prefix . "ski";
           $a1           = $_REQUEST['bikeName'];
           $a2           = $_REQUEST['addOnName'];
           $combineArray = array_merge($a1,$a2);
 
-          insertNestedInfo($tableName,  $combineArray, $vendorId );
-          $message = $obj->requiredMessage("updated","Data Inserted Successfully");
+          $fetch   = $wpdb->get_results("SELECT * FROM `$tableVendor` WHERE `name` = '$vendor' LIMIT 1");
+          $data    = count($fetch);
+          if($data >= 1){
+            $message       = $obj->requiredMessage("error", "Data Not Inserted Because Vendor Name $vendor Already Exist");
+          }
+          else{
+            $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
+            $vendorId     = $wpdb->insert_id;
+            // End Here
+            insertNestedInfo($tableName,  $combineArray, $vendorId );
+            $message = $obj->requiredMessage("updated","Data Inserted Successfully");
+          }
         }
       } 
     }    

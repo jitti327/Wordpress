@@ -9,6 +9,7 @@
     'Day',
   ];
 
+  // $GLOBALS['location'] = wp_redirect('localhost/git-projects/Wordpress/Task/Bikes/wp-admin/admin.php?page=manage-paddle', true, 302);
 
   function insertNestedInfo( $table, $info , $vendorId, $parentIds = []){
 
@@ -93,8 +94,32 @@
         global $message;
 
 
-        if($edit == true){ // If Edit File Call
+        if($edit == false){ // If Edit File Call
+           // If Add File Call
+                    // Inserting Database for Bikes
 
+          $tableName    = $wpdb->prefix . "paddle";
+          $a1           = $_REQUEST['bikeName'];
+          $a2           = $_REQUEST['addOnName'];
+          $combineArray = array_merge($a1,$a2);
+
+          $fetch   = $wpdb->get_results("SELECT * FROM `$tableVendor` WHERE `name` = '$vendor' LIMIT 1");
+          $data    = count($fetch);
+          if($data == 0){
+            $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
+            $vendorId     = $wpdb->insert_id;
+            // End Here
+            insertNestedInfo($tableName,  $combineArray, $vendorId );
+            $message = $obj->requiredMessage("updated","Data Inserted Successfully");
+          }
+          else{
+            // wp_redirect('localhost/git-projects/Wordpress/Task/Bikes/wp-admin/admin.php?page=manage-paddle', true, 302);
+            $message = $obj->requiredMessage("error", "Data Not Inserted Because Vendor Name $vendor Already Exist");
+            
+            $obj->my_custom_redirect('localhost/git-projects/Wordpress/Task/Bikes/wp-admin/admin.php?page=manage-paddle');
+          }
+        }
+        else{
           $vendorId     = $_GET['post'];
           $tableVendor  = $wpdb->prefix . "paddle_vendor";
           $a1           = $_REQUEST['bikeName'];
@@ -112,22 +137,6 @@
           else{
             $message = $obj->requiredMessage("error","Data Not Updated");
           }
-        }
-        else{ // If Add File Call
-
-          $insertVendor = $wpdb->insert($tableVendor , array('name' => $vendor) ,array('%s'));
-          $vendorId     = $wpdb->insert_id;
-          // End Here
-
-          // Inserting Database for Bikes
-
-          $tableName    = $wpdb->prefix . "paddle";
-          $a1           = $_REQUEST['bikeName'];
-          $a2           = $_REQUEST['addOnName'];
-          $combineArray = array_merge($a1,$a2);
-
-          insertNestedInfo($tableName,  $combineArray, $vendorId );
-          $message = $obj->requiredMessage("updated","Data Inserted Successfully");
         }
       } 
     }    
@@ -519,6 +528,7 @@
       if(checkbox.is(':checked')){
         checkbox.closest('.single-level-bike-info').addClass('show-children');
       }else{
+
         checkbox.closest('.single-level-bike-info').removeClass('show-children');
       }
     }
