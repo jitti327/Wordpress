@@ -10,8 +10,18 @@
           <tr class="row-wrapper">
             <th scope="row"><label for="blogname">Pickup</label></th>
             <td>
-              <input type="radio" name="pickup" value="Yes">Yes
-              <input type="radio" name="pickup" value="No" >No
+              <?php
+                global $wpdb;
+                $id = $_GET['post'];
+                $show = $wpdb->get_results("SELECT `pickup` FROM `wp_vendor` WHERE `id`= $id");
+                
+                if($show[0]->pickup == 'Yes'){?>
+                  <input type="radio" name="pickup" id="pickup" value="Yes" checked="checked">Yes
+                  <input type="radio" name="pickup" id="pickup" value="No">No
+               <?php }else{ ?>
+                <input type="radio" name="pickup" id="pickup" value="Yes">Yes
+                <input type="radio" name="pickup" id="pickup" value="No" checked="checked">No
+              <?php }?>
             </td>
           </tr>
         <?php }else{ ?>
