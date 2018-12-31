@@ -109,7 +109,7 @@ class gfBikeManageCommon{
       $currentPage = 1; 
       if(isset(GFFormDisplay::$submission[$form['id']])){
         $currentPage = GFFormDisplay::$submission[$form['id']]["page_number"];
-        $currentPage = !empty( $currentPage ) ? $currentPage : 1 ;          
+        $currentPage = !empty( $currentPage ) ? $currentPage : 1 ;
       }
       global $wp;
 

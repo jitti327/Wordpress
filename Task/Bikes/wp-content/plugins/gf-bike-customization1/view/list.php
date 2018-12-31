@@ -272,6 +272,8 @@ class bikeListTable extends WP_List_Table {
             $message = $this->requiredMessage("error","Record Not Deleted.");
           }
           else{
+            echo "Here";
+            die();
             $message = $this->requiredMessage("updated","Record Deleted Successfully");
           }
         }
@@ -440,7 +442,7 @@ class bikeListTable extends WP_List_Table {
       $this->prepare_items();
 
 
-
+      echo $message;
       $page = $_REQUEST['page'];
 
 

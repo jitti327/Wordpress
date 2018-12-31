@@ -2,7 +2,7 @@
 <div class="wrap">
   <form method="post">
     <table class="form-table">
-      <tbody>
+      <tbody> 
         <?php foreach($fields as $key => $value){ ?>
 
         <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
@@ -14,14 +14,10 @@
                 global $wpdb;
                 $id = $_GET['post'];
                 $show = $wpdb->get_results("SELECT `pickup` FROM `wp_vendor` WHERE `id`= $id");
-                
-                if($show[0]->pickup == 'Yes'){?>
-                  <input type="radio" name="pickup" id="pickup" value="Yes" checked="checked">Yes
-                  <input type="radio" name="pickup" id="pickup" value="No">No
-               <?php }else{ ?>
-                <input type="radio" name="pickup" id="pickup" value="Yes">Yes
-                <input type="radio" name="pickup" id="pickup" value="No" checked="checked">No
-              <?php }?>
+                $radioChecked = empty($show[0]->pickup) ? 'No': $show[0]->pickup;
+              ?>
+                <input type="radio" name="pickup" id="pickup" <?php echo ($radioChecked === 'Yes')?'checked':$radioChecked; ?> value="Yes">Yes
+                <input type="radio" name="pickup" id="pickup" <?php echo ($radioChecked === 'No')?'checked':$radioChecked; ?> value="No">No
             </td>
           </tr>
         <?php }else{ ?>

@@ -4,11 +4,39 @@
     <table class="form-table">
       <tbody>
         <?php foreach($fields as $key => $value){ ?>
-        <tr class="row-wrapper">
-          <?php
-            gfBikesCustomization()->generalAddField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
-          ?>
-        </tr>
+
+        <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
+
+          <tr class="row-wrapper">
+            <th scope="row"><label for="blogname">Pickup</label></th>
+            <td>
+              <?php
+                global $wpdb;
+                $id = $_GET['post'];
+                $show = $wpdb->get_results("SELECT `pickup` FROM `wp_ski_vendor` WHERE `id`= $id");
+                $radioChecked = empty($show[0]->pickup) ? 'No': $show[0]->pickup;
+              ?>
+                <input type="radio" name="pickup" id="pickup" <?php echo ($radioChecked === 'Yes')?'checked':$radioChecked; ?> value="Yes">Yes
+                <input type="radio" name="pickup" id="pickup" <?php echo ($radioChecked === 'No')?'checked':$radioChecked; ?> value="No">No
+            </td>
+          </tr>
+        <?php }else{ ?>
+          <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
+            <tr class="row-wrapper">
+              <?php
+                gfBikesCustomization()->generalAddtextField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+              ?>
+            </tr>
+          <?php }else{ ?>
+            <tr class="row-wrapper">
+              <?php
+                gfBikesCustomization()->generalAddField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+              ?>
+            </tr>
+        <?php } ?>
+
+        <?php } ?>
+
         <?php } ?>
         <?php foreach($extended as $key => $value){ ?>
         <tr class="row-wrapper">

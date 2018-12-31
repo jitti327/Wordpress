@@ -170,7 +170,7 @@ class gfbcSingle{
 
       // echo 'refinedKey '. $refinedKey[$i];
       if(  !isset($childLessArray[$i]) 
-        || !isset($searchArray[$childLessArray[$i]]) 
+        || !isset($searchArray[$childLessArray[$i]])
         || !isset($searchArray[$childLessArray[$i]]['children'])){
         return false;
       }
