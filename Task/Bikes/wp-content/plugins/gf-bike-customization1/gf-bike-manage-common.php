@@ -162,7 +162,10 @@ class gfBikeManageCommon{
 
       # Redirect to listing page
 
-      $queryString = "page={$this->pageName}&success";
+      $operation = isset($_POST['operation_type']) ? $_POST['operation_type'] : "edit";
+
+      $queryString = "page={$this->pageName}&success=".$operation;
+
       $redirectUrl = admin_url( 'admin.php?'.$queryString );
       wp_redirect( $redirectUrl ) ;
       exit;

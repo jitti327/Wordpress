@@ -25,7 +25,7 @@ class manageSki extends gfBikeManageCommon{
   protected $vendorRowDetails = [
     'normal' => [
       'name' => [
-        'label' => 'Vendor Name',
+        'label' => 'Shop Name',
       ],
       'email' => [
         'label' => 'Email address',

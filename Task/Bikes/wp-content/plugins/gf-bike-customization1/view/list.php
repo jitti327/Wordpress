@@ -272,8 +272,6 @@ class bikeListTable extends WP_List_Table {
             $message = $this->requiredMessage("error","Record Not Deleted.");
           }
           else{
-            echo "Here";
-            die();
             $message = $this->requiredMessage("updated","Record Deleted Successfully");
           }
         }
@@ -442,11 +440,38 @@ class bikeListTable extends WP_List_Table {
       $this->prepare_items();
 
 
-      echo $message;
       $page = $_REQUEST['page'];
+      if( class_exists('gfBikesCustomizationClass') ){
+        $obj = new gfBikesCustomizationClass();
+      }
+
+      // $admin = admin_url('admin.php?page='.$page,'admin');
+      // $redirect = "$admin&success=insert";
+      // if($redirect){
+      //    $message = $obj->requiredMessage("updated","Record Inserted Successfully");
+      // }else{
+      //    $message = $obj->requiredMessage("updated","Record Updated Successfully");
+
+      // }
+
+      $messageType = !empty($_GET['success'] ) ? $_GET['success'] : '';
+
+      switch($messageType){
+        case 'add':
+          $message = "Record Inserted Successfully";
+        break;
+        case 'edit':
+          $message = "Record Updated Successfully";
+        break;
+        case 'delete':
+          $message = "Record Deleted Successfully";
+        break;
+
+      }     
 
 
-      ?>
+?>
+      <?php echo $obj->requiredMessage("updated",$message) ?>
       <div class="wrap">        
         <div id="icon-users" class="icon32"><br/></div>
           <h1 class="wp-heading-inline">
