@@ -1,0 +1,146 @@
+{
+    "downhill_package": {
+        "name": "Downhill Package",
+        "children": {
+            "demo": {
+                "name": "Demo"
+            },
+            "performance": {
+                "name": "Performance"
+            },
+            "sport": {
+                "name": "Sport"
+            },
+            "junior_demo": {
+                "name": "Junior Demo"
+            },
+            "junior_performance": {
+                "name": "Junior Performance"
+            },
+            "junior_sport": {
+                "name": "Junior Sport"
+            }
+        }
+    },
+    "snowboard_package": {
+        "name": "Snowboard Package",
+        "children": {
+            "demo": {
+                "name": "Demo"
+            },
+            "performance": {
+                "name": "Performance"
+            },
+            "sport": {
+                "name": "Sport"
+            },
+            "junior_demo": {
+                "name": "Junior Demo"
+            },
+            "junior_performance": {
+                "name": "Junior Performance"
+            },
+            "junior_sport": {
+                "name": "Junior Sport"
+            }
+        }
+    },
+    "downhill_skis_only": {
+        "name": "Downhill Skis Only",
+        "children": {
+            "demo": {
+                "name": "Demo"
+            },
+            "performance": {
+                "name": "Performance"
+            },
+            "sport": {
+                "name": "Sport"
+            },
+            "junior_demo": {
+                "name": "Junior Demo"
+            },
+            "junior_performance": {
+                "name": "Junior Performance"
+            },
+            "junior_sport": {
+                "name": "Junior Sport"
+            }
+        }
+    },
+    "snowboard_only": {
+        "name": "Snowboard Only",
+        "children": {
+            "demo_snowboard": {
+                "name": "Demo Snowboard"
+            },
+            "performance_snowboard": {
+                "name": "Performance Snowboard"
+            },
+            "sport_snowboard": {
+                "name": "Sport Snowboard"
+            },
+            "junior_demo_snowboard": {
+                "name": "Junior Demo Snowboard"
+            },
+            "junior_performance_snowboard": {
+                "name": "Junior Performance Snowboard"
+            },
+            "junior_sport_snowboard": {
+                "name": "Junior Sport Snowboard"
+            }
+        }
+    },
+    "cross_country_skis_and_packages": {
+        "name": "Cross Country Skis and Packages",
+        "children": {
+            "demo_package": {
+                "name": "Demo package"
+            },
+            "performance_package": {
+                "name": "Performance  Package"
+            },
+            "sport_package": {
+                "name": "Sport  Package"
+            },
+            "junior_demo_package": {
+                "name": "Junior Demo  Package"
+            },
+            "junior_performance_package": {
+                "name": "Junior Performance package"
+            },
+            "junior_sport_package": {
+                "name": "Junior Sport Package"
+            },
+            "demo_xcs": {
+                "name": "Demo XCs"
+            },
+            "performance_xcs": {
+                "name": "Performance XCs"
+            },
+            "sport_xcs": {
+                "name": "Sport XCs"
+            },
+            "junior_demo_xcs": {
+                "name": "Junior Demo XCs"
+            },
+            "junior_performance_xcs": {
+                "name": "Junior Performance XCs"
+            },
+            "junior_sport_xcs": {
+                "name": "Junior Sport XCs"
+            }
+        }
+    },
+    "snowshoes": {
+        "name": "Snowshoes",
+        "children": {
+            "performance": {
+                "name": "Performance"
+            },
+            "standard": {
+                "name": "standard"
+            }
+        }
+    }
+}
