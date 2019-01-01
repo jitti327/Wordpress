@@ -466,12 +466,13 @@ class bikeListTable extends WP_List_Table {
         case 'delete':
           $message = "Record Deleted Successfully";
         break;
-
+        default:
+          $message = "";
       }     
 
 
 ?>
-      <?php echo $obj->requiredMessage("updated",$message) ?>
+      <?php echo !empty($message) ? $obj->requiredMessage("updated",$message) : ""; ?>
       <div class="wrap">        
         <div id="icon-users" class="icon32"><br/></div>
           <h1 class="wp-heading-inline">
