@@ -430,7 +430,7 @@ class gfbcSingle{
     $this->delete($vendorId);
     
     # Then add again
-    $this->saveRecursive($value, $vendorId);  
+    $this->saveRecursive($value, $vendorId);
   }
 
 

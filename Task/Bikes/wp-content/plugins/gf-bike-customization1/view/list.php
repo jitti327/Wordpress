@@ -445,16 +445,8 @@ class bikeListTable extends WP_List_Table {
         $obj = new gfBikesCustomizationClass();
       }
 
-      // $admin = admin_url('admin.php?page='.$page,'admin');
-      // $redirect = "$admin&success=insert";
-      // if($redirect){
-      //    $message = $obj->requiredMessage("updated","Record Inserted Successfully");
-      // }else{
-      //    $message = $obj->requiredMessage("updated","Record Updated Successfully");
-
-      // }
-
-      $messageType = !empty($_GET['success'] ) ? $_GET['success'] : '';
+      $messageType  = !empty($_GET['success'] ) ? $_GET['success'] : '';
+      $messageType1 = !empty($_GET['task'] ) ? $_GET['task'] : '';
 
       switch($messageType){
         case 'add':
@@ -463,13 +455,12 @@ class bikeListTable extends WP_List_Table {
         case 'edit':
           $message = "Record Updated Successfully";
         break;
-        case 'delete':
-          $message = "Record Deleted Successfully";
-        break;
         default:
           $message = "";
-      }     
-
+      }
+      if($messageType1 == 'delete'){
+        $message = "Record Deleted Successfully";
+      }
 
 ?>
       <?php echo !empty($message) ? $obj->requiredMessage("updated",$message) : ""; ?>
