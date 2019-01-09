@@ -444,26 +444,32 @@ class bikeListTable extends WP_List_Table {
       if( class_exists('gfBikesCustomizationClass') ){
         $obj = new gfBikesCustomizationClass();
       }
+    
+      // if(empty($value['name'])){
+      //   $message = $obj->requiredMessage("error","** All Fields Are Required And Select At Least One Checkbox.");
+      // }
+      // else{
 
       $messageType  = !empty($_GET['success'] ) ? $_GET['success'] : '';
-      $messageType1 = !empty($_GET['task'] ) ? $_GET['task'] : '';
+      $messageType1 = !empty($_GET['task'] )    ? $_GET['task']    : '';
 
       switch($messageType){
         case 'add':
-          $message = "Record Inserted Successfully";
+          $message = $obj->requiredMessage("updated","Record Inserted Successfully");
         break;
         case 'edit':
-          $message = "Record Updated Successfully";
+          $message = $obj->requiredMessage("updated","Record Updated Successfully");
         break;
         default:
           $message = "";
       }
       if($messageType1 == 'delete'){
-        $message = "Record Deleted Successfully";
+        $message = $obj->requiredMessage("updated","Record Deleted Successfully");
       }
+  // }
 
 ?>
-      <?php echo !empty($message) ? $obj->requiredMessage("updated",$message) : ""; ?>
+      <?php echo !empty($message) ? $message : ""; ?>
       <div class="wrap">        
         <div id="icon-users" class="icon32"><br/></div>
           <h1 class="wp-heading-inline">

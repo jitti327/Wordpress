@@ -1,9 +1,27 @@
-<?php $bike->renderCommon(); ?>
+<?php 
+  $bike->renderCommon(); 
+  echo $message;
+
+  echo '<pre>';
+  print_r($error);
+  echo '</pre>';
+?>
 <div class="wrap">
   <form method="post">
     <table class="form-table">
       <tbody> 
         <?php foreach($fields as $key => $value){ ?>
+          <?php
+          if($_POST){
+            print_r($value['label']);
+
+            $validation = isset($value['validation']) ? $value['validation'] : '';
+            if($validation == 'required'){
+              echo '**';
+            }
+          }
+
+          ?>
 
         <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
 

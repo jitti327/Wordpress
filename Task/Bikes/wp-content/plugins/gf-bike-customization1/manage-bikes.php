@@ -26,6 +26,7 @@ class manageBikes extends gfBikeManageCommon{
     'normal' => [
       'name' => [
         'label' => 'Shop Name',
+        'validation' => 'required',
       ],
       'email' => [
         'label' => 'Email address',
