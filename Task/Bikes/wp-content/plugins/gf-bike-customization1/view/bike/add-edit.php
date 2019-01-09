@@ -1,6 +1,10 @@
 <?php 
   $bike->renderCommon(); 
   echo $message;
+
+  echo '<pre>';
+  print_r($error);
+  echo '</pre>';
 ?>
 <div class="wrap">
   <form method="post">

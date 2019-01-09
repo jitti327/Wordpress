@@ -27,6 +27,7 @@ class gfBikeManageCommon{
 
   # Manage Page
   protected $pageName     = "";
+  protected $errorMessage = "";
 
   #
   # Read the JSON
@@ -157,7 +158,7 @@ class gfBikeManageCommon{
 
       $type = $this->save();
       if($type === false){
-        die("** All Fields Are Required And Select At Least One Checkbox.");
+        $this->errorMessage = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
         return $message; // Unable to save the data
 
       }
@@ -436,7 +437,8 @@ class gfBikeManageCommon{
       'operation' => $operation,
       'fields'    => $this->vendorRowDetails['normal'],
       'extended'  => $this->vendorRowDetails['extended']['fields'],
-      'default'   => $this->getDefaultValue( $operation )
+      'default'   => $this->getDefaultValue( $operation ),
+      'error'     => $this->errorMessage
     ]);
 
   }
