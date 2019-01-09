@@ -11,6 +11,17 @@
     <table class="form-table">
       <tbody> 
         <?php foreach($fields as $key => $value){ ?>
+          <?php
+          if($_POST){
+            print_r($value['label']);
+
+            $validation = isset($value['validation']) ? $value['validation'] : '';
+            if($validation == 'required'){
+              echo '**';
+            }
+          }
+
+          ?>
 
         <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
 
