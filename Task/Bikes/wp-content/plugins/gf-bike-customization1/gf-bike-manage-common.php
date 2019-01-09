@@ -157,7 +157,9 @@ class gfBikeManageCommon{
 
       $type = $this->save();
       if($type === false){
-        return false; // Unable to save the data
+        die("** All Fields Are Required And Select At Least One Checkbox.");
+        return $message; // Unable to save the data
+
       }
 
       # Redirect to listing page
@@ -262,17 +264,27 @@ class gfBikeManageCommon{
   #
   public function save(){
     if(isset($_POST['submit'])){
-      $operation = isset($_POST['operation_type']) ? $_POST['operation_type'] : "";
-      switch($operation){
-        case 'edit':
-          $this->update();
-        break;
-        case 'add':
-          $this->add();
-        break;
-        default:
-          die('Invalid Operation');
-        break;
+      // echo '<pre>';
+      //   print_r($_POST);
+      // echo '</pre>';
+      // die();
+      if(empty($_POST['name']) || empty($_POST['email']) || empty($_POST['gear_rented']) || empty($_POST['policy']) ){
+        return false;
+      }
+      else{
+
+        $operation = isset($_POST['operation_type']) ? $_POST['operation_type'] : "";
+        switch($operation){
+          case 'edit':
+            $this->update();
+          break;
+          case 'add':
+            $this->add();
+          break;
+          default:
+            die('Invalid Operation');
+          break;
+        }
       }
     }
   }

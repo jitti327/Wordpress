@@ -1,4 +1,7 @@
-<?php $bike->renderCommon(); ?>
+<?php 
+  $bike->renderCommon(); 
+  echo $message;
+?>
 <div class="wrap">
   <form method="post">
     <table class="form-table">
