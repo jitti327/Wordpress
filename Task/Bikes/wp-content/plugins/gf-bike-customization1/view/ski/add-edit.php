@@ -9,8 +9,11 @@
         <?php foreach($fields as $key => $value){ ?>
           <?php
           if($_POST['submit']){
-            $validation = isset($value['validation']) ? $value['validation'] : '';
-            $star       = ($validation == 'required') ? '<b style="color: rgb(255,0,0)">*</b>' : '';
+            $validationError = false;
+            if(empty($default[$key])){
+              $star = '<b style="color: rgb(255,0,0)">*</b>';
+              $validationError = true;
+            }
           }
 
           ?>
@@ -34,13 +37,13 @@
           <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddtextField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddtextField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] , $validationError );
               ?>
             </tr>
           <?php }else{ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] , $validationError );
               ?>
             </tr>
         <?php } ?>
