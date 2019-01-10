@@ -1,10 +1,6 @@
 <?php 
   $bike->renderCommon(); 
-  echo $message;
-
-  echo '<pre>';
-  print_r($error);
-  echo '</pre>';
+  echo $error;
 ?>
 <div class="wrap">
   <form method="post">
@@ -12,12 +8,10 @@
       <tbody> 
         <?php foreach($fields as $key => $value){ ?>
           <?php
-          if($_POST){
-            print_r($value['label']);
-
+          if($_POST['submit']){
             $validation = isset($value['validation']) ? $value['validation'] : '';
             if($validation == 'required'){
-              echo '**';
+              $star = '*';
             }
           }
 
@@ -42,20 +36,20 @@
           <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddtextField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddtextField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
               ?>
             </tr>
           <?php }else{ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddField($key , $value['label'] , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
               ?>
             </tr>
         <?php } ?>
 
         <?php } ?>
 
-        <?php } ?>
+        <?php  } ?>
         <?php foreach($extended as $key => $value){ ?>
         <tr class="row-wrapper">
           <td scope="row" class="top"> <b> <?php echo $value['label'] ?> : </b> </td>

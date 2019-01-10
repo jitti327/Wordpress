@@ -30,9 +30,11 @@ class manageBikes extends gfBikeManageCommon{
       ],
       'email' => [
         'label' => 'Email address',
+        'validation' => 'required',
       ],
       'gear_rented' => [
         'label' => 'Type of gear rented',
+        'validation' => 'required',
       ],
       'pickup' => [
         'type'  => 'radio',
@@ -41,6 +43,7 @@ class manageBikes extends gfBikeManageCommon{
       'policy' => [
         'type'  => 'textarea',
         'label' => 'Policy',
+        'validation' => 'required',
       ]
     ],
     'extended' => [
