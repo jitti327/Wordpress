@@ -157,21 +157,35 @@ class gfBikesCustomizationClass{
   }
 
   ####
-  public function generalAddField($name , $displayName ,$value , $placeholder){ ?>
+  public function generalAddField($name , $displayName ,$value , $placeholder , $error){ ?>
     <tr>
       <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
       <td>
         <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
+        <p class="errordisplay">
+          <?php
+            if($error == true){
+              echo "<b><small style='color: rgb(255,0,0)'>** This field is required</small></b>";
+            }
+          ?>
+        </p>
       </td>
     </tr>
   <?php  }
 
   ####
-  public function generalAddtextField($name , $displayName ,$value , $placeholder){ ?>
+  public function generalAddtextField($name , $displayName ,$value , $placeholder , $error){ ?>
       <tr>
         <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
         <td>
           <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+        <p class="errordisplay">
+          <?php
+            if($error == true){
+              echo "<b><small style='color: rgb(255,0,0)'>** This field is required</small></b>";
+            }
+          ?>
+        </p>
         </td>
       </tr>
   <?php  }

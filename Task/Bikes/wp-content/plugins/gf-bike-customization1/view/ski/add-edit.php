@@ -10,9 +10,7 @@
           <?php
           if($_POST['submit']){
             $validation = isset($value['validation']) ? $value['validation'] : '';
-            if($validation == 'required'){
-              $star = '*';
-            }
+            $star       = ($validation == 'required') ? '<b style="color: rgb(255,0,0)">*</b>' : '';
           }
 
           ?>

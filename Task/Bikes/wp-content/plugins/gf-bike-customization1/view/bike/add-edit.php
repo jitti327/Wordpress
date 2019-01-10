@@ -4,15 +4,19 @@
 ?>
 <div class="wrap">
   <form method="post">
-    <table class="form-table">
+    <table class="form-table"> 
       <tbody> 
         <?php foreach($fields as $key => $value){ ?>
           <?php
           if($_POST['submit']){
-            $validation = isset($value['validation']) ? $value['validation'] : '';
-            if($validation == 'required'){
-              $star = '*';
+            $validationError = false;
+            if(empty($default[$key])){
+              $star = '<b style="color: rgb(255,0,0)">*</b>';
+              $validationError = true;
             }
+            // $msg        = "<small style='color: rgb(255,0,0)'>This field is required</small>";
+            // $validation = isset($value['validation']) ? $value['validation'] : '';
+            // $star       = ($validation == 'required') ? '<b style="color: rgb(255,0,0)">*</b>' : '';
           }
 
           ?>
@@ -36,13 +40,15 @@
           <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddtextField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddtextField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] , $validationError);
               ?>
+
             </tr>
           <?php }else{ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] );
+                gfBikesCustomization()->generalAddField($key , $value['label'] . $star , $default[$key] , 'Enter ' . $value['label'] , $validationError);
+                
               ?>
             </tr>
         <?php } ?>

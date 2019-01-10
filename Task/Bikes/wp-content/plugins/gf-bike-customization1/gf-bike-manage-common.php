@@ -233,16 +233,8 @@ class gfBikeManageCommon{
 
     // echo '<pre>';
     // print_r([$this->table, $pInfo, $format]);
-    // echo '</pre>';<?php 
-    if( class_exists('gfBikesCustomizationClass') ){
-      $obj = new gfBikesCustomizationClass();
-    }
+    // echo '</pre>';
     
-    // if(empty($value['name'])){
-    //   $message = $obj->requiredMessage("error","** All Fields Are Required And Select At Least One Checkbox.");
-    // }
-    // else{
-
     $insertVendor = $wpdb->insert($this->table , $pInfo ,$format);
     $vendorId     = $wpdb->insert_id;
 
@@ -255,8 +247,6 @@ class gfBikeManageCommon{
       $value = isset( $_POST[$field] ) ? $_POST[$field] : [];
       $this->nestedObject[$field]->saveRecursive( $value, $vendorId );
     }
-  // }
-
   }  
 
 
@@ -265,10 +255,6 @@ class gfBikeManageCommon{
   #
   public function save(){
     if(isset($_POST['submit'])){
-      // echo '<pre>';
-      //   print_r($_POST);
-      // echo '</pre>';
-      // die();
       if(empty($_POST['name']) || empty($_POST['email']) || empty($_POST['gear_rented']) || empty($_POST['policy']) ){
         return false;
       }
