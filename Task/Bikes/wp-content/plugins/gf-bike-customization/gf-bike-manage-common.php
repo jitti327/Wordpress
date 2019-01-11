@@ -151,14 +151,14 @@ class gfBikeManageCommon{
       return;
     }
     if(  is_admin()
-      && isset($_REQUEST['page']) 
+      && isset($_REQUEST['page'])
       && $_REQUEST['page'] == $this->pageName
-      && isset($_POST['submit']) 
+      && isset($_POST['submit'])
     ){
 
       $type = $this->save();
       if($type === false){
-        // $this->errorMessage["common"] = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
+        $this->errorMessage["common"] = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
         return $message; // Unable to save the data
 
       }

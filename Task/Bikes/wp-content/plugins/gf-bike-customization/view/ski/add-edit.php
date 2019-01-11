@@ -1,30 +1,17 @@
-<?php 
-  $bike->renderCommon();
-?>
+<?php $bike->renderCommon(); ?>
+<?php print_r($error['common']); ?>
 <div class="wrap">
   <form method="post">
-    <table class="form-table"> 
-      <tbody> 
+    <table class="form-table">
+      <tbody>
         <?php foreach($fields as $key => $value){ ?>
           <?php
-          // if($_POST['submit']){
-          //   $validationError = false;
-          //   if(empty($default[$key])){
-          //     $star = '<b style="color: rgb(255,0,0)">*</b>';
-          //     $validationError = true;
-          //   }
-          //   $msg        = "<small style='color: rgb(255,0,0)'>This field is required</small>";
-          //   $validation = isset($value['validation']) ? $value['validation'] : '';
-          //   $star       = ($validation == 'required') ? '<b style="color: rgb(255,0,0)">*</b>' : '';
-          // }
-
             $label = $value['label'];
             $validationError = (isset($error[$key])) ? $error[$key] : false;
 
             if(isset($value['required']) && $value['required'] === true){
               $label .= ' <b style="color: rgb(255,0,0)">*</b> ';
             }
-
           ?>
 
         <?php if(isset($value['type']) && $value['type'] == "radio"){ ?>
@@ -32,12 +19,6 @@
           <tr class="row-wrapper">
             <th scope="row"><label for="blogname"><?php echo $label; ?></label></th>
             <td>
-              <?php
-                // global $wpdb;
-                // $id = $_GET['post'];
-                // $show = $wpdb->get_results("SELECT `pickup` FROM `wp_ski_vendor` WHERE `id`= $id");
-                // $radioChecked = empty($show[0]->pickup) ? 'No': $show[0]->pickup;
-              ?>
               <?php foreach($value['option'] as $oKey => $oValue ){ ?>
                 <input 
                   type="radio" 
@@ -49,26 +30,25 @@
               <?php } ?>
             </td>
           </tr>
+
         <?php }else{ ?>
           <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddtextField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError);
+                gfBikesCustomization()->generalAddtextField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError );
               ?>
-
             </tr>
           <?php }else{ ?>
             <tr class="row-wrapper">
               <?php
-                gfBikesCustomization()->generalAddField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError);
-                
+                gfBikesCustomization()->generalAddField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError );
               ?>
             </tr>
         <?php } ?>
 
         <?php } ?>
 
-        <?php  } ?>
+        <?php } ?>
         <?php foreach($extended as $key => $value){ ?>
         <tr class="row-wrapper">
           <td scope="row" class="top"> <b> <?php echo $value['label'] ?> : </b> </td>

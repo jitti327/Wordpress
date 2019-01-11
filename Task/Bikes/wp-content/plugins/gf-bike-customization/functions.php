@@ -6,365 +6,258 @@ Author: Developer D
 Version: 1.0
 */
 
-class gfBikesCustomization{
+class gfBikesCustomizationClass{
 
-	private $formId = 98;
+  private static $_instance = null;
 
-    public $stageVariable = [];
+  private $formId       = 2;
+  public $stageVariable = [];
 
-	public function __construct(){
+  public static $pluginUrl;
+  public static $pluginPath;
+  public static $viewFolder;
 
-	    ## Add admin menus
-  	    add_action( 'admin_menu', array( $this, 'admin_bike_menu_page' ) );
-		
-		## Modify Gravity form HTML before render
-		add_filter( 'gform_pre_render_'.$this->formId, array( $this, 'preRenderProccess' ) );
 
-		## Hide Gravity Form Label
-        add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
-       
+  public function __construct(){
 
-        ## Need to move in WP Enqueue script
-        add_action( 'wp_head', function(){
-            ?>  
-            <style>
-                .bikes-hidden-options ul.gfield_radio li{
-                    display:none !important;
-                }
-                ul.gfield_radio li.active-child{
-                    display:inline-block !important;
-                }
-            </style>
-            <script>
-                jQuery( document ).ready(function(){
 
-                	var changePrice = function( self ){
-                		var className     = self.parent().attr("class");
-                		var tempPrice     = className.split('data-price-');
-                		var price         = tempPrice[1];
-                		if( className.indexOf('active-child') > 1  ){
-                			tempPrice = price.split(' active-child');
-                			price = tempPrice[0];
-                		}
-                		jQuery('#field_98_155 input[type="text"]').val(price);
-                        jQuery('#input_98_155').trigger("change");
-                        //console.log(price);
-                	}
-                	var onClickProcess = function( self, level ){
-                		var elementId = self.val();
-                        jQuery('.bikes-hidden-options.level-'+level+' ul.gfield_radio li').removeClass('active-child');
-                        jQuery('.bikes-hidden-options.level-'+level+' ul.gfield_radio li.js-parent-id-'+elementId).addClass('active-child');
-                        changePrice( self );
-                	}
 
-                    jQuery('#field_98_149 input[type="radio"]').click(function(){
-                        onClickProcess( jQuery(this), 2 );
-                        onClickProcess( jQuery(this), 3 );
-                    });
 
-                    jQuery('#field_98_150 input[type="radio"]').click(function(){
-                     	onClickProcess( jQuery(this), 3 );
-                    });
+    self::$pluginUrl  = plugin_dir_url(__FILE__);
+    self::$pluginPath = plugin_dir_path(__FILE__);
+    self::$viewFolder = self::$pluginPath . '/view/';
 
-                    jQuery('#field_98_151 input[type="radio"]').click(function(){
-                     	changePrice( jQuery(this) );
-                    });
-                });
-            </script>
-            <?php
-        } );
+ 
+    $files = [
+        'gf-bike-manage-common.php'
+      , 'gfbcSingle.php'
+      , 'manage-bikes.php'
+      , 'manage-ski.php'
+    ];
 
-	}
-	
+    foreach( $files as $file){
+      $filePath = self::$pluginPath. $file;
+      if(!file_exists( $filePath)){
+        die('Unable to find file');
+      }
+      include_once $filePath;
+    }
 
-	public function debug($info){
-		echo "<pre>";
-			print_r($info);
-		echo "</pre>";
-		die;
-	} 
+    
 
-	// add_action ('wp_loaded', 'my_custom_redirect');
-    	public 	function my_custom_redirect($redirect) {
-          	
-	            // $redirect = 'localhost/git-projects/Wordpress/Task/Bikes/wp-admin/admin.php?page=manage-paddle';
-	            wp_redirect($redirect);
-	            exit;
-	       
-	    }
+    ## Hide Gravity Form Label
+    add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
+
+    # wp_enqueue_script('jquery');
+
+
+    add_action( 'gform_enqueue_scripts', array($this, 'addFrontEndSpecificFiles'), 10, 2 );
+
+    ## Add admin menu's
+    add_action( 'admin_menu', array( $this, 'addMenu' ) );
+
+    manageBikeObject();
+    manageSkiObject();
+
+  }
+
+  function addFrontEndSpecificFiles( $form, $is_ajax ) {
+
+    $path = self::$pluginPath;
+    $url  = self::$pluginUrl;
+
+    $jsVersion  = date("ymd-Gis", filemtime( $path . 'custom.js' ));
+    $cssVersion = date("ymd-Gis", filemtime( $path . 'custom.css' ));
+     
+    wp_enqueue_script( 'gf-custom', $url . 'custom.js' , array('jquery'), $jsVersion );
+    wp_register_style( 'gf-custom', $url . 'custom.css', false, $cssVersion );
+    wp_enqueue_style ( 'gf-custom' );
+
+
+  }
+
+  public function debug($info){
+    echo "<pre>";
+      print_r($info);
+    echo "</pre>";
+    die;
+  }
 
     ## Register a custom menu page.
-	public function admin_bike_menu_page() {
-	    add_menu_page(
-	        'Manage Bikes',                             // page_title
-	        'Manage Bikes',                             // menu_title
-	        'manage_options',                           // Capability
-	        'manage-bikes',                    			// Slug
-	        array( $this, 'bikes' ),                    // Calling bikes Function here
-	        'dashicons-cart',                     		// Used For Icon
-	        4
-	    );
+  public function addMenu() {
+    add_menu_page(
+      'Manage Bikes',                         // page_title
+      'Manage Bikes',                         // menu_title
+      'manage_options',                       // Capability
+      'manage-bikes',                         // Slug
+      array( $this, 'bikes' ),                // Calling bikes Function here
+      'dashicons-cart',                       // Used For Icon
+      4
+    );
 
-	    add_submenu_page(                    
-	        'manage-bikes',                    			// url
-	        'Manage Ski',                    			// title name
-	        'Manage Ski',                             	// shortcode reference
-	        'manage_options',                           // Capability (who can use this option)
-	        'manage-ski',                       		// slug (unique of key)
-	        array( $this, 'ski' )      					// function(call back)
-	    );
+    #manage-ski
 
-	    add_submenu_page(                    
-	        'manage-bikes',                    			// url
-	        'Manage Paddle',                    		// title name
-	        'Manage Paddle',                            // shortcode reference
-	        'manage_options',                           // Capability (who can use this option)
-	        'manage-paddle',                       		// slug (unique of key)
-	        array( $this, 'Paddle' )      				// function(call back)
-	    );
-	}
+    add_submenu_page(                    
+        'manage-bikes',                       //
+        'Manage Ski',                         // title name
+        'Manage Ski',                         // shortcode reference
+        'manage_options',                     // Capability (who can use this option)
+        'manage-ski',                         // slug (unique of key)
+        array( $this, 'ski' )                 // function(call back)
+    );
 
-	public function bikes(){
-	  	global $wpdb;
+  }
 
-	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/add_edit.php'); 
-	      return;
-	    }
-	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'admin/view.php');
-	      return;
-	    }
-	}
+  public function commonCrudManager($obj){
 
-	public function ski(){
-	  	global $wpdb;
+    global $wpdb;
+    $action = !empty($_REQUEST['action']) ? $_REQUEST['action'] : 'list';
 
-	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/add_edit.php'); 
-	      return;
-	    }
-	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'ski/view.php');
-	      return;
-	    }
-	}
+    switch($action){
+      case 'add':
+        return $obj->renderAddEdit('add');
+      break;
+      case 'edit':
+        return $obj->renderAddEdit('edit');
+      break;
+      case 'delete':
+        $obj->delete();
+      break;
+      default: // point to list
+      break;
+    }
+    return $obj->list();
 
-	public function paddle(){
-	  	global $wpdb;
+  }
 
-	    if($_REQUEST['action'] == 'add' || $_REQUEST['action'] == 'edit'){
-	      include_once( plugin_dir_path( __FILE__ ).'paddle/add_edit.php'); 
-	      return;
-	    }
-	    if(!isset($_REQUEST['action']) || $_REQUEST['action'] == 'deleted'){
-	      include_once( plugin_dir_path( __FILE__ ).'paddle/view.php');
-	      return;
-	    }	    
-	} 
+  #
+  # Function Name : bikes
+  #
 
-	##  Function Name : requiredMessage()
-	##  Parameter     : $status -> Enter the wordpress classs name for updated / error.
-	##  			  : $text -> Display your text 
-	##  Return        : $message                
-	public function requiredMessage($status , $text){
-	    $message = "<div class='".$status." notice'><p>".$text."</p></div>";
-	    return $message;
-	}
+  public function bikes(){
+    $this->commonCrudManager( manageBikeObject() );
+  }
 
-	####
-	public function generalAddField($name , $displayName ,$value , $placeholder){ ?>
-	    <tr>
-	      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
-	      <td>
-	        <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
-	      </td>
-	    </tr>
-	<?php  }
+  public function ski(){
+    $this->commonCrudManager( manageSkiObject() );
+  }
 
-	####
-	public function generalAddtextField($name , $displayName ,$value , $placeholder){ ?>
-	    <tr>
-	      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
-	      <td>
-	        <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
-	      </td>
-	    </tr>
-	<?php  }
+  public function Paddle(){
+    $bikeObject = manageBikeObject();
+    $this->commonCrudManager( $bikeObject ); 
+  } 
 
-	## Function Name 	: generalbutton
-	##	Parameters 		: $name , $value
-	## 					: $name-> name of the button
-	##					: $value-> value for button for example save , add , register etc.
-	public function generalbutton($name ,$value){ ?>
-	    <p class="submit">
-	      <input type="submit" name="<?php echo $name; ?>" id="submit" class="button button-primary" value="<?php echo $value  ?>">
-	    </p>
-	<?php  }
+  ##  Function Name : requiredMessage()
+  ##  Parameter     : $status -> Enter the wordpress classs name for updated / error.
+  ##          : $text -> Display your text 
+  ##  Return        : $message                
+  public function requiredMessage($status , $text){
+      $message = "<div class='".$status." notice'><p>".$text."</p></div>";
+      return $message;
+  }
 
-	####
-	public function generalcheckboxfields( $display , $name , $value , $id ){  ?>
-	    <tr class="option-site-visibility">
-	      <th scope="row"> Categories :</th>
-				<td>
-					<fieldset>	
-					<label for="<?php echo $name; ?>">
-						<input name="<?php echo $name; ?>" type="checkbox" id="<?php echo $id; ?>" value="<?php echo $value; ?>">
-							<?php echo $display; ?>
-					</label>
-				</fieldset>
-			</td>
-		</tr>
-	<?php }
+  ####
+  public function generalAddField($name , $displayName ,$value , $placeholder , $error){ ?>
+    <tr>
+      <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+      <td>
+        <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
+        <p style="float: right; padding: 0 381px 0 0;">
+          <?php
+            if( !empty($error) ){
+              echo "<b><small style='color: rgb(255,0,0)'>** {$error} </small></b>";
+            }
+          ?>
+        </p>
+      </td>
+    </tr>
+  <?php  }
 
-	####
-	public function generalLables($name , $type , $id , $value , $display){ 
-	    ?>
-	    <label for="<?php echo $name; ?>">
-	      <input type="<?php echo $type;?>" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>"><?php echo $display; ?>
-	    </label>
-	<?php  }
+  ####
+  public function generalAddtextField($name , $displayName ,$value , $placeholder , $error){ ?>
+      <tr>
+        <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
+        <td>
+          <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+        <p style="float: right; padding: 0 381px 0 0;">
+          <?php
+            if( !empty($error) ){
+              echo "<b><small style='color: rgb(255,0,0)'>** {$error} </small></b>";
+            }
+          ?>
+        </p>
+        </td>
+      </tr>
+  <?php  }
 
-	####
-	public function priceField($name , $lableid , $type , $id , $value , $placeholder){ 
-	    if($type == 'number'){
-	      $type = 'text';
-	    } 
-	    ?>
-	    <label for="<?php echo $name; ?>" id="<?php echo $lableid; ?>" style="display: none;">
-	      <input name="<?php echo $name; ?>" type="<?php echo $type; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>" class="small-text" placeholder="<?php echo $placeholder; ?>">
-	    </label>
-	<?php  }
+  ## Function Name  : generalbutton
+  ##  Parameters    : $name , $value
+  ##          : $name-> name of the button
+  ##          : $value-> value for button for example save , add , register etc.
+  public function generalbutton($name ,$value){ ?>
+      <p class="submit">
+        <input type="submit" name="<?php echo $name; ?>" id="submit" class="button button-primary" value="<?php echo $value  ?>">
+      </p>
+  <?php  }
+
+  ####
+  public function generalcheckboxfields( $display , $name , $value , $id ){  ?>
+      <tr class="option-site-visibility">
+        <th scope="row"> Categories :</th>
+        <td>
+          <fieldset>  
+          <label for="<?php echo $name; ?>">
+            <input name="<?php echo $name; ?>" type="checkbox" id="<?php echo $id; ?>" value="<?php echo $value; ?>">
+              <?php echo $display; ?>
+          </label>
+        </fieldset>
+      </td>
+    </tr>
+  <?php }
+
+  ####
+  public function generalLables($name , $type , $id , $value , $display){ 
+      ?>
+      <label for="<?php echo $name; ?>">
+        <input type="<?php echo $type;?>" name="<?php echo $name; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>"><?php echo $display; ?>
+      </label>
+  <?php  }
+
+  ####
+  public function priceField($name , $lableid , $type , $id , $value , $placeholder){ 
+      if($type == 'number'){
+        $type = 'text';
+      } 
+      ?>
+      <label for="<?php echo $name; ?>" id="<?php echo $lableid; ?>" style="display: none;">
+        <input name="<?php echo $name; ?>" type="<?php echo $type; ?>" id="<?php echo $id; ?>" value="<?php echo $value; ?>" class="small-text" placeholder="<?php echo $placeholder; ?>">
+      </label>
+  <?php  }
 
 
 
-	###############################################
-	###############################################
-	###############################################
 
-	## Search for records in DB
-	public function getRecords( $parentId = 0 ){
-	
-		global $wpdb;
-		$table = $wpdb->prefix.'bike';
 
-		$frequency = array(
-							 "half-day"  => "Half day", 
-							 "full-day"  => "Full day" ,
-							 "day"       => "Day"
-						);
+  public function includeFile($file, $errorMessage, $param = []){
+    if(!file_exists($file)){
+      die($errorMessage);
+    }
+    extract($param);
+    include $file;
+  }
 
-		if( isset($_GET['vid']) ){
-			$matchVenoer = " AND vendor_id=".$_GET['vid'];
-		}
 
-		if( isset($_GET['fid']) ){
-			$matchFrequency = " AND frequency='".$frequency[$_GET['fid']]."'";
-		}
-
-		$bikeArray = $wpdb->get_results( "SELECT * FROM {$table} where value = 1 AND parent_id = {$parentId}{$matchVenoer}{$matchFrequency}" );
-
-		if( empty($bikeArray) ){
-			return false;
-		}
-
-		return $bikeArray;
-	}
-
-	###
-	public function getIterativeData( $records, $index = 0 ){
-
-        if(empty($this->stageVariable[ $index ])){
-          $this->stageVariable[ $index ] = [];
-        }
-
-        if( empty( $records ) ){
-        	return array();
-		}
-
-		foreach( $records as $bike ){
-			$this->stageVariable[$index][] =  array(
-									'id'         => $bike->id,
-									'name'       => $bike->name,
-									'frequency'  => $bike->frequency,
-									'price'		 => $bike->price,
-									'parent_id'  => $bike->parent_id,
-								  );
-			
-			$children = $this->getRecords( $bike->id );
-
-			if( !empty($children) ){
-				$newIndex = $index + 1;
-			    $this->getIterativeData( $children, $newIndex );
-			} 
-		}
-
-		return $temp;
-	}
-
-	###
-	public function getDropdown(  $feildId, $data = array() ) {
-
-		if( empty($data) ){
-			return false;
-		}
-
-        
-        $choices = [];
-		foreach( $data as $key => $value ) {
-
-            $choicesLength = count($choices);
-
-			#####
-			add_filter( 'gform_field_choice_markup_pre_render_'.$this->formId.'_'.$feildId, function ( $choice_markup, $choice, $field, $fvalue ) use ($key, $value, $choicesLength) {
-
-                $formId  = $this->formId;
-                $fieldId = $field->id;
-
-                $searchName = "gchoice_{$formId}_{$fieldId}_{$choicesLength}";
-
-                return $choice_markup = str_replace( $searchName,"{$searchName} js-parent-id-{$value['parent_id']} js-id-{$value['id']} data-price-{$value['price']}", $choice_markup );
-
-			}, 10, 4 );
-
-			####
-			$choices[] = array( 'text' => '<div class="ids-box"><img src="http://gf.incredible-developers.com/wp-content/uploads/2018/11/small-icon.png"><span class="gf-title">'.$value['name'].'</span></div>', 'value' => $value['id'] );
-		}
-		return $choices;
-
-	}
-
-	###
-	public function preRenderProccess($form){
-
-		$bikeArray = $this->getRecords();
-		$this->getIterativeData( $bikeArray );
-        $options   = $this->stageVariable;
-
-		foreach( $form['fields'] as &$field )  {
-
-			$choices = array();
-			$feildId = $field['id'];
-
-			switch( $feildId ){
-				case 149:
-					$field->choices = $this->getDropdown( $feildId, $options[0] ); 
-				break;
-				case 150:
-					$field->choices = $this->getDropdown( $feildId, $options[1] ); 
-				break;
-				case 151:
-					$field->choices = $this->getDropdown( $feildId, $options[2] ); 
-				break;
-			}
-
-		}
-
-		return $form;
-	}
-
+  public static function instance () {
+    if ( is_null( self::$_instance ) )
+      self::$_instance = new self();
+    return self::$_instance;
+  } // End instance()
 }
 
+function gfBikesCustomization() {
+  return gfBikesCustomizationClass::instance();
+} // End resizerPlugin()
+
 add_action( 'plugins_loaded', function() {
-    new gfBikesCustomization();
+  gfBikesCustomization();
 });
