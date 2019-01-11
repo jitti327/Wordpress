@@ -27,7 +27,7 @@ class gfBikeManageCommon{
 
   # Manage Page
   protected $pageName     = "";
-  protected $errorMessage = "";
+  protected $errorMessage = [];
 
   #
   # Read the JSON
@@ -158,7 +158,7 @@ class gfBikeManageCommon{
 
       $type = $this->save();
       if($type === false){
-        $this->errorMessage = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
+        // $this->errorMessage["common"] = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
         return $message; // Unable to save the data
 
       }
@@ -247,6 +247,9 @@ class gfBikeManageCommon{
       $value = isset( $_POST[$field] ) ? $_POST[$field] : [];
       $this->nestedObject[$field]->saveRecursive( $value, $vendorId );
     }
+
+    return true;
+    
   }  
 
 
@@ -255,24 +258,44 @@ class gfBikeManageCommon{
   #
   public function save(){
     if(isset($_POST['submit'])){
-      if(empty($_POST['name']) || empty($_POST['email']) || empty($_POST['gear_rented']) || empty($_POST['policy']) ){
-        return false;
-      }
-      else{
 
-        $operation = isset($_POST['operation_type']) ? $_POST['operation_type'] : "";
-        switch($operation){
-          case 'edit':
-            $this->update();
-          break;
-          case 'add':
-            $this->add();
-          break;
-          default:
-            die('Invalid Operation');
-          break;
+      // if(
+      //   empty($_POST['name']) || 
+      //   empty($_POST['email']) || 
+      //   empty($_POST['gear_rented']) || 
+      //   empty($_POST['policy']) ){
+      //   return false;
+      // }
+
+      foreach($this->vendorRowDetails['normal'] as $field => $fieldInfo){ 
+        if( 
+            isset($fieldInfo['required']) 
+         && $fieldInfo['required'] === true
+         && empty($_POST[$field])
+        ){
+          $this->errorMessage[$field] = "This field is required";
         }
       }
+
+      if(count($this->errorMessage)){
+        return false;
+      }
+
+      
+
+      $operation = isset($_POST['operation_type']) ? $_POST['operation_type'] : "";
+      switch($operation){
+        case 'edit':
+          return $this->update();
+        break;
+        case 'add':
+          return $this->add();
+        break;
+        default:
+          die('Invalid Operation');
+        break;
+      }
+  
     }
   }
 
@@ -327,6 +350,8 @@ class gfBikeManageCommon{
     //   'vendorFields' => $vendorFields
     // ]);
     // echo '</pre>';
+
+    return true;
 
 
     # Update details form first table

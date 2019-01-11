@@ -26,20 +26,28 @@ class manageSki extends gfBikeManageCommon{
     'normal' => [
       'name' => [
         'label' => 'Shop Name',
+        'required' => true
       ],
       'email' => [
         'label' => 'Email address',
+        'required' => true
       ],
       'gear_rented' => [
         'label' => 'Type of gear rented',
+        'required' => true
       ],
       'pickup' => [
         'type'  => 'radio',
         'label' => 'Pickup',
+        'option' => [
+          'Yes' => 'Yes', 
+          'No'  => 'No'
+        ]
       ],
       'policy' => [
-        'type'  => 'textarea',
-        'label' => 'Policy',
+        'type'     => 'textarea',
+        'label'    => 'Policy',
+        'required' => true
       ]
     ],
     'extended' => [

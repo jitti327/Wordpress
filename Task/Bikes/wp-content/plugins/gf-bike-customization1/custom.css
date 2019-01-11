@@ -9,7 +9,7 @@
 .bgf-hidden{
 	display: none !important; /* This is used for dynamic popuplation of option */
 }
-p.errordisplay {
+p.errordisplay{
     float: right;
     padding: 0 381px 0 0;
 }
