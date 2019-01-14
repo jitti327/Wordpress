@@ -1,9 +1,11 @@
-<?php $bike->renderCommon(); ?>
-<?php print_r($error['common']); ?>
+<?php 
+  $bike->renderCommon();
+  print_r($error['common']);
+?>
 <div class="wrap">
-  <form method="post">
+  <form method="post"> 
     <table class="form-table">
-      <tbody>
+      <tbody> 
         <?php foreach($fields as $key => $value){ ?>
           <?php
             $label = $value['label'];
@@ -30,25 +32,26 @@
               <?php } ?>
             </td>
           </tr>
+        <?php }
+          else{ ?>
+            <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
+              <tr class="row-wrapper">
+                <?php
+                  gfBikesCustomization()->generalAddtextField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError);
+                ?>
 
-        <?php }else{ ?>
-          <?php if(isset($value['type']) && $value['type'] == "textarea"){ ?>
-            <tr class="row-wrapper">
-              <?php
-                gfBikesCustomization()->generalAddtextField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError );
-              ?>
-            </tr>
-          <?php }else{ ?>
-            <tr class="row-wrapper">
-              <?php
-                gfBikesCustomization()->generalAddField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError );
-              ?>
-            </tr>
-        <?php } ?>
-
-        <?php } ?>
-
-        <?php } ?>
+              </tr>
+            <?php }
+              else{ ?>
+                <tr class="row-wrapper">
+                  <?php
+                    gfBikesCustomization()->generalAddField($key , $label , $default[$key] , 'Enter ' . $value['label'] , $validationError);
+                  ?>
+                </tr>
+        <?php }
+            }
+          }
+        ?>
         <?php foreach($extended as $key => $value){ ?>
         <tr class="row-wrapper">
           <td scope="row" class="top"> <b> <?php echo $value['label'] ?> : </b> </td>
