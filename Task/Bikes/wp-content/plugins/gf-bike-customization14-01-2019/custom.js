@@ -109,6 +109,8 @@ jQuery( document ).ready(function($){
     $.each(sFieldId, function(key, fieldId){
       var parentId = "#input_" + formId + "_" + fieldId;
       $(parentId).find('.js-dynamic-field input').prop('checked', false);
+      console.log($parentId);
+      
       $(parentId).find('.js-dynamic-field').addClass('bgf-hidden');
       $(parentId).find('.js-dynamic-field.js-parent-id-'+itemId).removeClass('bgf-hidden');
     });
