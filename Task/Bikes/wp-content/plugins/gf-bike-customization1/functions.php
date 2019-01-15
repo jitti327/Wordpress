@@ -162,7 +162,7 @@ class gfBikesCustomizationClass{
       <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
       <td>
         <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
-        <p class="errordisplay">
+        <p style="float: right; padding: 0 450px 0 0 ;">
           <?php
             if($error == true){
               echo "<b><small style='color: rgb(255,0,0)'>** This field is required</small></b>";
@@ -179,7 +179,7 @@ class gfBikesCustomizationClass{
         <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
         <td>
           <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
-        <p class="errordisplay">
+        <p style="float: right; padding: 0 450px 0 0 ;">
           <?php
             if($error == true){
               echo "<b><small style='color: rgb(255,0,0)'>** This field is required</small></b>";
