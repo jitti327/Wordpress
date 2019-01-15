@@ -162,7 +162,11 @@ class gfBikesCustomizationClass{
       <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
       <td>
         <input name="<?php echo $name; ?>" type="text" id="blogname" value="<?php echo $value; ?>" class="regular-text custom_text" placeholder="<?php echo $placeholder; ?>">
+<<<<<<< HEAD:Task/Bikes/wp-content/plugins/gf-bike-customization1/functions.php
+        <p style="float: right; padding: 0 450px 0 0 ;">
+=======
         <p style="float: right; padding: 0 381px 0 0;">
+>>>>>>> f1947dc2361ab0d5bcc921892afba330dced6595:Task/Bikes/wp-content/plugins/backup14-01-2019/gf-bike-customization14-01-2019/functions.php
           <?php
             if( !empty($error) ){
               echo "<b><small style='color: rgb(255,0,0)'>** {$error} </small></b>";
@@ -179,7 +183,11 @@ class gfBikesCustomizationClass{
         <th scope="row"><label for="blogname"><?php echo $displayName; ?></label></th>
         <td>
           <textarea name="<?php echo $name; ?>" type="text" id="blogname" class="regular-text custom_textarea" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+<<<<<<< HEAD:Task/Bikes/wp-content/plugins/gf-bike-customization1/functions.php
+        <p style="float: right; padding: 0 450px 0 0 ;">
+=======
         <p style="float: right; padding: 0 381px 0 0;">
+>>>>>>> f1947dc2361ab0d5bcc921892afba330dced6595:Task/Bikes/wp-content/plugins/backup14-01-2019/gf-bike-customization14-01-2019/functions.php
           <?php
             if( !empty($error) ){
               echo "<b><small style='color: rgb(255,0,0)'>** {$error} </small></b>";

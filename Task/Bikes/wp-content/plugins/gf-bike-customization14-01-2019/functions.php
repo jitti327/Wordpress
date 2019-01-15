@@ -33,6 +33,7 @@ class gfBikesCustomizationClass{
       , 'gfbcSingle.php'
       , 'manage-bikes.php'
       , 'manage-ski.php'
+      , 'manage-paddle.php'
     ];
 
     foreach( $files as $file){
@@ -56,8 +57,10 @@ class gfBikesCustomizationClass{
     ## Add admin menu's
     add_action( 'admin_menu', array( $this, 'addMenu' ) );
 
+
     manageBikeObject();
     manageSkiObject();
+    managePaddleObject();
 
   }
 
@@ -67,10 +70,16 @@ class gfBikesCustomizationClass{
     $url  = self::$pluginUrl;
 
     $jsVersion  = date("ymd-Gis", filemtime( $path . 'custom.js' ));
+    $jsVersion  = date("ymd-Gis", filemtime( $path . 'date.js' ));
     $cssVersion = date("ymd-Gis", filemtime( $path . 'custom.css' ));
      
     wp_enqueue_script( 'gf-custom', $url . 'custom.js' , array('jquery'), $jsVersion );
+
     wp_register_style( 'gf-custom', $url . 'custom.css', false, $cssVersion );
+
+    wp_enqueue_script( 'gf-datecustom', $url . 'date.js' , array('jquery'), $jsVersion );
+    wp_enqueue_script( 'gf-datecustom', $url . 'date.js' , array('jquery'), $jsVersion );
+
     wp_enqueue_style ( 'gf-custom' );
 
 
@@ -106,12 +115,24 @@ class gfBikesCustomizationClass{
         array( $this, 'ski' )                 // function(call back)
     );
 
+    #manage-paddle
+
+    add_submenu_page(                    
+        'manage-bikes',                       //
+        'Manage Paddle',                      // title name
+        'Manage Paddle',                      // shortcode reference
+        'manage_options',                     // Capability (who can use this option)
+        'manage-paddle',                      // slug (unique of key)
+        array( $this, 'paddle' )              // function(call back)
+    );
+
   }
 
   public function commonCrudManager($obj){
 
     global $wpdb;
     $action = !empty($_REQUEST['action']) ? $_REQUEST['action'] : 'list';
+
 
     switch($action){
       case 'add':
@@ -143,8 +164,7 @@ class gfBikesCustomizationClass{
   }
 
   public function Paddle(){
-    $bikeObject = manageBikeObject();
-    $this->commonCrudManager( $bikeObject ); 
+    $this->commonCrudManager( managePaddleObject() );
   } 
 
   ##  Function Name : requiredMessage()
