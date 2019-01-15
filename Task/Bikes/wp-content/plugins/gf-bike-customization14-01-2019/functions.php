@@ -70,10 +70,16 @@ class gfBikesCustomizationClass{
     $url  = self::$pluginUrl;
 
     $jsVersion  = date("ymd-Gis", filemtime( $path . 'custom.js' ));
+    $jsVersion  = date("ymd-Gis", filemtime( $path . 'date.js' ));
     $cssVersion = date("ymd-Gis", filemtime( $path . 'custom.css' ));
      
     wp_enqueue_script( 'gf-custom', $url . 'custom.js' , array('jquery'), $jsVersion );
+
     wp_register_style( 'gf-custom', $url . 'custom.css', false, $cssVersion );
+
+    wp_enqueue_script( 'gf-datecustom', $url . 'date.js' , array('jquery'), $jsVersion );
+    wp_enqueue_script( 'gf-datecustom', $url . 'date.js' , array('jquery'), $jsVersion );
+
     wp_enqueue_style ( 'gf-custom' );
 
 
