@@ -32,6 +32,19 @@ class manageSki extends gfBikeManageCommon{
         'label' => 'Email address',
         'required' => true
       ],
+      'hours_of_operation' => [
+        'label' => 'Hours Of Operation',
+        'required' => true
+      ],
+      'phone_number' => [
+        'label' => 'Phone Number',
+        'required' => true
+      ],
+      'address' => [
+        'type'  => 'textarea',
+        'label' => 'Address',
+        'required' => true
+      ],
       'gear_rented' => [
         'label' => 'Type of gear rented',
         'required' => true

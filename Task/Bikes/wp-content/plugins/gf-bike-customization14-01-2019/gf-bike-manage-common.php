@@ -271,7 +271,7 @@ class gfBikeManageCommon{
 
       $type = $this->save();
       if($type === false){
-        $this->errorMessage["common"] = "<div class='error notice'><p>** All Fields Are Required And Select At Least One Checkbox.</p></div>";
+        $this->errorMessage["common"] = "<div class='error notice'><p>There was a problem with your submission. Errors have been highlighted below.</p></div>";
         return $message; // Unable to save the data
       }
 
