@@ -11,7 +11,7 @@ jQuery( document ).ready(function($){
     var millisBetween      = (Second - First);
     var days               = millisBetween / millisecondsPerDay;
     var diff               = jQuery("#input_1_4").val(days);
-    var frequency          = jQuery("#input_1_5").val(diff.val() - 1 + " " + "Day");
+    var frequency          = jQuery("#input_1_5").val(diff.val() - 1 + " Day");
   });
 
 });
