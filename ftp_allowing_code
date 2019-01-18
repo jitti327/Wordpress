@@ -1,0 +1,6 @@
+
+This Code is used for allowing to install plugins and themes of wordpress in ubuntu
+
+Add the following code in wp-config.php file
+
+=>  define('FS_METHOD', 'direct');
