@@ -14,8 +14,11 @@
   font-size: 24px;
   font-style: italic;
 }
-.gf_step_label{
+.gf_page_steps{
 	font-style: italic;
 	font-size: 30px;
 	color: #548C47;
+}
+.gform_heading{
+	display: none;
 }
