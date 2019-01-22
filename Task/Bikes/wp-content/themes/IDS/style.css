@@ -8,3 +8,14 @@
  Text Domain:  twentynineteen
 */
 
+
+.custom_text{
+  color: #548C47;
+  font-size: 24px;
+  font-style: italic;
+}
+.gf_step_label{
+	font-style: italic;
+	font-size: 30px;
+	color: #548C47;
+}
