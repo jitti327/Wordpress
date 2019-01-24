@@ -11,13 +11,9 @@
 div#gform_wrapper_2{
   width: 100%;
   max-width: 100%;
-  background-color: #EEF3F5;
-}
-.entry-header{
-  display: none;
 }
 .gform_heading{
-  color: #548C47;
+  color: #5DCD77;
   font-style: italic;
   font-size: 40px;
   text-align: center;
@@ -25,10 +21,10 @@ div#gform_wrapper_2{
 .gf_page_steps{
   font-style: italic;
   font-size: 30px;
-  color: #548C47;
+  color: #5DCD77;
 }
 .custom_text{
-  color: #548C47;
+  color: #5DCD77;
   font-size: 24px;
   font-style: italic;
   size: 600px;
@@ -41,7 +37,4 @@ div#gform_wrapper_2{
 }
 .gform_page_footer{
   text-align: right;
-}
-#input_2_18{
-  width: 250px;
 }
