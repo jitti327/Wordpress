@@ -1,0 +1,139 @@
+=== Gravity Forms to Word Document Auto-Fill Solution by Wisdmlabs ===
+Contributors: WisdmLabs
+Tested up to:  4.5.1
+Current Version: 2.0.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This solution allows you to Generate Word Documents with data captured through Gravity Forms on your website.
+Tested with Gravity Forms version 2.2
+
+== Description ==
+
+The Gravity Forms to Word Document Auto-Fill solution can be used to Create and Map word documents templates to Gravity Forms. Each time a gravity is created associated documents are generated. Word Documents can be downloaded by the admin and also by the users after they submit the form.
+
+== Installation ==
+
+How to install '__Gravity Forms to Word Document Auto-Fill Solution by Wisdmlabs__'
+
+= Plugin Installation and Set-Up Steps =
+
+Upon purchasing the Gravity Forms to Word Document Auto-Fill Solution, an email will be sent to the registered email id, with the download link for the plugin and a purchase receipt id. Download the Word Auto-Fill for Gravity Forms plugin using the download link.
+
+Go to Plugin-> Add New menu in your dashboard and click on the Upload’ tab. Choose the ‘word auto-fill.zip’ file to be uploaded and click on Install Now.
+After the plugin has been installed successfully, click on the Activate Plugin link or activate the Word auto Fill for Gravity Forms plugin from your Plugins page.
+A Word Auto Fill for Gravity Forms License sub-menu will be created under Plugins menu in your dashboard. Click on this menu and enter your purchased product’s license key. Click on Activate License. If license in valid, an ‘Active’ status message will be displayed, else ‘Not Active’ will be displayed.
+Upon entering a valid license key, and activating the license, a ‘Word Auto Fill’ menu will be created in your dashboard.
+
+
+== User Guide ==
+To view the working functionality of the solution you can go through the User Guide here:
+https://wisdmlabs.com/gravity-forms-to-word-document-auto-fill-solution/
+
+
+== Features ==
+1. Upload Multiple Document Templates
+2. Map Document Templates to Forms
+3. Create Word Documents on the fly
+4. Download Documents as needed
+
+
+
+FAQ’s
+
+-What are Document Templates?
+Document templates are logical template containing placeholders, and are standard .DOCX files and not .DOTX/ .DOT formats.
+
+-How do I create Document Templates?
+Document templates can be created using any Word Processing Application (preferably Microsoft Word 2007 or above), but should be saved as a .DOCX file.
+
+-Does the Gravity Forms to Word Document Auto-Fill Solution support Images?
+No. Currently, the Gravity Forms to Word auto-fill solution does not support images or uploads.
+
+-Can this work with other form Plugins like Contact Form 7?
+No. Such a solution can be provided as a custom requirement.
+
+-Can I activate the license on multiple sites?
+Every license you purchase is for a single site. To use the plugin on different sites you will need to purchase additional license keys.
+
+
+-Do you provide Support?
+Yes. We will provide you a license which you can use to avail free support and updates. This license will have to be renewed on a yearly basis to continue receiving support and updates.
+
+-Do you have a refund policy?
+Please refer to the Terms and Conditions to know more about our refund policy.
+
+-What will happen if my license expires?
+A valid and active license key is required to receive updates and support. If the license expires, you will still be able to use the plugin, but you will not receive support and updates.
+
+
+== Change Log ==
+=2.0.5=
+Currency issue fixed
+
+
+=2.0.4=
+
+Improvement: Added compatibilty for Gravity Form version 2.3.1
+
+Improvement: Updated the license code.
+
+Improvement: Added the option to disable the download option in the front end.
+
+Improvement: Made the plugin GDPR compatibile.
+
+Improvement: Made the plugin translation ready.
+
+Bug Fix: When the redirction is set on gravity form completion, the reirection will not work.
+
+=2.0.1=
+Improvement: Added string translation support.
+
+Improvement: Added the support for the 'List' field.
+
+Improvement: Added the full support for the 'Date' field.
+
+Improvement: Added compatibilty for Gravity Form version 2.2.
+
+Improvement: Updated the license code.
+
+Bug Fix: Fixed the warning shown for no template mapping available in the front-end.
+
+Bug Fix: Fixed auto draft displayed in template listing dropdown on the template mapping page.
+
+
+=2.0.0=
+Improvement: Changed script loading hooks, Code optimization ,structure changes
+
+Improvement: Unwanted Jquery "my-upload.js" removed which was causing conflicts with gravity form plugin.
+
+Improvement: Enqueued scripts on wordpress proper hooks.
+
+Improvement: License code updated.
+
+Improvement :PSR-2 Standard compatible.
+
+Bug Fix: Fixed gravity form "add gravity form shortcode" error in pages.
+
+Bug Fix: Fixed delete mapping functionality error on template mapping page.
+
+Bug FIx: Added pre-condition for plugin activation that plugin will only be activated if gravity form plugin is activated.
+
+Bug Fix: Forms/templates added to trash will not be able to show up in the dropdown for mapping.
+
+Bug Fix: Mapping for previously mapped Forms/templates will be deleted on their actual deletion.
+
+Bug Fix: Fixed form styling issue using css.
+
+Bug Fix:  Fixed subdomain issue for generating the docx.
+
+Bug Fix: Fixed an unclosed html tag element loop on "form templates mapping" sub-menu page which was causing conflicts with other Plugin functions. 
+
+Bug Fix: Insert Form button will now insert forms into pages
+
+
+= 1.1 =
+* Bug Fixes
+
+= 1.0.0 =
+* Plugin Released

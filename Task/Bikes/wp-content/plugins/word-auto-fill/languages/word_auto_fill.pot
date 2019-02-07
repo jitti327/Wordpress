@@ -1,0 +1,328 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Word Auto Fill for Gravity Forms-2.0.4\n"
+"POT-Creation-Date: 2018-07-23 15:36+0530\n"
+"PO-Revision-Date: 2018-07-23 15:36+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: generate_docx.php:214
+#, php-format
+msgid ""
+"%s OOPS!! Cannot Create DOCX File!!! %s You have not specified DOCX Template "
+"to be mapped for the Gravity Form %s Hence No DOCX file could be generated. "
+"%s Please create a mapping at Template Mapping Page first (under Word "
+"AutoFill Plugin Menu)  & then return %s "
+msgstr ""
+
+#: generate_docx.php:273
+msgid "Download DOCX"
+msgstr ""
+
+#: generate_docx.php:277
+#, php-format
+msgid ""
+"%s OR %s You can also recieve these DOCX files in your Inbox %s Enter E-mail "
+"ID"
+msgstr ""
+
+#: generate_docx.php:278
+#, php-format
+msgid "%s Email Files %s"
+msgstr ""
+
+#: generate_docx.php:279
+#, php-format
+msgid "%s Sending Email... %s"
+msgstr ""
+
+#: generate_docx.php:281 word-auto-fill.php:187 word-auto-fill.php:220
+#: word-auto-fill.php:430 word-auto-fill.php:446
+msgid ""
+"Dear User, This is to inform you that WisdmLabs does not collect any user "
+"data. The data that is sent directly to your inbox is your sole "
+"responsibility and we urge you to update the privacy policy of your websites"
+msgstr ""
+
+#: generate_docx.php:285
+#, php-format
+msgid ""
+"%s Here is a List of DOCX File(s) ready for download. %s A Total of %d DOCX "
+"file(s) have been generated.%s Click on the blue buttons given below to "
+"download :%s"
+msgstr ""
+
+#: generate_docx.php:298
+msgid "Please Enter a valid Email ID"
+msgstr ""
+
+#: generate_docx.php:302
+msgid "Word Auto Fill Filled DOCX Files"
+msgstr ""
+
+#: generate_docx.php:303
+msgid "Hi, please find the attached DOCX files in this Email.."
+msgstr ""
+
+#: generate_docx.php:310
+msgid "A Mail has been successfully sent"
+msgstr ""
+
+#: generate_docx.php:312
+msgid "Sorry,The Mail could not be sent"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:73
+#: licensing/class-wdm-add-license-data.php:74 licensing/license-page.php:2
+msgid "WisdmLabs License Options"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:144
+msgid "Deactivate"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:150
+msgid "Renew"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:159
+msgid "Activate"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:173
+msgid ""
+"Once you renew the License, you must Deactivate Plugin and then Activate it "
+"again."
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:239
+msgid "Your license key is activated("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:243
+msgid "No response from server. Please try again later.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:244
+msgid ""
+"License Activation Failed. Please try again or contact support on "
+"support@wisdmlabs.com("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:245
+msgid "Please enter license key.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:246
+#: licensing/class-wdm-add-license-data.php:251
+#, php-format
+msgid ""
+"Your License Key is already activated at : %s Please deactivate the license "
+"from one of the above site(s) to successfully activate it on your current "
+"site.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:246
+msgid "No Activations Left.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:247
+msgid "Your license key has Expired. Please, Renew it.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:248
+msgid "Your License key is disabled("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:249
+msgid "Please enter valid license key("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:250
+msgid ""
+"Please try to activate license again. If it does not activate, contact "
+"support on support@wisdmlabs.com("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:251
+msgid "Site inactive (Press Activate license to activate plugin("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:252
+msgid "License Key is deactivated("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:253
+#, php-format
+msgid ""
+"Following Error Occurred: %s. Please contact support on support@wisdmlabs."
+"com if you are not sure why this error is occurring("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:254
+msgid ""
+"There was an error while connecting to the server. please try again later.("
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:295
+msgid "Active"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:300
+msgid "Expired"
+msgstr ""
+
+#: licensing/class-wdm-add-license-data.php:305
+#: licensing/class-wdm-add-license-data.php:312
+msgid "Not Active"
+msgstr ""
+
+#: licensing/class-wdm-send-customer-data.php:149
+msgid "Be a part of WisdmLabs' Product Improvement Plan."
+msgstr ""
+
+#: licensing/license-page.php:28
+msgid ""
+"Allow WisdmLabs to collect non-sensitive diagnostic data and usage "
+"information."
+msgstr ""
+
+#: word-auto-fill.php:151
+msgid "Templates Mapping"
+msgstr ""
+
+#: word-auto-fill.php:152
+msgid "Form Entries"
+msgstr ""
+
+#: word-auto-fill.php:155
+msgid "Form Manage Downloads Option"
+msgstr ""
+
+#: word-auto-fill.php:155
+msgid "Manage Downloads Option"
+msgstr ""
+
+#: word-auto-fill.php:193
+msgid "Form name"
+msgstr ""
+
+#: word-auto-fill.php:194
+msgid "Select checkbox to disable Doc file download Option"
+msgstr ""
+
+#: word-auto-fill.php:214
+msgid "Update"
+msgstr ""
+
+#: word-auto-fill.php:224
+msgid ""
+"There is no mapping available, please map the gravity form to worddoc "
+"template"
+msgstr ""
+
+#: word-auto-fill.php:247
+msgid ""
+"Gravity Forms plugin is not active. In order to make the 'Word Auto Fill "
+"Addon For Gravity Forms' plugin work, you need to install and activate "
+"Gravity Forms plugin First."
+msgstr ""
+
+#: word-auto-fill.php:264
+msgid "Word Templates"
+msgstr ""
+
+#: word-auto-fill.php:266
+msgid "Upload New Word Template"
+msgstr ""
+
+#: word-auto-fill.php:267
+msgid "Edit Word Template"
+msgstr ""
+
+#: word-auto-fill.php:268
+msgid "New Word Template"
+msgstr ""
+
+#: word-auto-fill.php:269
+msgid "View Word Template"
+msgstr ""
+
+#: word-auto-fill.php:270
+msgid "Search Word Templates"
+msgstr ""
+
+#: word-auto-fill.php:271 word-auto-fill.php:272
+msgid "No Word Template found"
+msgstr ""
+
+#: word-auto-fill.php:319 word-auto-fill.php:325
+msgid "Back"
+msgstr ""
+
+#: word-auto-fill.php:320
+msgid " Please enter a title for WORDOC template"
+msgstr ""
+
+#: word-auto-fill.php:326
+msgid ""
+"Sorry the given template title is already in use. Please enter a different "
+"title for this WORDOC template"
+msgstr ""
+
+#: word-auto-fill.php:347
+msgid "Media Library"
+msgstr ""
+
+#: word-auto-fill.php:450
+msgid "Map Templates with Forms"
+msgstr ""
+
+#: word-auto-fill.php:454
+msgid "Please select a form"
+msgstr ""
+
+#: word-auto-fill.php:455
+msgid "Please select a DOCX template"
+msgstr ""
+
+#: word-auto-fill.php:480 word-auto-fill.php:494
+msgid "Select"
+msgstr ""
+
+#: word-auto-fill.php:529
+msgid "Saving Mapping ..."
+msgstr ""
+
+#: word-auto-fill.php:537
+msgid "Mapping Already Exists"
+msgstr ""
+
+#: word-auto-fill.php:547
+msgid "Gravity Form Name"
+msgstr ""
+
+#: word-auto-fill.php:548
+msgid "DOCX Template"
+msgstr ""
+
+#: word-auto-fill.php:549
+msgid "Delete Mapping"
+msgstr ""
+
+#: word-auto-fill.php:617
+msgid "Create  DOCX  File"
+msgstr ""
+
+#: word-auto-fill.php:669
+msgid "Click to Generate the DOCX File"
+msgstr ""

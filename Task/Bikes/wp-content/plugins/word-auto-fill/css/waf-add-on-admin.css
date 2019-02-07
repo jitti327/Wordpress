@@ -1,0 +1,36 @@
+.manage_download_file_option_form {
+	margin: 1%;
+}
+#mapped-download-option {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#mapped-download-option td, #mapped-download-option th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+#mapped-download-option th {
+	width: 33.33%;
+}
+
+#mapped-download-option tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#submit_file_download_options {
+	cursor: pointer;
+	color: black;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background-color: #E6E6E6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.wdm_admin_notice {
+    margin: 13px 2px 2px;
+}

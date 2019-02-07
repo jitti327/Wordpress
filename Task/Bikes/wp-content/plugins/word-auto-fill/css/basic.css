@@ -1,0 +1,103 @@
+/*/*/*
+ * SimpleModal Basic Modal Dialog
+ * http://simplemodal.com
+ *
+ * Copyright (c) 2013 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
+
+#basic-modal-content {display:none;}
+
+/* Overlay */
+#simplemodal-overlay {background-color:#000;}
+
+/* Container */
+#simplemodal-container.simplemodal-container {font-size:13px; font-weight: bold; height:420px; width:600px; color:#333; background-color:#FFFFFF; border:4px solid #444; padding:12px; z-index: 99999;}
+#simplemodal-container.simplemodal-container .simplemodal-data {padding:8px;}
+#simplemodal-container.simplemodal-container code {background:#F9F9F9; border:6px solid #636363; border-radius:8px; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
+#simplemodal-container.simplemodal-container a {color:white;}
+#simplemodal-container.simplemodal-container a.modalCloseImg {background:url('../img/basic/x.png') no-repeat !important; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+#simplemodal-container.simplemodal-container h3 {color:#84b8d9;}
+
+#wdm_download_section a
+{
+background: none repeat scroll 0 0 #21759B;
+border-radius: 5px;
+color: #FFFFFF;
+display: block;
+font-size: 15px;
+font-weight: bold;
+margin: 10px auto;
+padding: 12px;
+text-align: center;
+text-decoration: none;
+width: 90%;
+}
+
+#waf_email_id
+{
+    font-weight: normal !important;
+    width:280px;
+}
+
+#wdm_download_section
+{
+ font-size: 13px !important;
+ /*font-weight: bold !important;*/
+}
+
+#waf_submit_email_id
+{
+
+background: none repeat scroll 0 0 #4AA02C;
+border-radius: 5px;
+color: #FFFFFF !important;
+font-weight: bold;
+width: 25%;
+margin-left: 3px;
+}
+
+#wdm_error_section
+{
+ width:100% !important;
+ height: 100% !important;
+}
+
+#wdm_error_heading
+{
+    font-size: 17px !important;
+    font-weight: bold;
+    height: 45px !important;
+}
+#wdm_error_body
+{
+ font-size: 13px !important;
+ /*font-weight: bold !important;*/
+}
+
+#wdm_error_img
+{
+    height:40px !important;
+    width:50px !important;
+    margin-bottom: -10px !important;
+}
+
+#waf_submit_email_id{
+    background: none repeat scroll 0 0 #21759B !important;
+    border-bottom: 3px solid #21759B !important;
+
+}
+
+#waf_email_processing{
+    display:none;
+}
+
+div#simplemodal-data > .notice {
+    margin: 0px;
+}
+.send_email_form {
+    display: flex;
+}
+*/*/
