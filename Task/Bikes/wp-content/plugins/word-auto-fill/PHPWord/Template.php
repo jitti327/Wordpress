@@ -71,7 +71,11 @@ class PHPWord_Template {
         // Add a new one
         $this->_objZip->addFile($replace, 'word/media/' . $search);
     }
-    
+
+    public function getZipObject(){
+        return $this->_objZip;
+    }
+
     
     /**
      * Create a new Template Object

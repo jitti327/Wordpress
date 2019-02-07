@@ -187,6 +187,21 @@ function wdm_list_parse($efs, $rows, $field_number_key, $field_number_value)
     return $rows;
 }
 
+
+if(!function_exists('customGenerateRandomString')){
+    function customGenerateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }    
+}
+
+
+
 function generateDocxFile()
 {
     global $wpdb;
@@ -268,19 +283,46 @@ function generateDocxFile()
 
         /* Implementing Ids-coding for replace images from the word document */
 
-        $array = [
-          'image1' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-          'image2' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'          
+        $imgarray = [
+          'image1.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          'image2.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+          'image3.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'  
         ];
 
-        $imageUrl   = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-        $outputImage = dirname(__FILE__) . '/output/temp1.jpg';
+        $zipObj = $template->getZipObject();
+
+        foreach ($imgarray as $key => $value) {
+            // print_r($key);
+            if ($zipObj->locateName('word/media/' .$key) !== false){
+                echo 'Hello Jatinder';
+
+                // Downlaod file
+                $imageUrl    = $value;
+
+                $outputImage = dirname(__FILE__) . '/output/<?php echo customGenerateRandomString(); ?>.jpg';
+
+                // save in random file name
+
+                file_put_contents($outputImage, file_get_contents($imageUrl));
+
+                // replace in zip
+                $template->setImageValue($key, $outputImage );
 
 
-        file_put_contents($outputImage, file_get_contents($imageUrl));
+                // unlink the random file
+            }
+        }
+
+        // $imageUrl   = 'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+        
+        
+        // $outputImage = dirname(__FILE__) . '/output/temp1.jpg';
+
+
+        // file_put_contents($outputImage, file_get_contents($imageUrl));
 
         # $template->setImageValue('image1.jpg', '/home/incredible/Downloads/images/3rd.jpeg');
-        $template->setImageValue('image1.jpg', $outputImage );
+        //$template->setImageValue('image1.jpg', $outputImage );
         #die();
 
 
