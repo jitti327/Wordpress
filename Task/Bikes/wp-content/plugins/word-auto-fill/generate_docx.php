@@ -199,7 +199,7 @@ if(!function_exists('customGenerateRandomString')){
         return $randomString;
     }    
 }
-
+ 
 
 
 function generateDocxFile()
@@ -284,9 +284,9 @@ function generateDocxFile()
         /* Implementing Ids-coding for replace images from the word document */
 
         $imgarray = [
-          'image1.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-          'image2.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-          'image3.jpg' =>  'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'  
+          'image1.jpg' =>  'https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg',
+          'image2.jpg' =>  'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg',
+          'image3.jpg' =>  'https://wallpaperbrowse.com/media/images/4052451-images.jpg'  
         ];
 
         $zipObj = $template->getZipObject();
@@ -294,12 +294,12 @@ function generateDocxFile()
         foreach ($imgarray as $key => $value) {
             // print_r($key);
             if ($zipObj->locateName('word/media/' .$key) !== false){
-                echo 'Hello Jatinder';
 
                 // Downlaod file
                 $imageUrl    = $value;
 
-                $outputImage = dirname(__FILE__) . '/output/<?php echo customGenerateRandomString(); ?>.jpg';
+                $outputImage = dirname(__FILE__) . '/output/'.customGenerateRandomString() . '.jpg';
+                echo $outputImage;
 
                 // save in random file name
 
