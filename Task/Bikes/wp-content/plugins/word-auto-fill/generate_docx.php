@@ -299,7 +299,6 @@ function generateDocxFile()
                 $imageUrl    = $value;
 
                 $outputImage = dirname(__FILE__) . '/output/'.customGenerateRandomString() . '.jpg';
-                echo $outputImage;
 
                 // save in random file name
 
@@ -308,8 +307,10 @@ function generateDocxFile()
                 // replace in zip
                 $template->setImageValue($key, $outputImage );
 
-
                 // unlink the random file
+
+                #var_dump( file_exists($outputImage) );
+                #unlink($outputImage); 
             }
         }
 
